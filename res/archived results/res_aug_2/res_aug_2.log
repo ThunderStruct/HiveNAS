@@ -1,0 +1,1005 @@
+Downloading data from https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+170500096/170498071 [==============================] - 4s 0us/step
+170508288/170498071 [==============================] - 4s 0us/step
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sc_1|sep3x3_16|sep5x5_32|sep3x3_8|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 130s 186ms/step - loss: 1.8042 - sparse_categorical_accuracy: 0.3422 - val_loss: 1.6121 - val_sparse_categorical_accuracy: 0.4126
+Epoch 2/5
+625/625 [==============================] - 115s 184ms/step - loss: 1.6090 - sparse_categorical_accuracy: 0.4225 - val_loss: 1.5401 - val_sparse_categorical_accuracy: 0.4435
+Epoch 3/5
+625/625 [==============================] - 114s 183ms/step - loss: 1.5137 - sparse_categorical_accuracy: 0.4554 - val_loss: 1.4174 - val_sparse_categorical_accuracy: 0.4926
+Epoch 4/5
+625/625 [==============================] - 114s 183ms/step - loss: 1.4428 - sparse_categorical_accuracy: 0.4835 - val_loss: 1.3738 - val_sparse_categorical_accuracy: 0.5135
+Epoch 5/5
+625/625 [==============================] - 121s 193ms/step - loss: 1.3767 - sparse_categorical_accuracy: 0.5084 - val_loss: 1.3208 - val_sparse_categorical_accuracy: 0.5265
+157/157 [==============================] - 1s 7ms/step - loss: 1.1574 - sparse_categorical_accuracy: 0.5855
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_1|sep3x3_16|sep5x5_32|sep3x3_8|sep5x5_32|output) was saved to 890e6914436c7a5d4f03c30f0ddd4ec496d083eb.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_8|dropout|sep3x3_8|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 102s 162ms/step - loss: 1.8702 - sparse_categorical_accuracy: 0.3120 - val_loss: 1.6988 - val_sparse_categorical_accuracy: 0.3885
+Epoch 2/5
+625/625 [==============================] - 100s 160ms/step - loss: 1.6893 - sparse_categorical_accuracy: 0.3875 - val_loss: 1.6403 - val_sparse_categorical_accuracy: 0.3971
+Epoch 3/5
+625/625 [==============================] - 100s 159ms/step - loss: 1.6150 - sparse_categorical_accuracy: 0.4147 - val_loss: 1.5704 - val_sparse_categorical_accuracy: 0.4332
+Epoch 4/5
+625/625 [==============================] - 100s 160ms/step - loss: 1.5550 - sparse_categorical_accuracy: 0.4383 - val_loss: 1.5021 - val_sparse_categorical_accuracy: 0.4559
+Epoch 5/5
+625/625 [==============================] - 99s 159ms/step - loss: 1.5182 - sparse_categorical_accuracy: 0.4516 - val_loss: 1.4577 - val_sparse_categorical_accuracy: 0.4750
+157/157 [==============================] - 1s 5ms/step - loss: 1.2397 - sparse_categorical_accuracy: 0.5561
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_8|dropout|sep3x3_8|sep3x3_32|output) was saved to 010fdfa27edabb4eeb7cb3b04da77232388d6a06.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep3x3_8|dropout|sep3x3_8|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 101s 161ms/step - loss: 1.8886 - sparse_categorical_accuracy: 0.3060 - val_loss: 1.7948 - val_sparse_categorical_accuracy: 0.3550
+Epoch 2/5
+625/625 [==============================] - 99s 159ms/step - loss: 1.6877 - sparse_categorical_accuracy: 0.3857 - val_loss: 1.6184 - val_sparse_categorical_accuracy: 0.4111
+Epoch 3/5
+625/625 [==============================] - 99s 158ms/step - loss: 1.5966 - sparse_categorical_accuracy: 0.4236 - val_loss: 1.5541 - val_sparse_categorical_accuracy: 0.4400
+Epoch 4/5
+625/625 [==============================] - 100s 159ms/step - loss: 1.5315 - sparse_categorical_accuracy: 0.4541 - val_loss: 1.4649 - val_sparse_categorical_accuracy: 0.4675
+Epoch 5/5
+625/625 [==============================] - 99s 159ms/step - loss: 1.4799 - sparse_categorical_accuracy: 0.4724 - val_loss: 1.4197 - val_sparse_categorical_accuracy: 0.4951
+157/157 [==============================] - 1s 5ms/step - loss: 1.2266 - sparse_categorical_accuracy: 0.5660
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep3x3_8|dropout|sep3x3_8|sep3x3_32|output) was saved to 6bd7890e5454968ef90089f30869b62a064ff2c0.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sc_1|sep3x3_16|sep5x5_8|sep3x3_8|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 109s 173ms/step - loss: 1.8348 - sparse_categorical_accuracy: 0.3332 - val_loss: 1.6477 - val_sparse_categorical_accuracy: 0.3938
+Epoch 2/5
+625/625 [==============================] - 108s 172ms/step - loss: 1.5972 - sparse_categorical_accuracy: 0.4227 - val_loss: 1.5153 - val_sparse_categorical_accuracy: 0.4435
+Epoch 3/5
+625/625 [==============================] - 107s 171ms/step - loss: 1.5044 - sparse_categorical_accuracy: 0.4636 - val_loss: 1.4128 - val_sparse_categorical_accuracy: 0.4953
+Epoch 4/5
+625/625 [==============================] - 108s 172ms/step - loss: 1.4289 - sparse_categorical_accuracy: 0.4883 - val_loss: 1.3500 - val_sparse_categorical_accuracy: 0.5135
+Epoch 5/5
+625/625 [==============================] - 107s 171ms/step - loss: 1.3749 - sparse_categorical_accuracy: 0.5077 - val_loss: 1.3184 - val_sparse_categorical_accuracy: 0.5285
+157/157 [==============================] - 1s 6ms/step - loss: 1.1237 - sparse_categorical_accuracy: 0.5991
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_1|sep3x3_16|sep5x5_8|sep3x3_8|sep5x5_32|output) was saved to 2589efa19f26aa55a602a7bb1456f5e420cb24fe.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sc_1|sep3x3_16|sep5x5_8|sep5x5_8|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.8514 - sparse_categorical_accuracy: 0.3182 - val_loss: 1.6507 - val_sparse_categorical_accuracy: 0.4005
+Epoch 2/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.6120 - sparse_categorical_accuracy: 0.4184 - val_loss: 1.5050 - val_sparse_categorical_accuracy: 0.4567
+Epoch 3/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.5184 - sparse_categorical_accuracy: 0.4548 - val_loss: 1.4075 - val_sparse_categorical_accuracy: 0.4950
+Epoch 4/5
+625/625 [==============================] - 108s 172ms/step - loss: 1.4414 - sparse_categorical_accuracy: 0.4875 - val_loss: 1.3475 - val_sparse_categorical_accuracy: 0.5208
+Epoch 5/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.3881 - sparse_categorical_accuracy: 0.5071 - val_loss: 1.2934 - val_sparse_categorical_accuracy: 0.5439
+157/157 [==============================] - 1s 6ms/step - loss: 1.1428 - sparse_categorical_accuracy: 0.5916
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_1|sep3x3_16|sep5x5_8|sep5x5_8|sep5x5_32|output) was saved to fd4863e5d939cfa6a8f0c13e7f4c83e3e2813653.h5
+
+STATUS: itr: 0 -- Best fitness: 0.5990999937057495, Total time (s): 2767.3569622039795
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|batch_norm|max_pool3x3|avg_pool3x3|avg_pool3x3|output)
+
+Epoch 1/5
+625/625 [==============================] - 98s 155ms/step - loss: 2.4706 - sparse_categorical_accuracy: 0.3167 - val_loss: 1.6769 - val_sparse_categorical_accuracy: 0.3832
+Epoch 2/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.6621 - sparse_categorical_accuracy: 0.4051 - val_loss: 1.5228 - val_sparse_categorical_accuracy: 0.4530
+Epoch 3/5
+625/625 [==============================] - 96s 153ms/step - loss: 1.5601 - sparse_categorical_accuracy: 0.4445 - val_loss: 1.4587 - val_sparse_categorical_accuracy: 0.4760
+Epoch 4/5
+625/625 [==============================] - 96s 154ms/step - loss: 1.5016 - sparse_categorical_accuracy: 0.4688 - val_loss: 1.4357 - val_sparse_categorical_accuracy: 0.4813
+Epoch 5/5
+625/625 [==============================] - 96s 154ms/step - loss: 1.4572 - sparse_categorical_accuracy: 0.4883 - val_loss: 1.3777 - val_sparse_categorical_accuracy: 0.5088
+157/157 [==============================] - 1s 5ms/step - loss: 1.1761 - sparse_categorical_accuracy: 0.5842
+
+FILE-SAVE SUCCESSFUL: Candidate (input|batch_norm|max_pool3x3|avg_pool3x3|avg_pool3x3|output) was saved to b47e7c73867b87cc36c44ac8932ba37e2442a42b.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep3x3_8|sep5x5_16|sep3x3_8|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 106s 169ms/step - loss: 1.9515 - sparse_categorical_accuracy: 0.2691 - val_loss: 1.7194 - val_sparse_categorical_accuracy: 0.3608
+Epoch 2/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.7030 - sparse_categorical_accuracy: 0.3796 - val_loss: 1.6425 - val_sparse_categorical_accuracy: 0.4104
+Epoch 3/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.6013 - sparse_categorical_accuracy: 0.4203 - val_loss: 1.4973 - val_sparse_categorical_accuracy: 0.4613
+Epoch 4/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.5192 - sparse_categorical_accuracy: 0.4550 - val_loss: 1.4743 - val_sparse_categorical_accuracy: 0.4730
+Epoch 5/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.4572 - sparse_categorical_accuracy: 0.4791 - val_loss: 1.3616 - val_sparse_categorical_accuracy: 0.5090
+157/157 [==============================] - 1s 5ms/step - loss: 1.1844 - sparse_categorical_accuracy: 0.5774
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep3x3_8|sep5x5_16|sep3x3_8|sep3x3_32|output) was saved to ef15a46fafc99d30dbc110416dca2164b01fdbfb.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|max_pool3x3|sep5x5_16|sep3x3_8|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 108s 172ms/step - loss: 1.7785 - sparse_categorical_accuracy: 0.3516 - val_loss: 1.5754 - val_sparse_categorical_accuracy: 0.4311
+Epoch 2/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.5183 - sparse_categorical_accuracy: 0.4547 - val_loss: 1.3983 - val_sparse_categorical_accuracy: 0.5036
+Epoch 3/5
+625/625 [==============================] - 107s 172ms/step - loss: 1.4331 - sparse_categorical_accuracy: 0.4895 - val_loss: 1.3619 - val_sparse_categorical_accuracy: 0.5212
+Epoch 4/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.3699 - sparse_categorical_accuracy: 0.5170 - val_loss: 1.2853 - val_sparse_categorical_accuracy: 0.5424
+Epoch 5/5
+625/625 [==============================] - 107s 171ms/step - loss: 1.3218 - sparse_categorical_accuracy: 0.5312 - val_loss: 1.2671 - val_sparse_categorical_accuracy: 0.5490
+157/157 [==============================] - 1s 6ms/step - loss: 1.1058 - sparse_categorical_accuracy: 0.6061
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|sep5x5_16|sep3x3_8|sep3x3_32|output) was saved to 5b04e2a7e5dbcd3d06cbfa1f3a0900c8cfdb3b88.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|batch_norm|max_pool3x3|avg_pool3x3|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.7406 - sparse_categorical_accuracy: 0.3862 - val_loss: 1.4820 - val_sparse_categorical_accuracy: 0.4742
+Epoch 2/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.4377 - sparse_categorical_accuracy: 0.4918 - val_loss: 1.3252 - val_sparse_categorical_accuracy: 0.5376
+Epoch 3/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.3400 - sparse_categorical_accuracy: 0.5313 - val_loss: 1.2758 - val_sparse_categorical_accuracy: 0.5488
+Epoch 4/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.2804 - sparse_categorical_accuracy: 0.5534 - val_loss: 1.2383 - val_sparse_categorical_accuracy: 0.5653
+Epoch 5/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.2404 - sparse_categorical_accuracy: 0.5624 - val_loss: 1.1663 - val_sparse_categorical_accuracy: 0.5873
+157/157 [==============================] - 1s 6ms/step - loss: 1.0737 - sparse_categorical_accuracy: 0.6328
+
+FILE-SAVE SUCCESSFUL: Candidate (input|batch_norm|max_pool3x3|avg_pool3x3|sep5x5_32|output) was saved to edb324a82e16bd8e5271cbf99dbb019b7b32d64c.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|avg_pool3x3|max_pool3x3|avg_pool3x3|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 106s 168ms/step - loss: 1.7190 - sparse_categorical_accuracy: 0.3926 - val_loss: 1.5648 - val_sparse_categorical_accuracy: 0.4431
+Epoch 2/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.4984 - sparse_categorical_accuracy: 0.4690 - val_loss: 1.4273 - val_sparse_categorical_accuracy: 0.4939
+Epoch 3/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.4045 - sparse_categorical_accuracy: 0.5048 - val_loss: 1.3664 - val_sparse_categorical_accuracy: 0.5204
+Epoch 4/5
+625/625 [==============================] - 103s 166ms/step - loss: 1.3501 - sparse_categorical_accuracy: 0.5224 - val_loss: 1.2756 - val_sparse_categorical_accuracy: 0.5494
+Epoch 5/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.2984 - sparse_categorical_accuracy: 0.5425 - val_loss: 1.2396 - val_sparse_categorical_accuracy: 0.5660
+157/157 [==============================] - 1s 6ms/step - loss: 1.0441 - sparse_categorical_accuracy: 0.6371
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|max_pool3x3|avg_pool3x3|sep5x5_32|output) was saved to 88cb4a8dfe5b4437482e4a8bc3da6c94fd628aa2.h5
+
+STATUS: itr: 1 -- Best fitness: 0.6370999813079834, Total time (s): 5473.391282081604
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|batch_norm|sep3x3_16|batch_norm|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.7900 - sparse_categorical_accuracy: 0.3507 - val_loss: 1.6105 - val_sparse_categorical_accuracy: 0.4184
+Epoch 2/5
+625/625 [==============================] - 103s 166ms/step - loss: 1.5832 - sparse_categorical_accuracy: 0.4285 - val_loss: 1.4869 - val_sparse_categorical_accuracy: 0.4587
+Epoch 3/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.5025 - sparse_categorical_accuracy: 0.4613 - val_loss: 1.4119 - val_sparse_categorical_accuracy: 0.4931
+Epoch 4/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.4383 - sparse_categorical_accuracy: 0.4852 - val_loss: 1.3759 - val_sparse_categorical_accuracy: 0.5031
+Epoch 5/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.3946 - sparse_categorical_accuracy: 0.5033 - val_loss: 1.3159 - val_sparse_categorical_accuracy: 0.5322
+157/157 [==============================] - 1s 5ms/step - loss: 1.1555 - sparse_categorical_accuracy: 0.5889
+
+FILE-SAVE SUCCESSFUL: Candidate (input|batch_norm|sep3x3_16|batch_norm|sep3x3_16|output) was saved to 871ebe784122ac2f589fd85daf37691ce0c30c9f.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|dropout|sep5x5_32|batch_norm|sep5x5_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 111s 177ms/step - loss: 1.8086 - sparse_categorical_accuracy: 0.3428 - val_loss: 1.6151 - val_sparse_categorical_accuracy: 0.4166
+Epoch 2/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.5843 - sparse_categorical_accuracy: 0.4308 - val_loss: 1.5099 - val_sparse_categorical_accuracy: 0.4599
+Epoch 3/5
+625/625 [==============================] - 109s 175ms/step - loss: 1.4914 - sparse_categorical_accuracy: 0.4652 - val_loss: 1.4449 - val_sparse_categorical_accuracy: 0.4901
+Epoch 4/5
+625/625 [==============================] - 109s 175ms/step - loss: 1.4316 - sparse_categorical_accuracy: 0.4897 - val_loss: 1.4138 - val_sparse_categorical_accuracy: 0.5088
+Epoch 5/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.3871 - sparse_categorical_accuracy: 0.5052 - val_loss: 1.4355 - val_sparse_categorical_accuracy: 0.4931
+157/157 [==============================] - 1s 6ms/step - loss: 1.3660 - sparse_categorical_accuracy: 0.5248
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|sep5x5_32|batch_norm|sep5x5_16|output) was saved to 430dd35aa21d724271f8adfa0a8fd2a24da3e255.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|avg_pool3x3|sep3x3_16|batch_norm|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.7809 - sparse_categorical_accuracy: 0.3564 - val_loss: 1.6152 - val_sparse_categorical_accuracy: 0.4197
+Epoch 2/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.5568 - sparse_categorical_accuracy: 0.4410 - val_loss: 1.4808 - val_sparse_categorical_accuracy: 0.4652
+Epoch 3/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.4755 - sparse_categorical_accuracy: 0.4724 - val_loss: 1.4134 - val_sparse_categorical_accuracy: 0.4929
+Epoch 4/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.4250 - sparse_categorical_accuracy: 0.4912 - val_loss: 1.3650 - val_sparse_categorical_accuracy: 0.5152
+Epoch 5/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.3834 - sparse_categorical_accuracy: 0.5068 - val_loss: 1.3305 - val_sparse_categorical_accuracy: 0.5211
+157/157 [==============================] - 1s 5ms/step - loss: 1.1901 - sparse_categorical_accuracy: 0.5767
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|sep3x3_16|batch_norm|sep3x3_16|output) was saved to 2e87a74a370bdcc2115078118d2be8f54775eb9a.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|batch_norm|sep3x3_16|avg_pool3x3|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.7276 - sparse_categorical_accuracy: 0.3778 - val_loss: 1.5324 - val_sparse_categorical_accuracy: 0.4446
+Epoch 2/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.5013 - sparse_categorical_accuracy: 0.4607 - val_loss: 1.3895 - val_sparse_categorical_accuracy: 0.5031
+Epoch 3/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.3963 - sparse_categorical_accuracy: 0.5022 - val_loss: 1.2970 - val_sparse_categorical_accuracy: 0.5415
+Epoch 4/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.3047 - sparse_categorical_accuracy: 0.5361 - val_loss: 1.2788 - val_sparse_categorical_accuracy: 0.5519
+Epoch 5/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.2468 - sparse_categorical_accuracy: 0.5590 - val_loss: 1.1989 - val_sparse_categorical_accuracy: 0.5733
+157/157 [==============================] - 1s 5ms/step - loss: 1.0456 - sparse_categorical_accuracy: 0.6277
+
+FILE-SAVE SUCCESSFUL: Candidate (input|batch_norm|sep3x3_16|avg_pool3x3|sep3x3_16|output) was saved to 88046a81c2921b2d6adc9d0f24ae1c9cd688d7be.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|batch_norm|sep3x3_16|avg_pool3x3|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 107s 170ms/step - loss: 1.7267 - sparse_categorical_accuracy: 0.3731 - val_loss: 1.5315 - val_sparse_categorical_accuracy: 0.4407
+Epoch 2/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.4743 - sparse_categorical_accuracy: 0.4771 - val_loss: 1.3887 - val_sparse_categorical_accuracy: 0.5081
+Epoch 3/5
+625/625 [==============================] - 105s 169ms/step - loss: 1.3529 - sparse_categorical_accuracy: 0.5178 - val_loss: 1.2587 - val_sparse_categorical_accuracy: 0.5475
+Epoch 4/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.2841 - sparse_categorical_accuracy: 0.5413 - val_loss: 1.2111 - val_sparse_categorical_accuracy: 0.5676
+Epoch 5/5
+625/625 [==============================] - 106s 169ms/step - loss: 1.2287 - sparse_categorical_accuracy: 0.5622 - val_loss: 1.1909 - val_sparse_categorical_accuracy: 0.5798
+157/157 [==============================] - 1s 6ms/step - loss: 1.0664 - sparse_categorical_accuracy: 0.6242
+
+FILE-SAVE SUCCESSFUL: Candidate (input|batch_norm|sep3x3_16|avg_pool3x3|sep3x3_32|output) was saved to ceb6863f31ef6141d37b35c75bcd6223687b52f7.h5
+
+STATUS: itr: 2 -- Best fitness: 0.6370999813079834, Total time (s): 8203.85772895813
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep5x5_8|max_pool3x3|avg_pool3x3|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 97s 154ms/step - loss: 1.7891 - sparse_categorical_accuracy: 0.3494 - val_loss: 1.6312 - val_sparse_categorical_accuracy: 0.4049
+Epoch 2/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.5703 - sparse_categorical_accuracy: 0.4380 - val_loss: 1.4637 - val_sparse_categorical_accuracy: 0.4727
+Epoch 3/5
+625/625 [==============================] - 96s 153ms/step - loss: 1.4684 - sparse_categorical_accuracy: 0.4735 - val_loss: 1.3929 - val_sparse_categorical_accuracy: 0.4931
+Epoch 4/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.4089 - sparse_categorical_accuracy: 0.4998 - val_loss: 1.3116 - val_sparse_categorical_accuracy: 0.5364
+Epoch 5/5
+625/625 [==============================] - 94s 151ms/step - loss: 1.3707 - sparse_categorical_accuracy: 0.5111 - val_loss: 1.2692 - val_sparse_categorical_accuracy: 0.5441
+157/157 [==============================] - 1s 4ms/step - loss: 1.1561 - sparse_categorical_accuracy: 0.5893
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_8|max_pool3x3|avg_pool3x3|sep3x3_8|output) was saved to 0af180fea51d901f8f151a28ec60977c56ab73ce.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|dropout|sep5x5_32|sep3x3_16|sep5x5_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 115s 183ms/step - loss: 1.8014 - sparse_categorical_accuracy: 0.3376 - val_loss: 1.6552 - val_sparse_categorical_accuracy: 0.4082
+Epoch 2/5
+625/625 [==============================] - 114s 183ms/step - loss: 1.5871 - sparse_categorical_accuracy: 0.4309 - val_loss: 1.5195 - val_sparse_categorical_accuracy: 0.4610
+Epoch 3/5
+625/625 [==============================] - 114s 182ms/step - loss: 1.5010 - sparse_categorical_accuracy: 0.4606 - val_loss: 1.4511 - val_sparse_categorical_accuracy: 0.4777
+Epoch 4/5
+625/625 [==============================] - 114s 183ms/step - loss: 1.4391 - sparse_categorical_accuracy: 0.4843 - val_loss: 1.4677 - val_sparse_categorical_accuracy: 0.4783
+Epoch 5/5
+625/625 [==============================] - 114s 183ms/step - loss: 1.3959 - sparse_categorical_accuracy: 0.5026 - val_loss: 1.3177 - val_sparse_categorical_accuracy: 0.5212
+157/157 [==============================] - 1s 7ms/step - loss: 1.1295 - sparse_categorical_accuracy: 0.5957
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|sep5x5_32|sep3x3_16|sep5x5_16|output) was saved to e42775dcf5a8d8b6128edcc3725ab96e51800af3.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|dropout|max_pool3x3|avg_pool3x3|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 96s 153ms/step - loss: 1.8093 - sparse_categorical_accuracy: 0.3550 - val_loss: 1.6691 - val_sparse_categorical_accuracy: 0.4091
+Epoch 2/5
+625/625 [==============================] - 94s 151ms/step - loss: 1.6102 - sparse_categorical_accuracy: 0.4246 - val_loss: 1.6441 - val_sparse_categorical_accuracy: 0.4119
+Epoch 3/5
+625/625 [==============================] - 95s 151ms/step - loss: 1.5193 - sparse_categorical_accuracy: 0.4609 - val_loss: 1.4909 - val_sparse_categorical_accuracy: 0.4773
+Epoch 4/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.4570 - sparse_categorical_accuracy: 0.4853 - val_loss: 1.4005 - val_sparse_categorical_accuracy: 0.5023
+Epoch 5/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.4204 - sparse_categorical_accuracy: 0.5013 - val_loss: 1.3599 - val_sparse_categorical_accuracy: 0.5221
+157/157 [==============================] - 1s 4ms/step - loss: 1.1910 - sparse_categorical_accuracy: 0.5864
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|max_pool3x3|avg_pool3x3|sep3x3_8|output) was saved to 8b671f342abea0871a7526dce737e8f8528c509f.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep5x5_8|sep5x5_32|sep3x3_16|sep5x5_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 115s 183ms/step - loss: 1.8586 - sparse_categorical_accuracy: 0.3144 - val_loss: 1.7191 - val_sparse_categorical_accuracy: 0.3782
+Epoch 2/5
+625/625 [==============================] - 113s 181ms/step - loss: 1.6317 - sparse_categorical_accuracy: 0.4081 - val_loss: 1.5222 - val_sparse_categorical_accuracy: 0.4493
+Epoch 3/5
+625/625 [==============================] - 113s 180ms/step - loss: 1.5366 - sparse_categorical_accuracy: 0.4502 - val_loss: 1.5160 - val_sparse_categorical_accuracy: 0.4594
+Epoch 4/5
+625/625 [==============================] - 113s 181ms/step - loss: 1.4577 - sparse_categorical_accuracy: 0.4787 - val_loss: 1.3914 - val_sparse_categorical_accuracy: 0.5071
+Epoch 5/5
+625/625 [==============================] - 113s 181ms/step - loss: 1.4112 - sparse_categorical_accuracy: 0.4969 - val_loss: 1.3773 - val_sparse_categorical_accuracy: 0.5113
+157/157 [==============================] - 1s 6ms/step - loss: 1.2007 - sparse_categorical_accuracy: 0.5644
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_8|sep5x5_32|sep3x3_16|sep5x5_16|output) was saved to a05238928751863c86145a82530f477b0da0f9ac.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|dropout|sep5x5_32|sep3x3_16|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 114s 182ms/step - loss: 1.8514 - sparse_categorical_accuracy: 0.3206 - val_loss: 1.6057 - val_sparse_categorical_accuracy: 0.4141
+Epoch 2/5
+625/625 [==============================] - 114s 182ms/step - loss: 1.6101 - sparse_categorical_accuracy: 0.4196 - val_loss: 1.4769 - val_sparse_categorical_accuracy: 0.4641
+Epoch 3/5
+625/625 [==============================] - 114s 182ms/step - loss: 1.5108 - sparse_categorical_accuracy: 0.4579 - val_loss: 1.4194 - val_sparse_categorical_accuracy: 0.4925
+Epoch 4/5
+625/625 [==============================] - 113s 181ms/step - loss: 1.4369 - sparse_categorical_accuracy: 0.4855 - val_loss: 1.3600 - val_sparse_categorical_accuracy: 0.5031
+Epoch 5/5
+625/625 [==============================] - 113s 181ms/step - loss: 1.3825 - sparse_categorical_accuracy: 0.5074 - val_loss: 1.3181 - val_sparse_categorical_accuracy: 0.5369
+157/157 [==============================] - 1s 8ms/step - loss: 1.2035 - sparse_categorical_accuracy: 0.5764
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|sep5x5_32|sep3x3_16|sep3x3_32|output) was saved to 484e63440cefec8d6485fd4db2150526c20a0b04.h5
+
+STATUS: itr: 3 -- Best fitness: 0.6370999813079834, Total time (s): 10952.146150827408
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep5x5_8|max_pool3x3|sep5x5_32|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 102s 163ms/step - loss: 1.7816 - sparse_categorical_accuracy: 0.3463 - val_loss: 1.5611 - val_sparse_categorical_accuracy: 0.4322
+Epoch 2/5
+625/625 [==============================] - 100s 160ms/step - loss: 1.5386 - sparse_categorical_accuracy: 0.4487 - val_loss: 1.4778 - val_sparse_categorical_accuracy: 0.4710
+Epoch 3/5
+625/625 [==============================] - 101s 162ms/step - loss: 1.4462 - sparse_categorical_accuracy: 0.4818 - val_loss: 1.3922 - val_sparse_categorical_accuracy: 0.5056
+Epoch 4/5
+625/625 [==============================] - 101s 161ms/step - loss: 1.3580 - sparse_categorical_accuracy: 0.5132 - val_loss: 1.2880 - val_sparse_categorical_accuracy: 0.5502
+Epoch 5/5
+625/625 [==============================] - 101s 162ms/step - loss: 1.3138 - sparse_categorical_accuracy: 0.5310 - val_loss: 1.2670 - val_sparse_categorical_accuracy: 0.5514
+157/157 [==============================] - 1s 5ms/step - loss: 1.0958 - sparse_categorical_accuracy: 0.6132
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_8|max_pool3x3|sep5x5_32|sep3x3_8|output) was saved to 5c02924ac6bc2414d8162f216e56b0104cba0931.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|dropout|max_pool3x3|sep3x3_8|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 96s 153ms/step - loss: 1.8552 - sparse_categorical_accuracy: 0.3333 - val_loss: 1.6988 - val_sparse_categorical_accuracy: 0.4005
+Epoch 2/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.6129 - sparse_categorical_accuracy: 0.4196 - val_loss: 1.6023 - val_sparse_categorical_accuracy: 0.4220
+Epoch 3/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.5473 - sparse_categorical_accuracy: 0.4469 - val_loss: 1.5542 - val_sparse_categorical_accuracy: 0.4388
+Epoch 4/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.4946 - sparse_categorical_accuracy: 0.4719 - val_loss: 1.4405 - val_sparse_categorical_accuracy: 0.4791
+Epoch 5/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.4479 - sparse_categorical_accuracy: 0.4833 - val_loss: 1.4308 - val_sparse_categorical_accuracy: 0.4870
+157/157 [==============================] - 1s 4ms/step - loss: 1.2592 - sparse_categorical_accuracy: 0.5600
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|max_pool3x3|sep3x3_8|sep3x3_8|output) was saved to f7dce528e23bddc85a71b06d9c50b51f550f8afb.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep3x3_16|max_pool3x3|sep5x5_32|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 108s 172ms/step - loss: 1.7730 - sparse_categorical_accuracy: 0.3546 - val_loss: 1.5670 - val_sparse_categorical_accuracy: 0.4292
+Epoch 2/5
+625/625 [==============================] - 107s 171ms/step - loss: 1.5325 - sparse_categorical_accuracy: 0.4489 - val_loss: 1.4772 - val_sparse_categorical_accuracy: 0.4711
+Epoch 3/5
+625/625 [==============================] - 107s 171ms/step - loss: 1.4320 - sparse_categorical_accuracy: 0.4873 - val_loss: 1.3780 - val_sparse_categorical_accuracy: 0.5037
+Epoch 4/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.3717 - sparse_categorical_accuracy: 0.5085 - val_loss: 1.3011 - val_sparse_categorical_accuracy: 0.5431
+Epoch 5/5
+625/625 [==============================] - 107s 172ms/step - loss: 1.3058 - sparse_categorical_accuracy: 0.5358 - val_loss: 1.2642 - val_sparse_categorical_accuracy: 0.5490
+157/157 [==============================] - 1s 6ms/step - loss: 1.1004 - sparse_categorical_accuracy: 0.6038
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep3x3_16|max_pool3x3|sep5x5_32|sep3x3_8|output) was saved to 04735b4c30c1c6705ec04c51fd6a6941a404f943.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|dropout|sep3x3_32|sep3x3_8|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 102s 162ms/step - loss: 1.8694 - sparse_categorical_accuracy: 0.3191 - val_loss: 1.6788 - val_sparse_categorical_accuracy: 0.3838
+Epoch 2/5
+625/625 [==============================] - 100s 160ms/step - loss: 1.6514 - sparse_categorical_accuracy: 0.4040 - val_loss: 1.5883 - val_sparse_categorical_accuracy: 0.4235
+Epoch 3/5
+625/625 [==============================] - 101s 162ms/step - loss: 1.5707 - sparse_categorical_accuracy: 0.4359 - val_loss: 1.4983 - val_sparse_categorical_accuracy: 0.4595
+Epoch 4/5
+625/625 [==============================] - 101s 161ms/step - loss: 1.5099 - sparse_categorical_accuracy: 0.4561 - val_loss: 1.4457 - val_sparse_categorical_accuracy: 0.4834
+Epoch 5/5
+625/625 [==============================] - 100s 161ms/step - loss: 1.4538 - sparse_categorical_accuracy: 0.4789 - val_loss: 1.3841 - val_sparse_categorical_accuracy: 0.5040
+157/157 [==============================] - 1s 5ms/step - loss: 1.2207 - sparse_categorical_accuracy: 0.5588
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|sep3x3_32|sep3x3_8|sep3x3_8|output) was saved to 6ab0a2d84d95a3c29dbbdfe4f6ad9f853e30c123.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|dropout|max_pool3x3|sep5x5_32|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 104s 165ms/step - loss: 1.7674 - sparse_categorical_accuracy: 0.3577 - val_loss: 1.6567 - val_sparse_categorical_accuracy: 0.4108
+Epoch 2/5
+625/625 [==============================] - 102s 163ms/step - loss: 1.5574 - sparse_categorical_accuracy: 0.4384 - val_loss: 1.4944 - val_sparse_categorical_accuracy: 0.4579
+Epoch 3/5
+625/625 [==============================] - 102s 163ms/step - loss: 1.4725 - sparse_categorical_accuracy: 0.4712 - val_loss: 1.5229 - val_sparse_categorical_accuracy: 0.4610
+Epoch 4/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.4086 - sparse_categorical_accuracy: 0.4979 - val_loss: 1.3874 - val_sparse_categorical_accuracy: 0.5061
+Epoch 5/5
+625/625 [==============================] - 102s 164ms/step - loss: 1.3712 - sparse_categorical_accuracy: 0.5144 - val_loss: 1.3688 - val_sparse_categorical_accuracy: 0.5069
+157/157 [==============================] - 1s 5ms/step - loss: 1.2766 - sparse_categorical_accuracy: 0.5448
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|max_pool3x3|sep5x5_32|sep3x3_8|output) was saved to 6bdcf2ada46d39774e8f487f879c7f1fc9ef7e24.h5
+
+STATUS: itr: 4 -- Best fitness: 0.6370999813079834, Total time (s): 13496.594312667847
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|max_pool3x3|dropout|dropout|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.9803 - sparse_categorical_accuracy: 0.3103 - val_loss: 1.7386 - val_sparse_categorical_accuracy: 0.3948
+Epoch 2/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.6708 - sparse_categorical_accuracy: 0.4049 - val_loss: 1.5853 - val_sparse_categorical_accuracy: 0.4434
+Epoch 3/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.5629 - sparse_categorical_accuracy: 0.4401 - val_loss: 1.5366 - val_sparse_categorical_accuracy: 0.4550
+Epoch 4/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.5072 - sparse_categorical_accuracy: 0.4613 - val_loss: 1.4517 - val_sparse_categorical_accuracy: 0.4855
+Epoch 5/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.4574 - sparse_categorical_accuracy: 0.4817 - val_loss: 1.5505 - val_sparse_categorical_accuracy: 0.4524
+157/157 [==============================] - 1s 6ms/step - loss: 1.6301 - sparse_categorical_accuracy: 0.4632
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|dropout|dropout|sep5x5_32|output) was saved to 20edf78be0094688c12be12497fad39d1baecc26.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|batch_norm|max_pool3x3|sep3x3_8|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 96s 153ms/step - loss: 1.7633 - sparse_categorical_accuracy: 0.3640 - val_loss: 1.6763 - val_sparse_categorical_accuracy: 0.4046
+Epoch 2/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.5748 - sparse_categorical_accuracy: 0.4352 - val_loss: 1.5103 - val_sparse_categorical_accuracy: 0.4566
+Epoch 3/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.4877 - sparse_categorical_accuracy: 0.4696 - val_loss: 1.3946 - val_sparse_categorical_accuracy: 0.5046
+Epoch 4/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.4402 - sparse_categorical_accuracy: 0.4886 - val_loss: 1.3607 - val_sparse_categorical_accuracy: 0.5141
+Epoch 5/5
+625/625 [==============================] - 95s 152ms/step - loss: 1.3880 - sparse_categorical_accuracy: 0.5064 - val_loss: 1.3083 - val_sparse_categorical_accuracy: 0.5265
+157/157 [==============================] - 1s 4ms/step - loss: 1.1804 - sparse_categorical_accuracy: 0.5759
+
+FILE-SAVE SUCCESSFUL: Candidate (input|batch_norm|max_pool3x3|sep3x3_8|sep3x3_8|output) was saved to a53959a1080280493c207e447f5cf8a79b06eca9.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|batch_norm|max_pool3x3|sep3x3_8|sep5x5_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.7301 - sparse_categorical_accuracy: 0.3683 - val_loss: 1.5268 - val_sparse_categorical_accuracy: 0.4493
+Epoch 2/5
+625/625 [==============================] - 100s 161ms/step - loss: 1.5103 - sparse_categorical_accuracy: 0.4581 - val_loss: 1.4189 - val_sparse_categorical_accuracy: 0.4885
+Epoch 3/5
+625/625 [==============================] - 101s 161ms/step - loss: 1.4125 - sparse_categorical_accuracy: 0.4952 - val_loss: 1.3700 - val_sparse_categorical_accuracy: 0.5089
+Epoch 4/5
+625/625 [==============================] - 101s 162ms/step - loss: 1.3533 - sparse_categorical_accuracy: 0.5211 - val_loss: 1.2878 - val_sparse_categorical_accuracy: 0.5442
+Epoch 5/5
+625/625 [==============================] - 101s 162ms/step - loss: 1.3039 - sparse_categorical_accuracy: 0.5362 - val_loss: 1.2599 - val_sparse_categorical_accuracy: 0.5509
+157/157 [==============================] - 1s 5ms/step - loss: 1.1875 - sparse_categorical_accuracy: 0.5805
+
+FILE-SAVE SUCCESSFUL: Candidate (input|batch_norm|max_pool3x3|sep3x3_8|sep5x5_16|output) was saved to 05f0f910210fe3ce3d38b78c33b7af15358cadfe.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|max_pool3x3|dropout|max_pool3x3|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.8155 - sparse_categorical_accuracy: 0.3693 - val_loss: 1.6398 - val_sparse_categorical_accuracy: 0.4221
+Epoch 2/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.5201 - sparse_categorical_accuracy: 0.4606 - val_loss: 1.4973 - val_sparse_categorical_accuracy: 0.4908
+Epoch 3/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.4273 - sparse_categorical_accuracy: 0.4971 - val_loss: 1.4169 - val_sparse_categorical_accuracy: 0.5092
+Epoch 4/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.3771 - sparse_categorical_accuracy: 0.5130 - val_loss: 1.3453 - val_sparse_categorical_accuracy: 0.5281
+Epoch 5/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.3311 - sparse_categorical_accuracy: 0.5327 - val_loss: 1.3217 - val_sparse_categorical_accuracy: 0.5500
+157/157 [==============================] - 1s 6ms/step - loss: 1.1590 - sparse_categorical_accuracy: 0.6091
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|dropout|max_pool3x3|sep5x5_32|output) was saved to d79d5fdb677bf553ddba158750ac0dc475e60893.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep5x5_16|max_pool3x3|sep3x3_8|sep5x5_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 111s 176ms/step - loss: 1.7987 - sparse_categorical_accuracy: 0.3427 - val_loss: 1.6515 - val_sparse_categorical_accuracy: 0.4049
+Epoch 2/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.5852 - sparse_categorical_accuracy: 0.4296 - val_loss: 1.5022 - val_sparse_categorical_accuracy: 0.4664
+Epoch 3/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.4691 - sparse_categorical_accuracy: 0.4771 - val_loss: 1.4109 - val_sparse_categorical_accuracy: 0.5009
+Epoch 4/5
+625/625 [==============================] - 109s 175ms/step - loss: 1.4051 - sparse_categorical_accuracy: 0.4988 - val_loss: 1.3172 - val_sparse_categorical_accuracy: 0.5313
+Epoch 5/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.3593 - sparse_categorical_accuracy: 0.5159 - val_loss: 1.2704 - val_sparse_categorical_accuracy: 0.5481
+157/157 [==============================] - 1s 6ms/step - loss: 1.1158 - sparse_categorical_accuracy: 0.6040
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_16|max_pool3x3|sep3x3_8|sep5x5_16|output) was saved to a3a25147a14385395a9781726da5f2fe139ccf22.h5
+
+STATUS: itr: 5 -- Best fitness: 0.6370999813079834, Total time (s): 16208.959902524948
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|max_pool3x3|dropout|dropout|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 106s 169ms/step - loss: 1.9855 - sparse_categorical_accuracy: 0.3097 - val_loss: 1.7470 - val_sparse_categorical_accuracy: 0.3573
+Epoch 2/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.6780 - sparse_categorical_accuracy: 0.3990 - val_loss: 1.6111 - val_sparse_categorical_accuracy: 0.4110
+Epoch 3/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.5875 - sparse_categorical_accuracy: 0.4321 - val_loss: 1.5751 - val_sparse_categorical_accuracy: 0.4389
+Epoch 4/5
+625/625 [==============================] - 105s 169ms/step - loss: 1.5171 - sparse_categorical_accuracy: 0.4596 - val_loss: 1.5120 - val_sparse_categorical_accuracy: 0.4538
+Epoch 5/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.4665 - sparse_categorical_accuracy: 0.4766 - val_loss: 1.4544 - val_sparse_categorical_accuracy: 0.4794
+157/157 [==============================] - 1s 6ms/step - loss: 1.4275 - sparse_categorical_accuracy: 0.4936
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|dropout|dropout|sep5x5_32|output) was saved to 20edf78be0094688c12be12497fad39d1baecc26.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|avg_pool3x3|max_pool3x3|avg_pool3x3|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.7664 - sparse_categorical_accuracy: 0.3787 - val_loss: 1.5217 - val_sparse_categorical_accuracy: 0.4497
+Epoch 2/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.5029 - sparse_categorical_accuracy: 0.4667 - val_loss: 1.4458 - val_sparse_categorical_accuracy: 0.4878
+Epoch 3/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.4119 - sparse_categorical_accuracy: 0.5030 - val_loss: 1.3170 - val_sparse_categorical_accuracy: 0.5379
+Epoch 4/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.3440 - sparse_categorical_accuracy: 0.5268 - val_loss: 1.3134 - val_sparse_categorical_accuracy: 0.5270
+Epoch 5/5
+625/625 [==============================] - 103s 166ms/step - loss: 1.2927 - sparse_categorical_accuracy: 0.5426 - val_loss: 1.2104 - val_sparse_categorical_accuracy: 0.5763
+157/157 [==============================] - 1s 6ms/step - loss: 1.0553 - sparse_categorical_accuracy: 0.6279
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|max_pool3x3|avg_pool3x3|sep3x3_32|output) was saved to 6cb7d4695d07b743d74819c96140e7d4447ab2fc.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|avg_pool3x3|max_pool3x3|sep3x3_32|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 113s 180ms/step - loss: 1.7002 - sparse_categorical_accuracy: 0.3840 - val_loss: 1.5191 - val_sparse_categorical_accuracy: 0.4556
+Epoch 2/5
+625/625 [==============================] - 111s 177ms/step - loss: 1.4529 - sparse_categorical_accuracy: 0.4813 - val_loss: 1.3312 - val_sparse_categorical_accuracy: 0.5216
+Epoch 3/5
+625/625 [==============================] - 111s 178ms/step - loss: 1.3439 - sparse_categorical_accuracy: 0.5206 - val_loss: 1.2402 - val_sparse_categorical_accuracy: 0.5601
+Epoch 4/5
+625/625 [==============================] - 111s 178ms/step - loss: 1.2734 - sparse_categorical_accuracy: 0.5488 - val_loss: 1.2120 - val_sparse_categorical_accuracy: 0.5752
+Epoch 5/5
+625/625 [==============================] - 110s 177ms/step - loss: 1.2142 - sparse_categorical_accuracy: 0.5746 - val_loss: 1.1505 - val_sparse_categorical_accuracy: 0.5950
+157/157 [==============================] - 1s 7ms/step - loss: 0.9963 - sparse_categorical_accuracy: 0.6478
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|max_pool3x3|sep3x3_32|sep5x5_32|output) was saved to 71c6990954343dfb54dfc7e1a762bda963935b15.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep3x3_8|dropout|max_pool3x3|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.8203 - sparse_categorical_accuracy: 0.3385 - val_loss: 1.7792 - val_sparse_categorical_accuracy: 0.3671
+Epoch 2/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.5873 - sparse_categorical_accuracy: 0.4349 - val_loss: 1.5379 - val_sparse_categorical_accuracy: 0.4527
+Epoch 3/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.4601 - sparse_categorical_accuracy: 0.4793 - val_loss: 1.4167 - val_sparse_categorical_accuracy: 0.4877
+Epoch 4/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.3790 - sparse_categorical_accuracy: 0.5123 - val_loss: 1.3371 - val_sparse_categorical_accuracy: 0.5242
+Epoch 5/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.3320 - sparse_categorical_accuracy: 0.5303 - val_loss: 1.4571 - val_sparse_categorical_accuracy: 0.4847
+157/157 [==============================] - 1s 6ms/step - loss: 1.2899 - sparse_categorical_accuracy: 0.5419
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep3x3_8|dropout|max_pool3x3|sep5x5_32|output) was saved to 8b32ee51f34674d2fc384d23d69c534370b2bcdb.h5
+
+STATUS: itr: 6 -- Best fitness: 0.6478000283241272, Total time (s): 18451.073586702347
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sc_1|sep3x3_8|sep5x5_16|sc_1|sep5x5_32|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 117s 186ms/step - loss: 1.7550 - sparse_categorical_accuracy: 0.3630 - val_loss: 1.6135 - val_sparse_categorical_accuracy: 0.4123
+Epoch 2/5
+625/625 [==============================] - 115s 184ms/step - loss: 1.5353 - sparse_categorical_accuracy: 0.4507 - val_loss: 1.4126 - val_sparse_categorical_accuracy: 0.5003
+Epoch 3/5
+625/625 [==============================] - 114s 183ms/step - loss: 1.4282 - sparse_categorical_accuracy: 0.4933 - val_loss: 1.3767 - val_sparse_categorical_accuracy: 0.5066
+Epoch 4/5
+625/625 [==============================] - 115s 184ms/step - loss: 1.3636 - sparse_categorical_accuracy: 0.5163 - val_loss: 1.2977 - val_sparse_categorical_accuracy: 0.5415
+Epoch 5/5
+625/625 [==============================] - 115s 184ms/step - loss: 1.3198 - sparse_categorical_accuracy: 0.5289 - val_loss: 1.2524 - val_sparse_categorical_accuracy: 0.5567
+157/157 [==============================] - 1s 7ms/step - loss: 1.1985 - sparse_categorical_accuracy: 0.5817
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_1|sep3x3_8|sep5x5_16|sc_1|sep5x5_32|sep3x3_16|output) was saved to ba6e01ae2a18cac996b6590aeac6b57326067c69.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|avg_pool3x3|avg_pool3x3|sep3x3_32|sep5x5_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 112s 178ms/step - loss: 1.7076 - sparse_categorical_accuracy: 0.3796 - val_loss: 1.4820 - val_sparse_categorical_accuracy: 0.4662
+Epoch 2/5
+625/625 [==============================] - 112s 179ms/step - loss: 1.4728 - sparse_categorical_accuracy: 0.4748 - val_loss: 1.3955 - val_sparse_categorical_accuracy: 0.4980
+Epoch 3/5
+625/625 [==============================] - 111s 178ms/step - loss: 1.3771 - sparse_categorical_accuracy: 0.5100 - val_loss: 1.3067 - val_sparse_categorical_accuracy: 0.5365
+Epoch 4/5
+625/625 [==============================] - 111s 178ms/step - loss: 1.3049 - sparse_categorical_accuracy: 0.5376 - val_loss: 1.2497 - val_sparse_categorical_accuracy: 0.5568
+Epoch 5/5
+625/625 [==============================] - 112s 179ms/step - loss: 1.2526 - sparse_categorical_accuracy: 0.5573 - val_loss: 1.1866 - val_sparse_categorical_accuracy: 0.5793
+157/157 [==============================] - 1s 7ms/step - loss: 1.0291 - sparse_categorical_accuracy: 0.6352
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|avg_pool3x3|sep3x3_32|sep5x5_32|output) was saved to 4bdf76626ff32b6003f3789ef6cae203bb915fba.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sc_1|sep3x3_8|sep3x3_8|sc_1|sep5x5_32|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 111s 176ms/step - loss: 1.7260 - sparse_categorical_accuracy: 0.3749 - val_loss: 1.5224 - val_sparse_categorical_accuracy: 0.4526
+Epoch 2/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.4727 - sparse_categorical_accuracy: 0.4741 - val_loss: 1.3835 - val_sparse_categorical_accuracy: 0.5098
+Epoch 3/5
+625/625 [==============================] - 109s 175ms/step - loss: 1.3784 - sparse_categorical_accuracy: 0.5111 - val_loss: 1.2915 - val_sparse_categorical_accuracy: 0.5412
+Epoch 4/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.3092 - sparse_categorical_accuracy: 0.5357 - val_loss: 1.2729 - val_sparse_categorical_accuracy: 0.5478
+Epoch 5/5
+625/625 [==============================] - 109s 175ms/step - loss: 1.2646 - sparse_categorical_accuracy: 0.5508 - val_loss: 1.1974 - val_sparse_categorical_accuracy: 0.5781
+157/157 [==============================] - 1s 6ms/step - loss: 1.0943 - sparse_categorical_accuracy: 0.6057
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_1|sep3x3_8|sep3x3_8|sc_1|sep5x5_32|sep3x3_16|output) was saved to 38c03b9ee953a10a488c15a3e8eb98d001eda5bd.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sc_1|sep3x3_8|max_pool3x3|sc_1|sep5x5_32|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 110s 175ms/step - loss: 1.7143 - sparse_categorical_accuracy: 0.3822 - val_loss: 1.5286 - val_sparse_categorical_accuracy: 0.4553
+Epoch 2/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.4683 - sparse_categorical_accuracy: 0.4714 - val_loss: 1.4224 - val_sparse_categorical_accuracy: 0.5001
+Epoch 3/5
+625/625 [==============================] - 109s 175ms/step - loss: 1.3709 - sparse_categorical_accuracy: 0.5105 - val_loss: 1.3208 - val_sparse_categorical_accuracy: 0.5300
+Epoch 4/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.2995 - sparse_categorical_accuracy: 0.5396 - val_loss: 1.2295 - val_sparse_categorical_accuracy: 0.5633
+Epoch 5/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.2480 - sparse_categorical_accuracy: 0.5604 - val_loss: 1.1868 - val_sparse_categorical_accuracy: 0.5750
+157/157 [==============================] - 1s 6ms/step - loss: 1.0427 - sparse_categorical_accuracy: 0.6362
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_1|sep3x3_8|max_pool3x3|sc_1|sep5x5_32|sep3x3_16|output) was saved to baefbc8c07c011a9e192e328303f0f2b7346f83a.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sc_2|sep3x3_8|max_pool3x3|sc_1|sep5x5_32|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 110s 175ms/step - loss: 1.7491 - sparse_categorical_accuracy: 0.3704 - val_loss: 1.5469 - val_sparse_categorical_accuracy: 0.4512
+Epoch 2/5
+625/625 [==============================] - 109s 174ms/step - loss: 1.5086 - sparse_categorical_accuracy: 0.4592 - val_loss: 1.3667 - val_sparse_categorical_accuracy: 0.5091
+Epoch 3/5
+625/625 [==============================] - 108s 174ms/step - loss: 1.3974 - sparse_categorical_accuracy: 0.5047 - val_loss: 1.3037 - val_sparse_categorical_accuracy: 0.5444
+Epoch 4/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.3360 - sparse_categorical_accuracy: 0.5309 - val_loss: 1.2575 - val_sparse_categorical_accuracy: 0.5595
+Epoch 5/5
+625/625 [==============================] - 108s 173ms/step - loss: 1.2880 - sparse_categorical_accuracy: 0.5448 - val_loss: 1.2025 - val_sparse_categorical_accuracy: 0.5754
+157/157 [==============================] - 1s 6ms/step - loss: 1.0772 - sparse_categorical_accuracy: 0.6239
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_2|sep3x3_8|max_pool3x3|sc_1|sep5x5_32|sep3x3_16|output) was saved to 4a808ded00f23e5d22e791464d722228acfc6c0a.h5
+
+STATUS: itr: 7 -- Best fitness: 0.6478000283241272, Total time (s): 21360.67982983589
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|avg_pool3x3|batch_norm|sep5x5_8|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.7536 - sparse_categorical_accuracy: 0.3643 - val_loss: 1.5628 - val_sparse_categorical_accuracy: 0.4255
+Epoch 2/5
+625/625 [==============================] - 101s 162ms/step - loss: 1.5324 - sparse_categorical_accuracy: 0.4550 - val_loss: 1.5485 - val_sparse_categorical_accuracy: 0.4486
+Epoch 3/5
+625/625 [==============================] - 102s 163ms/step - loss: 1.4379 - sparse_categorical_accuracy: 0.4854 - val_loss: 1.3469 - val_sparse_categorical_accuracy: 0.5184
+Epoch 4/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.3738 - sparse_categorical_accuracy: 0.5148 - val_loss: 1.3095 - val_sparse_categorical_accuracy: 0.5344
+Epoch 5/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.3233 - sparse_categorical_accuracy: 0.5283 - val_loss: 1.2666 - val_sparse_categorical_accuracy: 0.5494
+157/157 [==============================] - 1s 6ms/step - loss: 1.0795 - sparse_categorical_accuracy: 0.6179
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|batch_norm|sep5x5_8|sep3x3_32|output) was saved to 45668b7ef3960cf8a559acf72c5374a7257c921f.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sc_3|sep5x5_8|sep5x5_8|dropout|dropout|output)
+
+Epoch 1/5
+625/625 [==============================] - 99s 158ms/step - loss: 1.8094 - sparse_categorical_accuracy: 0.3559 - val_loss: 1.6451 - val_sparse_categorical_accuracy: 0.4138
+Epoch 2/5
+625/625 [==============================] - 98s 156ms/step - loss: 1.6206 - sparse_categorical_accuracy: 0.4226 - val_loss: 1.5181 - val_sparse_categorical_accuracy: 0.4574
+Epoch 3/5
+625/625 [==============================] - 97s 156ms/step - loss: 1.5543 - sparse_categorical_accuracy: 0.4478 - val_loss: 1.5204 - val_sparse_categorical_accuracy: 0.4684
+Epoch 4/5
+625/625 [==============================] - 97s 156ms/step - loss: 1.5167 - sparse_categorical_accuracy: 0.4622 - val_loss: 1.4648 - val_sparse_categorical_accuracy: 0.4916
+Epoch 5/5
+625/625 [==============================] - 97s 156ms/step - loss: 1.4692 - sparse_categorical_accuracy: 0.4786 - val_loss: 1.3929 - val_sparse_categorical_accuracy: 0.5105
+157/157 [==============================] - 1s 4ms/step - loss: 1.2433 - sparse_categorical_accuracy: 0.5627
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_3|sep5x5_8|sep5x5_8|dropout|dropout|output) was saved to 04c6632c8a99078a97d3ca595210b93fdfa102f5.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sc_3|sep5x5_16|sep5x5_8|dropout|dropout|output)
+
+Epoch 1/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.8346 - sparse_categorical_accuracy: 0.3490 - val_loss: 1.6324 - val_sparse_categorical_accuracy: 0.4122
+Epoch 2/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.6264 - sparse_categorical_accuracy: 0.4183 - val_loss: 1.5304 - val_sparse_categorical_accuracy: 0.4532
+Epoch 3/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.5536 - sparse_categorical_accuracy: 0.4466 - val_loss: 1.4773 - val_sparse_categorical_accuracy: 0.4769
+Epoch 4/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.5108 - sparse_categorical_accuracy: 0.4633 - val_loss: 1.4423 - val_sparse_categorical_accuracy: 0.4936
+Epoch 5/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.4810 - sparse_categorical_accuracy: 0.4766 - val_loss: 1.3769 - val_sparse_categorical_accuracy: 0.5133
+157/157 [==============================] - 1s 6ms/step - loss: 1.1893 - sparse_categorical_accuracy: 0.5902
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_3|sep5x5_16|sep5x5_8|dropout|dropout|output) was saved to 435e925e1e1163521ef092489b1e7b52ea82dca1.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|avg_pool3x3|max_pool3x3|sep5x5_8|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.8241 - sparse_categorical_accuracy: 0.3344 - val_loss: 1.7273 - val_sparse_categorical_accuracy: 0.3899
+Epoch 2/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.6295 - sparse_categorical_accuracy: 0.4162 - val_loss: 1.5690 - val_sparse_categorical_accuracy: 0.4351
+Epoch 3/5
+625/625 [==============================] - 102s 164ms/step - loss: 1.5332 - sparse_categorical_accuracy: 0.4523 - val_loss: 1.4463 - val_sparse_categorical_accuracy: 0.4771
+Epoch 4/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.4624 - sparse_categorical_accuracy: 0.4786 - val_loss: 1.3895 - val_sparse_categorical_accuracy: 0.5004
+Epoch 5/5
+625/625 [==============================] - 102s 164ms/step - loss: 1.4076 - sparse_categorical_accuracy: 0.5004 - val_loss: 1.3684 - val_sparse_categorical_accuracy: 0.5110
+157/157 [==============================] - 1s 6ms/step - loss: 1.1739 - sparse_categorical_accuracy: 0.5859
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|max_pool3x3|sep5x5_8|sep3x3_32|output) was saved to b664995b342f150b00de0f11619eb8923862210d.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sc_3|sep5x5_16|sep5x5_8|sep3x3_8|dropout|output)
+
+Epoch 1/5
+625/625 [==============================] - 107s 170ms/step - loss: 1.8308 - sparse_categorical_accuracy: 0.3522 - val_loss: 1.6221 - val_sparse_categorical_accuracy: 0.4153
+Epoch 2/5
+625/625 [==============================] - 105s 167ms/step - loss: 1.6234 - sparse_categorical_accuracy: 0.4196 - val_loss: 1.5114 - val_sparse_categorical_accuracy: 0.4612
+Epoch 3/5
+625/625 [==============================] - 104s 167ms/step - loss: 1.5475 - sparse_categorical_accuracy: 0.4516 - val_loss: 1.4569 - val_sparse_categorical_accuracy: 0.4820
+Epoch 4/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.5011 - sparse_categorical_accuracy: 0.4672 - val_loss: 1.4075 - val_sparse_categorical_accuracy: 0.5031
+Epoch 5/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.4570 - sparse_categorical_accuracy: 0.4833 - val_loss: 1.3829 - val_sparse_categorical_accuracy: 0.5084
+157/157 [==============================] - 1s 6ms/step - loss: 1.2335 - sparse_categorical_accuracy: 0.5622
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_3|sep5x5_16|sep5x5_8|sep3x3_8|dropout|output) was saved to 74e695a79d23142d4fb8f2e711450cbaa2c13c8a.h5
+
+STATUS: itr: 8 -- Best fitness: 0.6478000283241272, Total time (s): 24093.321227550507
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep5x5_16|batch_norm|sep5x5_8|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 111s 176ms/step - loss: 1.7989 - sparse_categorical_accuracy: 0.3432 - val_loss: 1.6604 - val_sparse_categorical_accuracy: 0.4029
+Epoch 2/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.6023 - sparse_categorical_accuracy: 0.4205 - val_loss: 1.5449 - val_sparse_categorical_accuracy: 0.4400
+Epoch 3/5
+625/625 [==============================] - 109s 175ms/step - loss: 1.5064 - sparse_categorical_accuracy: 0.4565 - val_loss: 1.4465 - val_sparse_categorical_accuracy: 0.4826
+Epoch 4/5
+625/625 [==============================] - 110s 175ms/step - loss: 1.4425 - sparse_categorical_accuracy: 0.4855 - val_loss: 1.3937 - val_sparse_categorical_accuracy: 0.5003
+Epoch 5/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.3975 - sparse_categorical_accuracy: 0.5024 - val_loss: 1.3726 - val_sparse_categorical_accuracy: 0.5076
+157/157 [==============================] - 1s 7ms/step - loss: 1.1840 - sparse_categorical_accuracy: 0.5745
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_16|batch_norm|sep5x5_8|sep3x3_32|output) was saved to b4f2ba837b50d597db3c63283510ef969fc61b33.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_32|avg_pool3x3|dropout|avg_pool3x3|output)
+
+Epoch 1/5
+625/625 [==============================] - 108s 172ms/step - loss: 1.8022 - sparse_categorical_accuracy: 0.3555 - val_loss: 1.5641 - val_sparse_categorical_accuracy: 0.4348
+Epoch 2/5
+625/625 [==============================] - 107s 171ms/step - loss: 1.5384 - sparse_categorical_accuracy: 0.4532 - val_loss: 1.4547 - val_sparse_categorical_accuracy: 0.4908
+Epoch 3/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.4361 - sparse_categorical_accuracy: 0.4911 - val_loss: 1.3522 - val_sparse_categorical_accuracy: 0.5282
+Epoch 4/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.3701 - sparse_categorical_accuracy: 0.5127 - val_loss: 1.2595 - val_sparse_categorical_accuracy: 0.5552
+Epoch 5/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.3175 - sparse_categorical_accuracy: 0.5358 - val_loss: 1.2668 - val_sparse_categorical_accuracy: 0.5575
+157/157 [==============================] - 1s 7ms/step - loss: 1.1457 - sparse_categorical_accuracy: 0.5965
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_32|avg_pool3x3|dropout|avg_pool3x3|output) was saved to 4c9ed81713f577d1ef4ca6117972a41152a68bf8.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep5x5_32|sep5x5_16|dropout|avg_pool3x3|output)
+
+Epoch 1/5
+625/625 [==============================] - 113s 180ms/step - loss: 1.7794 - sparse_categorical_accuracy: 0.3503 - val_loss: 1.6278 - val_sparse_categorical_accuracy: 0.4050
+Epoch 2/5
+625/625 [==============================] - 111s 178ms/step - loss: 1.5711 - sparse_categorical_accuracy: 0.4339 - val_loss: 1.4598 - val_sparse_categorical_accuracy: 0.4759
+Epoch 3/5
+625/625 [==============================] - 112s 179ms/step - loss: 1.4708 - sparse_categorical_accuracy: 0.4753 - val_loss: 1.3843 - val_sparse_categorical_accuracy: 0.5053
+Epoch 4/5
+625/625 [==============================] - 112s 179ms/step - loss: 1.4054 - sparse_categorical_accuracy: 0.5021 - val_loss: 1.3145 - val_sparse_categorical_accuracy: 0.5288
+Epoch 5/5
+625/625 [==============================] - 112s 178ms/step - loss: 1.3527 - sparse_categorical_accuracy: 0.5225 - val_loss: 1.2911 - val_sparse_categorical_accuracy: 0.5431
+157/157 [==============================] - 1s 7ms/step - loss: 1.1370 - sparse_categorical_accuracy: 0.5931
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sep5x5_32|sep5x5_16|dropout|avg_pool3x3|output) was saved to a1ffbf0c477cca70702c1caa2fef7eb79293eb90.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|avg_pool3x3|batch_norm|sep3x3_32|sep3x3_32|output)
+
+Epoch 1/5
+625/625 [==============================] - 112s 178ms/step - loss: 1.6994 - sparse_categorical_accuracy: 0.3839 - val_loss: 1.5523 - val_sparse_categorical_accuracy: 0.4464
+Epoch 2/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.4962 - sparse_categorical_accuracy: 0.4646 - val_loss: 1.4137 - val_sparse_categorical_accuracy: 0.4924
+Epoch 3/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.3936 - sparse_categorical_accuracy: 0.5049 - val_loss: 1.3046 - val_sparse_categorical_accuracy: 0.5386
+Epoch 4/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.3266 - sparse_categorical_accuracy: 0.5275 - val_loss: 1.2575 - val_sparse_categorical_accuracy: 0.5540
+Epoch 5/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.2746 - sparse_categorical_accuracy: 0.5468 - val_loss: 1.2214 - val_sparse_categorical_accuracy: 0.5722
+157/157 [==============================] - 1s 7ms/step - loss: 1.0425 - sparse_categorical_accuracy: 0.6266
+
+FILE-SAVE SUCCESSFUL: Candidate (input|avg_pool3x3|batch_norm|sep3x3_32|sep3x3_32|output) was saved to 2e7227e4c638706b59a3944e569d2fb20884572e.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|dropout|avg_pool3x3|dropout|avg_pool3x3|output)
+
+Epoch 1/5
+625/625 [==============================] - 101s 160ms/step - loss: 2.2233 - sparse_categorical_accuracy: 0.2999 - val_loss: 1.7962 - val_sparse_categorical_accuracy: 0.3515
+Epoch 2/5
+625/625 [==============================] - 98s 157ms/step - loss: 1.8070 - sparse_categorical_accuracy: 0.3540 - val_loss: 1.7115 - val_sparse_categorical_accuracy: 0.4060
+Epoch 3/5
+625/625 [==============================] - 98s 157ms/step - loss: 1.7320 - sparse_categorical_accuracy: 0.3856 - val_loss: 1.6275 - val_sparse_categorical_accuracy: 0.4172
+Epoch 4/5
+625/625 [==============================] - 99s 158ms/step - loss: 1.6698 - sparse_categorical_accuracy: 0.4083 - val_loss: 1.5595 - val_sparse_categorical_accuracy: 0.4426
+Epoch 5/5
+625/625 [==============================] - 98s 158ms/step - loss: 1.6142 - sparse_categorical_accuracy: 0.4306 - val_loss: 1.5052 - val_sparse_categorical_accuracy: 0.4766
+157/157 [==============================] - 1s 5ms/step - loss: 1.2986 - sparse_categorical_accuracy: 0.5395
+
+FILE-SAVE SUCCESSFUL: Candidate (input|dropout|avg_pool3x3|dropout|avg_pool3x3|output) was saved to fa40adc7b5dc9e956143f02808ade402b6071360.h5
+
+STATUS: itr: 9 -- Best fitness: 0.6478000283241272, Total time (s): 26860.50096821785
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|max_pool3x3|sep3x3_8|max_pool3x3|batch_norm|output)
+
+Epoch 1/5
+625/625 [==============================] - 99s 157ms/step - loss: 1.8185 - sparse_categorical_accuracy: 0.3750 - val_loss: 1.5586 - val_sparse_categorical_accuracy: 0.4505
+Epoch 2/5
+625/625 [==============================] - 97s 155ms/step - loss: 1.5127 - sparse_categorical_accuracy: 0.4639 - val_loss: 1.4187 - val_sparse_categorical_accuracy: 0.4946
+Epoch 3/5
+625/625 [==============================] - 97s 155ms/step - loss: 1.4041 - sparse_categorical_accuracy: 0.5041 - val_loss: 1.3138 - val_sparse_categorical_accuracy: 0.5421
+Epoch 4/5
+625/625 [==============================] - 96s 154ms/step - loss: 1.3292 - sparse_categorical_accuracy: 0.5314 - val_loss: 1.2470 - val_sparse_categorical_accuracy: 0.5633
+Epoch 5/5
+625/625 [==============================] - 97s 155ms/step - loss: 1.2840 - sparse_categorical_accuracy: 0.5510 - val_loss: 1.2093 - val_sparse_categorical_accuracy: 0.5750
+157/157 [==============================] - 1s 4ms/step - loss: 1.0377 - sparse_categorical_accuracy: 0.6363
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|sep3x3_8|max_pool3x3|batch_norm|output) was saved to 1902e2f11016dc1d6c8400148cda0f9061532a69.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|max_pool3x3|sep5x5_16|sep5x5_32|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 118s 188ms/step - loss: 1.7690 - sparse_categorical_accuracy: 0.3546 - val_loss: 1.6047 - val_sparse_categorical_accuracy: 0.4291
+Epoch 2/5
+625/625 [==============================] - 117s 187ms/step - loss: 1.5349 - sparse_categorical_accuracy: 0.4494 - val_loss: 1.4641 - val_sparse_categorical_accuracy: 0.4724
+Epoch 3/5
+625/625 [==============================] - 117s 188ms/step - loss: 1.4457 - sparse_categorical_accuracy: 0.4852 - val_loss: 1.3810 - val_sparse_categorical_accuracy: 0.5107
+Epoch 4/5
+625/625 [==============================] - 117s 187ms/step - loss: 1.3938 - sparse_categorical_accuracy: 0.5055 - val_loss: 1.3300 - val_sparse_categorical_accuracy: 0.5284
+Epoch 5/5
+625/625 [==============================] - 117s 188ms/step - loss: 1.3226 - sparse_categorical_accuracy: 0.5315 - val_loss: 1.3082 - val_sparse_categorical_accuracy: 0.5362
+157/157 [==============================] - 1s 7ms/step - loss: 1.1260 - sparse_categorical_accuracy: 0.6015
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|sep5x5_16|sep5x5_32|sep3x3_16|output) was saved to 6dfd1a0784232c2be43908460d5378b48cefc8b4.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|max_pool3x3|sep3x3_32|sep5x5_32|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - 117s 187ms/step - loss: 1.7297 - sparse_categorical_accuracy: 0.3724 - val_loss: 1.5047 - val_sparse_categorical_accuracy: 0.4480
+Epoch 2/5
+625/625 [==============================] - 116s 186ms/step - loss: 1.4712 - sparse_categorical_accuracy: 0.4706 - val_loss: 1.3679 - val_sparse_categorical_accuracy: 0.5110
+Epoch 3/5
+625/625 [==============================] - 117s 187ms/step - loss: 1.3657 - sparse_categorical_accuracy: 0.5140 - val_loss: 1.2777 - val_sparse_categorical_accuracy: 0.5393
+Epoch 4/5
+625/625 [==============================] - 116s 186ms/step - loss: 1.2897 - sparse_categorical_accuracy: 0.5427 - val_loss: 1.2496 - val_sparse_categorical_accuracy: 0.5577
+Epoch 5/5
+625/625 [==============================] - 116s 185ms/step - loss: 1.2422 - sparse_categorical_accuracy: 0.5592 - val_loss: 1.2264 - val_sparse_categorical_accuracy: 0.5682
+157/157 [==============================] - 1s 7ms/step - loss: 1.0933 - sparse_categorical_accuracy: 0.6138
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|sep3x3_32|sep5x5_32|sep3x3_16|output) was saved to 5fbba380791530f3002fe13c5a78619e122562a1.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|max_pool3x3|sep3x3_16|max_pool3x3|batch_norm|output)
+
+Epoch 1/5
+625/625 [==============================] - 104s 166ms/step - loss: 1.8436 - sparse_categorical_accuracy: 0.3805 - val_loss: 1.5644 - val_sparse_categorical_accuracy: 0.4274
+Epoch 2/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.4647 - sparse_categorical_accuracy: 0.4789 - val_loss: 1.4112 - val_sparse_categorical_accuracy: 0.4903
+Epoch 3/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.3459 - sparse_categorical_accuracy: 0.5230 - val_loss: 1.2898 - val_sparse_categorical_accuracy: 0.5457
+Epoch 4/5
+625/625 [==============================] - 103s 165ms/step - loss: 1.2849 - sparse_categorical_accuracy: 0.5477 - val_loss: 1.2727 - val_sparse_categorical_accuracy: 0.5613
+Epoch 5/5
+625/625 [==============================] - 103s 164ms/step - loss: 1.2200 - sparse_categorical_accuracy: 0.5701 - val_loss: 1.2335 - val_sparse_categorical_accuracy: 0.5624
+157/157 [==============================] - 1s 6ms/step - loss: 1.0664 - sparse_categorical_accuracy: 0.6287
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|sep3x3_16|max_pool3x3|batch_norm|output) was saved to 619487b4a1a21573e6beeb7628ef221384c29296.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|max_pool3x3|sep3x3_8|batch_norm|batch_norm|output)
+
+Epoch 1/5
+625/625 [==============================] - 99s 157ms/step - loss: 1.7696 - sparse_categorical_accuracy: 0.3826 - val_loss: 1.5882 - val_sparse_categorical_accuracy: 0.4438
+Epoch 2/5
+625/625 [==============================] - 97s 155ms/step - loss: 1.4755 - sparse_categorical_accuracy: 0.4757 - val_loss: 1.3701 - val_sparse_categorical_accuracy: 0.5172
+Epoch 3/5
+625/625 [==============================] - 97s 155ms/step - loss: 1.3591 - sparse_categorical_accuracy: 0.5183 - val_loss: 1.3518 - val_sparse_categorical_accuracy: 0.5216
+Epoch 4/5
+625/625 [==============================] - 97s 156ms/step - loss: 1.2914 - sparse_categorical_accuracy: 0.5433 - val_loss: 1.2309 - val_sparse_categorical_accuracy: 0.5664
+Epoch 5/5
+625/625 [==============================] - 97s 155ms/step - loss: 1.2440 - sparse_categorical_accuracy: 0.5622 - val_loss: 1.2069 - val_sparse_categorical_accuracy: 0.5701
+157/157 [==============================] - 1s 4ms/step - loss: 1.0175 - sparse_categorical_accuracy: 0.6439
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|sep3x3_8|batch_norm|batch_norm|output) was saved to c325ad43d5353131b9fe85028421d5236e1613ef.h5
+
+STATUS: itr: 10 -- Best fitness: 0.6478000283241272, Total time (s): 29665.13357567787
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sc_4|max_pool3x3|sc_1|dropout|sc_1|sep5x5_16|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 107s 169ms/step - loss: 1.7865 - sparse_categorical_accuracy: 0.3628 - val_loss: 1.6101 - val_sparse_categorical_accuracy: 0.4291
+Epoch 2/5
+625/625 [==============================] - 106s 169ms/step - loss: 1.5501 - sparse_categorical_accuracy: 0.4498 - val_loss: 1.5126 - val_sparse_categorical_accuracy: 0.4641
+Epoch 3/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.4439 - sparse_categorical_accuracy: 0.4872 - val_loss: 1.3393 - val_sparse_categorical_accuracy: 0.5308
+Epoch 4/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.3927 - sparse_categorical_accuracy: 0.5087 - val_loss: 1.3255 - val_sparse_categorical_accuracy: 0.5307
+Epoch 5/5
+625/625 [==============================] - 107s 171ms/step - loss: 1.3384 - sparse_categorical_accuracy: 0.5283 - val_loss: 1.3487 - val_sparse_categorical_accuracy: 0.5247
+157/157 [==============================] - 1s 6ms/step - loss: 1.1459 - sparse_categorical_accuracy: 0.6002
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_4|max_pool3x3|sc_1|dropout|sc_1|sep5x5_16|sep3x3_8|output) was saved to afc8e52ca9d5beac44c814b9ccf5d65f4e968231.h5
+
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|max_pool3x3|sep3x3_32|sep5x5_32|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 112s 179ms/step - loss: 1.7822 - sparse_categorical_accuracy: 0.3417 - val_loss: 1.5607 - val_sparse_categorical_accuracy: 0.4298
+Epoch 2/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.5266 - sparse_categorical_accuracy: 0.4494 - val_loss: 1.3831 - val_sparse_categorical_accuracy: 0.4992
+Epoch 3/5
+625/625 [==============================] - 110s 176ms/step - loss: 1.4252 - sparse_categorical_accuracy: 0.4865 - val_loss: 1.3977 - val_sparse_categorical_accuracy: 0.4954
+Epoch 4/5
+625/625 [==============================] - 111s 178ms/step - loss: 1.3461 - sparse_categorical_accuracy: 0.5172 - val_loss: 1.2867 - val_sparse_categorical_accuracy: 0.5422
+Epoch 5/5
+625/625 [==============================] - 111s 177ms/step - loss: 1.3035 - sparse_categorical_accuracy: 0.5353 - val_loss: 1.2587 - val_sparse_categorical_accuracy: 0.5534
+157/157 [==============================] - 1s 7ms/step - loss: 1.0937 - sparse_categorical_accuracy: 0.6085
+
+FILE-SAVE SUCCESSFUL: Candidate (input|max_pool3x3|sep3x3_32|sep5x5_32|sep3x3_8|output) was saved to a6c03dcfa5a0cc8d3e3dba64ab59ed9b59744c8e.h5
+
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sc_4|max_pool3x3|sc_1|dropout|sep5x5_16|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 106s 169ms/step - loss: 1.8428 - sparse_categorical_accuracy: 0.3519 - val_loss: 1.6734 - val_sparse_categorical_accuracy: 0.3900
+Epoch 2/5
+625/625 [==============================] - 105s 168ms/step - loss: 1.5829 - sparse_categorical_accuracy: 0.4369 - val_loss: 1.4638 - val_sparse_categorical_accuracy: 0.4767
+Epoch 3/5
+625/625 [==============================] - 106s 169ms/step - loss: 1.4747 - sparse_categorical_accuracy: 0.4782 - val_loss: 1.3762 - val_sparse_categorical_accuracy: 0.5108
+Epoch 4/5
+625/625 [==============================] - 106s 169ms/step - loss: 1.3982 - sparse_categorical_accuracy: 0.5082 - val_loss: 1.3222 - val_sparse_categorical_accuracy: 0.5353
+Epoch 5/5
+625/625 [==============================] - 106s 170ms/step - loss: 1.3440 - sparse_categorical_accuracy: 0.5294 - val_loss: 1.2564 - val_sparse_categorical_accuracy: 0.5552
+157/157 [==============================] - 1s 6ms/step - loss: 1.0872 - sparse_categorical_accuracy: 0.6166
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_4|max_pool3x3|sc_1|dropout|sep5x5_16|sep3x3_8|output) was saved to 292651e6770cd1611291d6adc464aa7fad51a2bd.h5
+
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sc_4|max_pool3x3|sc_1|dropout|sep3x3_8|sep3x3_8|output)
+
+Epoch 1/5
+625/625 [==============================] - 100s 159ms/step - loss: 1.7977 - sparse_categorical_accuracy: 0.3638 - val_loss: 1.6937 - val_sparse_categorical_accuracy: 0.3926
+Epoch 2/5
+625/625 [==============================] - 99s 158ms/step - loss: 1.5676 - sparse_categorical_accuracy: 0.4449 - val_loss: 1.5283 - val_sparse_categorical_accuracy: 0.4569
+Epoch 3/5
+625/625 [==============================] - 98s 157ms/step - loss: 1.4771 - sparse_categorical_accuracy: 0.4779 - val_loss: 1.4209 - val_sparse_categorical_accuracy: 0.4830
+Epoch 4/5
+625/625 [==============================] - 98s 157ms/step - loss: 1.4119 - sparse_categorical_accuracy: 0.5002 - val_loss: 1.3977 - val_sparse_categorical_accuracy: 0.5118
+Epoch 5/5
+625/625 [==============================] - 98s 157ms/step - loss: 1.3630 - sparse_categorical_accuracy: 0.5193 - val_loss: 1.3468 - val_sparse_categorical_accuracy: 0.5259
+157/157 [==============================] - 1s 5ms/step - loss: 1.1506 - sparse_categorical_accuracy: 0.5949
+
+FILE-SAVE SUCCESSFUL: Candidate (input|sc_4|max_pool3x3|sc_1|dropout|sep3x3_8|sep3x3_8|output) was saved to 22e44498478f68eb3e65d46a1a6531e748fdbf93.h5
+
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|max_pool3x3|sep3x3_32|sep3x3_32|sep3x3_16|output)
+
+Epoch 1/5
+625/625 [==============================] - ETA: 0s - loss: 1.7455 - sparse_categorical_accuracy: 0.3654

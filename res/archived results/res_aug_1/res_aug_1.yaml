@@ -1,0 +1,54 @@
+ABANDONMENT_LIMIT: 10
+AFFINE_TRANSFORMATIONS_ENABLED: true
+BATCH_SIZE: 128
+COLONY_SIZE: 9
+CONFIG_VERSION: res_aug_1
+CONTRAST_AUG_PROB: 0.75
+CUTOUT_PROB: 0
+DATASET: CIFAR10
+DEPTH: 4
+EMPLOYEE_ONLOOKER_RATIO: 0.34
+ENABLE_WEIGHT_SAVING: false
+EPOCHS: 5
+FULL_TRAIN_EPOCHS: 100
+INPUT_STEM:
+- !Operation {filters: 32, kernel_size: !!python/tuple [3, 3], op: Conv2D}
+- !Operation {op: BatchNormalization}
+- !Operation {op: ReLU}
+ITERATIONS_COUNT: 5
+LOG_FILES_SUBPATH: logs/
+LR: 0.01
+OPERATIONS:
+  avg_pool3x3: !Operation {op: AveragePooling2D, padding: same, pool_size: !!python/tuple [
+      3, 3], strides: !!python/tuple [1, 1]}
+  batch_norm: !Operation {op: BatchNormalization}
+  dropout: !Operation {op: Dropout}
+  max_pool3x3: !Operation {op: MaxPooling2D, padding: same, pool_size: !!python/tuple [
+      3, 3], strides: !!python/tuple [1, 1]}
+  sep3x3_128: !Operation {activation: relu, dilation_rate: 2, op: SeparableConv2D, kernel_size: 3, filters: 128,
+    padding: same}
+  sep3x3_256: !Operation {activation: relu, dilation_rate: 2, op: SeparableConv2D, kernel_size: 3, filters: 256,
+    padding: same}
+  sep3x3_64: !Operation {activation: relu, dilation_rate: 1, op: SeparableConv2D, kernel_size: 3, filters: 64,
+    padding: same}
+  sep5x5_128: !Operation {activation: relu, dilation_rate: 2, op: SeparableConv2D, kernel_size: 5, filters: 128,
+    padding: same}
+  sep5x5_256: !Operation {activation: relu, dilation_rate: 2, op: SeparableConv2D, kernel_size: 5, filters: 256,
+    padding: same}
+  sep5x5_64: !Operation {activation: relu, dilation_rate: 1, op: SeparableConv2D, kernel_size: 5, filters: 64,
+    padding: same}
+OPTIMIZATION_OBJECTIVE: HiveNAS
+OPTIMIZER: RMSprop
+OUTPUT_STEM:
+- !Operation {op: Flatten}
+- !Operation {op: Dropout, rate: 0.25}
+- !Operation {activation: relu, op: Dense, units: 1024}
+- !Operation {op: Dropout, rate: 0.25}
+- !Operation {activation: relu, op: Dense, units: 512}
+RESIDUAL_BLOCKS_RATE: 0.15
+RESULTS_BASE_PATH: /content/gdrive/MyDrive/PhD/HiveNAS/
+RESULTS_SAVE_FREQUENCY: 1
+RESUME_FROM_RESULTS_FILE: true
+SATURATION_AUG_PROB: 0.75
+SCOUTS_COUNT: 2
+WEIGHT_FILES_SUBPATH: weights/

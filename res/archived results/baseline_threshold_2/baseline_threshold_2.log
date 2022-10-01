@@ -1,0 +1,733 @@
+Downloading data from https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+170500096/170498071 [==============================] - 11s 0us/step
+170508288/170498071 [==============================] - 11s 0us/step
+
+Configuration file saved successfully to (/content/gdrive/MyDrive/PhD/HiveNAS/baseline_callback_2/baseline_callback_2.yaml)!
+
+
+------------------------
+-- OPTIMIZATION START --
+------------------------
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep3x3_32|sep3x3_64|dropout|max_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 87s 243ms/step - loss: 1.7634 - sparse_categorical_accuracy: 0.3633 - val_loss: 1.5613 - val_sparse_categorical_accuracy: 0.4314
+Epoch 2/5
+313/313 [==============================] - 74s 237ms/step - loss: 1.4248 - sparse_categorical_accuracy: 0.4925 - val_loss: 1.3420 - val_sparse_categorical_accuracy: 0.5237
+Epoch 3/5
+313/313 [==============================] - 75s 239ms/step - loss: 1.2912 - sparse_categorical_accuracy: 0.5397 - val_loss: 1.2028 - val_sparse_categorical_accuracy: 0.5740
+Epoch 4/5
+313/313 [==============================] - 74s 238ms/step - loss: 1.2113 - sparse_categorical_accuracy: 0.5699 - val_loss: 1.1275 - val_sparse_categorical_accuracy: 0.6047
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.1495 - sparse_categorical_accuracy: 0.5942
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 74s 237ms/step - loss: 1.1495 - sparse_categorical_accuracy: 0.5942 - val_loss: 1.0836 - val_sparse_categorical_accuracy: 0.6260
+79/79 [==============================] - 1s 10ms/step - loss: 0.9394 - sparse_categorical_accuracy: 0.6719
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_128|sep3x3_64|batch_norm|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - 77s 243ms/step - loss: 1.6872 - sparse_categorical_accuracy: 0.3947 - val_loss: 2.1095 - val_sparse_categorical_accuracy: 0.4074
+Epoch 2/5
+313/313 [==============================] - 76s 243ms/step - loss: 1.3916 - sparse_categorical_accuracy: 0.5001 - val_loss: 1.4955 - val_sparse_categorical_accuracy: 0.5187
+Epoch 3/5
+313/313 [==============================] - 76s 243ms/step - loss: 1.2661 - sparse_categorical_accuracy: 0.5500 - val_loss: 1.2881 - val_sparse_categorical_accuracy: 0.5423
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.1822 - sparse_categorical_accuracy: 0.5813
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 75s 241ms/step - loss: 1.1822 - sparse_categorical_accuracy: 0.5813 - val_loss: 1.1791 - val_sparse_categorical_accuracy: 0.5822
+79/79 [==============================] - 1s 9ms/step - loss: 0.9710 - sparse_categorical_accuracy: 0.6592
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep3x3_32|sep3x3_64|sep5x5_64|max_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 78s 246ms/step - loss: 1.7114 - sparse_categorical_accuracy: 0.3779 - val_loss: 1.4439 - val_sparse_categorical_accuracy: 0.4798
+Epoch 2/5
+313/313 [==============================] - 76s 243ms/step - loss: 1.3813 - sparse_categorical_accuracy: 0.5054 - val_loss: 1.2613 - val_sparse_categorical_accuracy: 0.5496
+Epoch 3/5
+313/313 [==============================] - 75s 240ms/step - loss: 1.2408 - sparse_categorical_accuracy: 0.5598 - val_loss: 1.1857 - val_sparse_categorical_accuracy: 0.5737
+Epoch 4/5
+313/313 [==============================] - 76s 243ms/step - loss: 1.1590 - sparse_categorical_accuracy: 0.5866 - val_loss: 1.0638 - val_sparse_categorical_accuracy: 0.6203
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.1044 - sparse_categorical_accuracy: 0.6092
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 76s 244ms/step - loss: 1.1044 - sparse_categorical_accuracy: 0.6092 - val_loss: 1.0481 - val_sparse_categorical_accuracy: 0.6284
+79/79 [==============================] - 1s 10ms/step - loss: 0.9397 - sparse_categorical_accuracy: 0.6705
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep5x5_128|sep3x3_64|sep5x5_64|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - 78s 248ms/step - loss: 1.7548 - sparse_categorical_accuracy: 0.3593 - val_loss: 1.6383 - val_sparse_categorical_accuracy: 0.4114
+Epoch 2/5
+313/313 [==============================] - 77s 245ms/step - loss: 1.4804 - sparse_categorical_accuracy: 0.4673 - val_loss: 1.3706 - val_sparse_categorical_accuracy: 0.5048
+Epoch 3/5
+313/313 [==============================] - 77s 247ms/step - loss: 1.3498 - sparse_categorical_accuracy: 0.5164 - val_loss: 1.3086 - val_sparse_categorical_accuracy: 0.5304
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2492 - sparse_categorical_accuracy: 0.5547
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 78s 249ms/step - loss: 1.2492 - sparse_categorical_accuracy: 0.5547 - val_loss: 1.1822 - val_sparse_categorical_accuracy: 0.5797
+79/79 [==============================] - 1s 10ms/step - loss: 1.0404 - sparse_categorical_accuracy: 0.6323
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep3x3_32|sep3x3_32|dropout|max_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 71s 226ms/step - loss: 1.7008 - sparse_categorical_accuracy: 0.3902 - val_loss: 1.4986 - val_sparse_categorical_accuracy: 0.4642
+Epoch 2/5
+313/313 [==============================] - 71s 227ms/step - loss: 1.4026 - sparse_categorical_accuracy: 0.5024 - val_loss: 1.3313 - val_sparse_categorical_accuracy: 0.5310
+Epoch 3/5
+313/313 [==============================] - 70s 225ms/step - loss: 1.2827 - sparse_categorical_accuracy: 0.5473 - val_loss: 1.2425 - val_sparse_categorical_accuracy: 0.5638
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2133 - sparse_categorical_accuracy: 0.5711
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 71s 228ms/step - loss: 1.2133 - sparse_categorical_accuracy: 0.5711 - val_loss: 1.1674 - val_sparse_categorical_accuracy: 0.5905
+79/79 [==============================] - 1s 6ms/step - loss: 1.0288 - sparse_categorical_accuracy: 0.6419
+STATUS: itr: 0 -- Best fitness: 0.6718999743461609, Total time (s): 1674.8497171401978
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep3x3_64|sep3x3_64|sep3x3_64|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - 76s 242ms/step - loss: 1.7437 - sparse_categorical_accuracy: 0.3668 - val_loss: 1.5636 - val_sparse_categorical_accuracy: 0.4274
+Epoch 2/5
+313/313 [==============================] - 75s 240ms/step - loss: 1.4694 - sparse_categorical_accuracy: 0.4711 - val_loss: 1.3727 - val_sparse_categorical_accuracy: 0.5070
+Epoch 3/5
+313/313 [==============================] - 75s 241ms/step - loss: 1.3260 - sparse_categorical_accuracy: 0.5257 - val_loss: 1.2327 - val_sparse_categorical_accuracy: 0.5587
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2249 - sparse_categorical_accuracy: 0.5639
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 75s 240ms/step - loss: 1.2249 - sparse_categorical_accuracy: 0.5639 - val_loss: 1.1829 - val_sparse_categorical_accuracy: 0.5809
+79/79 [==============================] - 1s 9ms/step - loss: 1.0170 - sparse_categorical_accuracy: 0.6399
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_128|sep3x3_64|batch_norm|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - ETA: 0s - loss: 1.6618 - sparse_categorical_accuracy: 0.3951
+Epoch 1: Accuracy has not reached the baseline threshold 0.3248875, terminating training... 
+
+313/313 [==============================] - 77s 244ms/step - loss: 1.6618 - sparse_categorical_accuracy: 0.3951 - val_loss: 2.2724 - val_sparse_categorical_accuracy: 0.1419
+79/79 [==============================] - 1s 10ms/step - loss: 2.2643 - sparse_categorical_accuracy: 0.1474
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep3x3_64|sep3x3_64|sep5x5_128|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - 81s 258ms/step - loss: 1.7345 - sparse_categorical_accuracy: 0.3676 - val_loss: 1.5622 - val_sparse_categorical_accuracy: 0.4293
+Epoch 2/5
+313/313 [==============================] - 80s 257ms/step - loss: 1.4344 - sparse_categorical_accuracy: 0.4847 - val_loss: 1.3295 - val_sparse_categorical_accuracy: 0.5196
+Epoch 3/5
+313/313 [==============================] - 81s 260ms/step - loss: 1.2711 - sparse_categorical_accuracy: 0.5483 - val_loss: 1.1951 - val_sparse_categorical_accuracy: 0.5690
+Epoch 4/5
+313/313 [==============================] - 80s 256ms/step - loss: 1.1788 - sparse_categorical_accuracy: 0.5817 - val_loss: 1.1016 - val_sparse_categorical_accuracy: 0.6157
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.1144 - sparse_categorical_accuracy: 0.6075
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 81s 259ms/step - loss: 1.1144 - sparse_categorical_accuracy: 0.6075 - val_loss: 1.0610 - val_sparse_categorical_accuracy: 0.6225
+79/79 [==============================] - 1s 12ms/step - loss: 0.9471 - sparse_categorical_accuracy: 0.6685
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep3x3_128|sep3x3_64|batch_norm|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - ETA: 0s - loss: 1.6336 - sparse_categorical_accuracy: 0.4170
+Epoch 1: Accuracy has not reached the baseline threshold 0.3248875, terminating training... 
+
+313/313 [==============================] - 76s 241ms/step - loss: 1.6336 - sparse_categorical_accuracy: 0.4170 - val_loss: 2.1623 - val_sparse_categorical_accuracy: 0.2914
+79/79 [==============================] - 1s 9ms/step - loss: 2.1194 - sparse_categorical_accuracy: 0.3494
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep5x5_128|max_pool3x3|batch_norm|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - 79s 252ms/step - loss: 3.0625 - sparse_categorical_accuracy: 0.3293 - val_loss: 1.9220 - val_sparse_categorical_accuracy: 0.3874
+Epoch 2/5
+313/313 [==============================] - 78s 250ms/step - loss: 1.5115 - sparse_categorical_accuracy: 0.4561 - val_loss: 1.4030 - val_sparse_categorical_accuracy: 0.5018
+Epoch 3/5
+313/313 [==============================] - 79s 251ms/step - loss: 1.3429 - sparse_categorical_accuracy: 0.5211 - val_loss: 1.3078 - val_sparse_categorical_accuracy: 0.5364
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2469 - sparse_categorical_accuracy: 0.5576
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 78s 250ms/step - loss: 1.2469 - sparse_categorical_accuracy: 0.5576 - val_loss: 1.2077 - val_sparse_categorical_accuracy: 0.5752
+79/79 [==============================] - 1s 12ms/step - loss: 0.9891 - sparse_categorical_accuracy: 0.6489
+STATUS: itr: 1 -- Best fitness: 0.6718999743461609, Total time (s): 2858.3407373428345
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|max_pool3x3|sep3x3_64|sep5x5_128|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - 80s 255ms/step - loss: 1.6813 - sparse_categorical_accuracy: 0.3921 - val_loss: 1.6228 - val_sparse_categorical_accuracy: 0.4166
+Epoch 2/5
+313/313 [==============================] - 79s 253ms/step - loss: 1.3518 - sparse_categorical_accuracy: 0.5167 - val_loss: 1.2656 - val_sparse_categorical_accuracy: 0.5447
+Epoch 3/5
+313/313 [==============================] - 79s 251ms/step - loss: 1.2357 - sparse_categorical_accuracy: 0.5632 - val_loss: 1.2356 - val_sparse_categorical_accuracy: 0.5638
+Epoch 4/5
+313/313 [==============================] - 79s 254ms/step - loss: 1.1434 - sparse_categorical_accuracy: 0.5953 - val_loss: 1.0668 - val_sparse_categorical_accuracy: 0.6223
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0810 - sparse_categorical_accuracy: 0.6185
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 80s 255ms/step - loss: 1.0810 - sparse_categorical_accuracy: 0.6185 - val_loss: 1.0230 - val_sparse_categorical_accuracy: 0.6407
+79/79 [==============================] - 1s 12ms/step - loss: 0.9318 - sparse_categorical_accuracy: 0.6798
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep3x3_128|batch_norm|sep5x5_128|max_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 81s 257ms/step - loss: 2.1615 - sparse_categorical_accuracy: 0.3059 - val_loss: 2.1383 - val_sparse_categorical_accuracy: 0.3284
+Epoch 2/5
+313/313 [==============================] - 81s 260ms/step - loss: 1.5360 - sparse_categorical_accuracy: 0.4477 - val_loss: 1.5256 - val_sparse_categorical_accuracy: 0.4865
+Epoch 3/5
+313/313 [==============================] - 81s 260ms/step - loss: 1.3749 - sparse_categorical_accuracy: 0.5112 - val_loss: 1.2642 - val_sparse_categorical_accuracy: 0.5565
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2582 - sparse_categorical_accuracy: 0.5540
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 82s 261ms/step - loss: 1.2582 - sparse_categorical_accuracy: 0.5540 - val_loss: 1.1836 - val_sparse_categorical_accuracy: 0.5826
+79/79 [==============================] - 1s 14ms/step - loss: 1.0124 - sparse_categorical_accuracy: 0.6413
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|max_pool3x3|sep3x3_128|sep5x5_128|dropout|output)
+
+Epoch 1/5
+313/313 [==============================] - 81s 256ms/step - loss: 1.6351 - sparse_categorical_accuracy: 0.4142 - val_loss: 1.4181 - val_sparse_categorical_accuracy: 0.4945
+Epoch 2/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.3207 - sparse_categorical_accuracy: 0.5333 - val_loss: 1.2336 - val_sparse_categorical_accuracy: 0.5655
+Epoch 3/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.1890 - sparse_categorical_accuracy: 0.5811 - val_loss: 1.0855 - val_sparse_categorical_accuracy: 0.6170
+Epoch 4/5
+313/313 [==============================] - 81s 258ms/step - loss: 1.1065 - sparse_categorical_accuracy: 0.6091 - val_loss: 1.0277 - val_sparse_categorical_accuracy: 0.6389
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0402 - sparse_categorical_accuracy: 0.6342
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 81s 258ms/step - loss: 1.0402 - sparse_categorical_accuracy: 0.6342 - val_loss: 0.9679 - val_sparse_categorical_accuracy: 0.6600
+79/79 [==============================] - 1s 13ms/step - loss: 0.8368 - sparse_categorical_accuracy: 0.7093
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|batch_norm|batch_norm|sep5x5_128|max_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 79s 251ms/step - loss: 2.4425 - sparse_categorical_accuracy: 0.3042 - val_loss: 1.6412 - val_sparse_categorical_accuracy: 0.4170
+Epoch 2/5
+313/313 [==============================] - 78s 248ms/step - loss: 1.6052 - sparse_categorical_accuracy: 0.4198 - val_loss: 1.4735 - val_sparse_categorical_accuracy: 0.4728
+Epoch 3/5
+313/313 [==============================] - 78s 251ms/step - loss: 1.4536 - sparse_categorical_accuracy: 0.4790 - val_loss: 1.3330 - val_sparse_categorical_accuracy: 0.5292
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.3522 - sparse_categorical_accuracy: 0.5174
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 78s 250ms/step - loss: 1.3522 - sparse_categorical_accuracy: 0.5174 - val_loss: 1.2747 - val_sparse_categorical_accuracy: 0.5464
+79/79 [==============================] - 1s 12ms/step - loss: 1.1532 - sparse_categorical_accuracy: 0.5842
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep3x3_128|batch_norm|sep5x5_128|sep5x5_32|output)
+
+Epoch 1/5
+313/313 [==============================] - ETA: 0s - loss: 1.6408 - sparse_categorical_accuracy: 0.4024
+Epoch 1: Accuracy has not reached the baseline threshold 0.3248875, terminating training... 
+
+313/313 [==============================] - 77s 245ms/step - loss: 1.6408 - sparse_categorical_accuracy: 0.4024 - val_loss: 1.9493 - val_sparse_categorical_accuracy: 0.2625
+79/79 [==============================] - 1s 10ms/step - loss: 1.8455 - sparse_categorical_accuracy: 0.3055
+STATUS: itr: 2 -- Best fitness: 0.7092999815940857, Total time (s): 4391.035226821899
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep3x3_128|sep3x3_64|dropout|sep5x5_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 82s 261ms/step - loss: 1.7370 - sparse_categorical_accuracy: 0.3697 - val_loss: 1.5223 - val_sparse_categorical_accuracy: 0.4538
+Epoch 2/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.4249 - sparse_categorical_accuracy: 0.4909 - val_loss: 1.2803 - val_sparse_categorical_accuracy: 0.5400
+Epoch 3/5
+313/313 [==============================] - 80s 257ms/step - loss: 1.2851 - sparse_categorical_accuracy: 0.5426 - val_loss: 1.1913 - val_sparse_categorical_accuracy: 0.5775
+Epoch 4/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.1879 - sparse_categorical_accuracy: 0.5786 - val_loss: 1.1262 - val_sparse_categorical_accuracy: 0.6073
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.1098 - sparse_categorical_accuracy: 0.6111
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 82s 261ms/step - loss: 1.1098 - sparse_categorical_accuracy: 0.6111 - val_loss: 1.0585 - val_sparse_categorical_accuracy: 0.6290
+79/79 [==============================] - 1s 13ms/step - loss: 0.9476 - sparse_categorical_accuracy: 0.6735
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_32|sep5x5_32|sep3x3_32|avg_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 72s 230ms/step - loss: 1.8076 - sparse_categorical_accuracy: 0.3374 - val_loss: 1.5623 - val_sparse_categorical_accuracy: 0.4335
+Epoch 2/5
+313/313 [==============================] - 72s 231ms/step - loss: 1.5364 - sparse_categorical_accuracy: 0.4453 - val_loss: 1.4358 - val_sparse_categorical_accuracy: 0.4875
+Epoch 3/5
+313/313 [==============================] - 73s 232ms/step - loss: 1.4215 - sparse_categorical_accuracy: 0.4931 - val_loss: 1.3433 - val_sparse_categorical_accuracy: 0.5215
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.3380 - sparse_categorical_accuracy: 0.5242
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 72s 230ms/step - loss: 1.3380 - sparse_categorical_accuracy: 0.5242 - val_loss: 1.2664 - val_sparse_categorical_accuracy: 0.5438
+79/79 [==============================] - 1s 7ms/step - loss: 1.1540 - sparse_categorical_accuracy: 0.5864
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep5x5_32|sep5x5_32|sep3x3_128|avg_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 81s 256ms/step - loss: 1.7288 - sparse_categorical_accuracy: 0.3695 - val_loss: 1.5749 - val_sparse_categorical_accuracy: 0.4444
+Epoch 2/5
+313/313 [==============================] - 80s 255ms/step - loss: 1.4561 - sparse_categorical_accuracy: 0.4793 - val_loss: 1.3821 - val_sparse_categorical_accuracy: 0.4977
+Epoch 3/5
+313/313 [==============================] - 79s 253ms/step - loss: 1.3299 - sparse_categorical_accuracy: 0.5257 - val_loss: 1.2270 - val_sparse_categorical_accuracy: 0.5637
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2348 - sparse_categorical_accuracy: 0.5613
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 80s 256ms/step - loss: 1.2348 - sparse_categorical_accuracy: 0.5613 - val_loss: 1.1457 - val_sparse_categorical_accuracy: 0.5905
+79/79 [==============================] - 1s 12ms/step - loss: 0.9904 - sparse_categorical_accuracy: 0.6508
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep3x3_64|sep5x5_32|sep3x3_128|avg_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 82s 260ms/step - loss: 1.7470 - sparse_categorical_accuracy: 0.3632 - val_loss: 1.5883 - val_sparse_categorical_accuracy: 0.4363
+Epoch 2/5
+313/313 [==============================] - 80s 255ms/step - loss: 1.4387 - sparse_categorical_accuracy: 0.4849 - val_loss: 1.3270 - val_sparse_categorical_accuracy: 0.5299
+Epoch 3/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.2813 - sparse_categorical_accuracy: 0.5416 - val_loss: 1.2271 - val_sparse_categorical_accuracy: 0.5677
+Epoch 4/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.1906 - sparse_categorical_accuracy: 0.5820 - val_loss: 1.1019 - val_sparse_categorical_accuracy: 0.6071
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.1064 - sparse_categorical_accuracy: 0.6090
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 80s 255ms/step - loss: 1.1064 - sparse_categorical_accuracy: 0.6090 - val_loss: 1.0629 - val_sparse_categorical_accuracy: 0.6252
+79/79 [==============================] - 1s 14ms/step - loss: 1.0365 - sparse_categorical_accuracy: 0.6459
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep3x3_128|sep5x5_32|sep3x3_128|avg_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.7994 - sparse_categorical_accuracy: 0.3440 - val_loss: 1.5862 - val_sparse_categorical_accuracy: 0.4332
+Epoch 2/5
+313/313 [==============================] - 82s 262ms/step - loss: 1.4921 - sparse_categorical_accuracy: 0.4633 - val_loss: 1.3436 - val_sparse_categorical_accuracy: 0.5194
+Epoch 3/5
+313/313 [==============================] - 82s 261ms/step - loss: 1.3212 - sparse_categorical_accuracy: 0.5277 - val_loss: 1.2404 - val_sparse_categorical_accuracy: 0.5558
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2136 - sparse_categorical_accuracy: 0.5702
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 82s 263ms/step - loss: 1.2136 - sparse_categorical_accuracy: 0.5702 - val_loss: 1.1414 - val_sparse_categorical_accuracy: 0.5923
+79/79 [==============================] - 1s 15ms/step - loss: 1.0190 - sparse_categorical_accuracy: 0.6436
+STATUS: itr: 3 -- Best fitness: 0.7092999815940857, Total time (s): 6149.8338804244995
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep3x3_128|sep3x3_64|sep3x3_32|sep5x5_128|output)
+
+Epoch 1/5
+313/313 [==============================] - ETA: 0s - loss: 2.3029 - sparse_categorical_accuracy: 0.0976
+Epoch 1: Accuracy has not reached the baseline threshold 0.3248875, terminating training... 
+
+313/313 [==============================] - 82s 261ms/step - loss: 2.3029 - sparse_categorical_accuracy: 0.0976 - val_loss: 2.3026 - val_sparse_categorical_accuracy: 0.0999
+79/79 [==============================] - 1s 13ms/step - loss: 2.3026 - sparse_categorical_accuracy: 0.1000
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_128|sep3x3_32|sep3x3_32|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 77s 244ms/step - loss: 1.8838 - sparse_categorical_accuracy: 0.3028 - val_loss: 1.6678 - val_sparse_categorical_accuracy: 0.3888
+Epoch 2/5
+313/313 [==============================] - 77s 246ms/step - loss: 1.5755 - sparse_categorical_accuracy: 0.4306 - val_loss: 1.4926 - val_sparse_categorical_accuracy: 0.4522
+Epoch 3/5
+313/313 [==============================] - ETA: 0s - loss: 1.4476 - sparse_categorical_accuracy: 0.4807
+Epoch 3: Accuracy has not reached the baseline threshold 0.5046625, terminating training... 
+
+313/313 [==============================] - 77s 245ms/step - loss: 1.4476 - sparse_categorical_accuracy: 0.4807 - val_loss: 1.3877 - val_sparse_categorical_accuracy: 0.5014
+79/79 [==============================] - 1s 10ms/step - loss: 1.1955 - sparse_categorical_accuracy: 0.5713
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep5x5_128|sep3x3_32|sep5x5_64|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 78s 246ms/step - loss: 1.8907 - sparse_categorical_accuracy: 0.2987 - val_loss: 1.6746 - val_sparse_categorical_accuracy: 0.3896
+Epoch 2/5
+313/313 [==============================] - 78s 248ms/step - loss: 1.5724 - sparse_categorical_accuracy: 0.4284 - val_loss: 1.4579 - val_sparse_categorical_accuracy: 0.4739
+Epoch 3/5
+313/313 [==============================] - ETA: 0s - loss: 1.4587 - sparse_categorical_accuracy: 0.4758
+Epoch 3: Accuracy has not reached the baseline threshold 0.5046625, terminating training... 
+
+313/313 [==============================] - 78s 249ms/step - loss: 1.4587 - sparse_categorical_accuracy: 0.4758 - val_loss: 1.4028 - val_sparse_categorical_accuracy: 0.4876
+79/79 [==============================] - 1s 11ms/step - loss: 1.2344 - sparse_categorical_accuracy: 0.5578
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep3x3_128|sep3x3_64|sep5x5_128|sep5x5_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 85s 271ms/step - loss: 1.9289 - sparse_categorical_accuracy: 0.2867 - val_loss: 1.7283 - val_sparse_categorical_accuracy: 0.3742
+Epoch 2/5
+313/313 [==============================] - 85s 271ms/step - loss: 1.6075 - sparse_categorical_accuracy: 0.4202 - val_loss: 1.5094 - val_sparse_categorical_accuracy: 0.4568
+Epoch 3/5
+313/313 [==============================] - ETA: 0s - loss: 1.4721 - sparse_categorical_accuracy: 0.4667
+Epoch 3: Accuracy has not reached the baseline threshold 0.5046625, terminating training... 
+
+313/313 [==============================] - 85s 273ms/step - loss: 1.4721 - sparse_categorical_accuracy: 0.4667 - val_loss: 1.4151 - val_sparse_categorical_accuracy: 0.4942
+79/79 [==============================] - 1s 16ms/step - loss: 1.2677 - sparse_categorical_accuracy: 0.5499
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep3x3_128|sep3x3_64|sep3x3_128|sep5x5_128|output)
+
+Epoch 1/5
+313/313 [==============================] - ETA: 0s - loss: 2.3029 - sparse_categorical_accuracy: 0.0992
+Epoch 1: Accuracy has not reached the baseline threshold 0.3248875, terminating training... 
+
+313/313 [==============================] - 85s 270ms/step - loss: 2.3029 - sparse_categorical_accuracy: 0.0992 - val_loss: 2.3027 - val_sparse_categorical_accuracy: 0.0974
+79/79 [==============================] - 1s 14ms/step - loss: 2.3026 - sparse_categorical_accuracy: 0.1000
+STATUS: itr: 4 -- Best fitness: 0.7092999815940857, Total time (s): 7047.558801651001
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep3x3_128|batch_norm|sep5x5_128|sep5x5_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 85s 269ms/step - loss: 1.6161 - sparse_categorical_accuracy: 0.4102 - val_loss: 1.8593 - val_sparse_categorical_accuracy: 0.3379
+Epoch 2/5
+313/313 [==============================] - 85s 271ms/step - loss: 1.2768 - sparse_categorical_accuracy: 0.5464 - val_loss: 1.1621 - val_sparse_categorical_accuracy: 0.5895
+Epoch 3/5
+313/313 [==============================] - 85s 272ms/step - loss: 1.1306 - sparse_categorical_accuracy: 0.5989 - val_loss: 1.0646 - val_sparse_categorical_accuracy: 0.6205
+Epoch 4/5
+313/313 [==============================] - 84s 269ms/step - loss: 1.0362 - sparse_categorical_accuracy: 0.6352 - val_loss: 1.0026 - val_sparse_categorical_accuracy: 0.6507
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 0.9749 - sparse_categorical_accuracy: 0.6589
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 85s 271ms/step - loss: 0.9749 - sparse_categorical_accuracy: 0.6589 - val_loss: 0.9830 - val_sparse_categorical_accuracy: 0.6577
+79/79 [==============================] - 1s 15ms/step - loss: 1.0347 - sparse_categorical_accuracy: 0.6619
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_128|sep3x3_64|sep3x3_32|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 78s 248ms/step - loss: 1.8543 - sparse_categorical_accuracy: 0.3105 - val_loss: 1.6047 - val_sparse_categorical_accuracy: 0.4163
+Epoch 2/5
+313/313 [==============================] - 77s 246ms/step - loss: 1.5460 - sparse_categorical_accuracy: 0.4440 - val_loss: 1.4170 - val_sparse_categorical_accuracy: 0.4859
+Epoch 3/5
+313/313 [==============================] - 78s 248ms/step - loss: 1.4226 - sparse_categorical_accuracy: 0.4930 - val_loss: 1.3336 - val_sparse_categorical_accuracy: 0.5314
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.3243 - sparse_categorical_accuracy: 0.5299
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 77s 247ms/step - loss: 1.3243 - sparse_categorical_accuracy: 0.5299 - val_loss: 1.2428 - val_sparse_categorical_accuracy: 0.5547
+79/79 [==============================] - 1s 10ms/step - loss: 1.1103 - sparse_categorical_accuracy: 0.6112
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|dropout|sep3x3_64|sep3x3_32|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 75s 238ms/step - loss: 1.8247 - sparse_categorical_accuracy: 0.3331 - val_loss: 1.5688 - val_sparse_categorical_accuracy: 0.4321
+Epoch 2/5
+313/313 [==============================] - 75s 241ms/step - loss: 1.5025 - sparse_categorical_accuracy: 0.4581 - val_loss: 1.3828 - val_sparse_categorical_accuracy: 0.5017
+Epoch 3/5
+313/313 [==============================] - 75s 240ms/step - loss: 1.3593 - sparse_categorical_accuracy: 0.5118 - val_loss: 1.2535 - val_sparse_categorical_accuracy: 0.5494
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2665 - sparse_categorical_accuracy: 0.5509
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 74s 237ms/step - loss: 1.2665 - sparse_categorical_accuracy: 0.5509 - val_loss: 1.1956 - val_sparse_categorical_accuracy: 0.5735
+79/79 [==============================] - 1s 9ms/step - loss: 1.0092 - sparse_categorical_accuracy: 0.6443
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep3x3_128|sep3x3_32|sep5x5_128|sep5x5_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 85s 269ms/step - loss: 1.9108 - sparse_categorical_accuracy: 0.2834 - val_loss: 1.6752 - val_sparse_categorical_accuracy: 0.3853
+Epoch 2/5
+313/313 [==============================] - 84s 270ms/step - loss: 1.5870 - sparse_categorical_accuracy: 0.4224 - val_loss: 1.4585 - val_sparse_categorical_accuracy: 0.4757
+Epoch 3/5
+313/313 [==============================] - 83s 265ms/step - loss: 1.4359 - sparse_categorical_accuracy: 0.4856 - val_loss: 1.3418 - val_sparse_categorical_accuracy: 0.5151
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.3378 - sparse_categorical_accuracy: 0.5220
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 84s 268ms/step - loss: 1.3378 - sparse_categorical_accuracy: 0.5220 - val_loss: 1.2207 - val_sparse_categorical_accuracy: 0.5633
+79/79 [==============================] - 1s 15ms/step - loss: 1.0628 - sparse_categorical_accuracy: 0.6236
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep3x3_128|batch_norm|sep3x3_64|sep5x5_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.6479 - sparse_categorical_accuracy: 0.4040 - val_loss: 1.7759 - val_sparse_categorical_accuracy: 0.3785
+Epoch 2/5
+313/313 [==============================] - 80s 257ms/step - loss: 1.3457 - sparse_categorical_accuracy: 0.5199 - val_loss: 1.2511 - val_sparse_categorical_accuracy: 0.5729
+Epoch 3/5
+313/313 [==============================] - 82s 262ms/step - loss: 1.1830 - sparse_categorical_accuracy: 0.5808 - val_loss: 1.1486 - val_sparse_categorical_accuracy: 0.5902
+Epoch 4/5
+313/313 [==============================] - 82s 262ms/step - loss: 1.0749 - sparse_categorical_accuracy: 0.6220 - val_loss: 1.0014 - val_sparse_categorical_accuracy: 0.6455
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0033 - sparse_categorical_accuracy: 0.6445
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 81s 258ms/step - loss: 1.0033 - sparse_categorical_accuracy: 0.6445 - val_loss: 1.0079 - val_sparse_categorical_accuracy: 0.6480
+79/79 [==============================] - 1s 14ms/step - loss: 1.0213 - sparse_categorical_accuracy: 0.6655
+STATUS: itr: 5 -- Best fitness: 0.7092999815940857, Total time (s): 8843.319912672043
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep5x5_32|sep5x5_128|batch_norm|avg_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - ETA: 0s - loss: 1.7729 - sparse_categorical_accuracy: 0.3920
+Epoch 1: Accuracy has not reached the baseline threshold 0.3248875, terminating training... 
+
+313/313 [==============================] - 80s 254ms/step - loss: 1.7729 - sparse_categorical_accuracy: 0.3920 - val_loss: 2.1855 - val_sparse_categorical_accuracy: 0.2764
+79/79 [==============================] - 1s 13ms/step - loss: 2.1483 - sparse_categorical_accuracy: 0.3479
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep3x3_64|sep5x5_64|sep5x5_32|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 82s 260ms/step - loss: 1.9057 - sparse_categorical_accuracy: 0.3003 - val_loss: 1.6465 - val_sparse_categorical_accuracy: 0.3961
+Epoch 2/5
+313/313 [==============================] - 81s 257ms/step - loss: 1.5814 - sparse_categorical_accuracy: 0.4250 - val_loss: 1.5092 - val_sparse_categorical_accuracy: 0.4509
+Epoch 3/5
+313/313 [==============================] - ETA: 0s - loss: 1.4516 - sparse_categorical_accuracy: 0.4750
+Epoch 3: Accuracy has not reached the baseline threshold 0.5046625, terminating training... 
+
+313/313 [==============================] - 82s 261ms/step - loss: 1.4516 - sparse_categorical_accuracy: 0.4750 - val_loss: 1.3927 - val_sparse_categorical_accuracy: 0.4992
+79/79 [==============================] - 1s 13ms/step - loss: 1.2581 - sparse_categorical_accuracy: 0.5516
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep5x5_64|sep5x5_128|batch_norm|avg_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - ETA: 0s - loss: 1.7075 - sparse_categorical_accuracy: 0.4010
+Epoch 1: Accuracy has not reached the baseline threshold 0.3248875, terminating training... 
+
+313/313 [==============================] - 81s 258ms/step - loss: 1.7075 - sparse_categorical_accuracy: 0.4010 - val_loss: 2.1588 - val_sparse_categorical_accuracy: 0.3177
+79/79 [==============================] - 1s 14ms/step - loss: 2.1217 - sparse_categorical_accuracy: 0.3841
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep3x3_64|sep5x5_64|sep5x5_128|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.9342 - sparse_categorical_accuracy: 0.2849 - val_loss: 1.6590 - val_sparse_categorical_accuracy: 0.3937
+Epoch 2/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.5802 - sparse_categorical_accuracy: 0.4277 - val_loss: 1.4613 - val_sparse_categorical_accuracy: 0.4708
+Epoch 3/5
+313/313 [==============================] - ETA: 0s - loss: 1.4406 - sparse_categorical_accuracy: 0.4793
+Epoch 3: Accuracy has not reached the baseline threshold 0.5046625, terminating training... 
+
+313/313 [==============================] - 83s 266ms/step - loss: 1.4406 - sparse_categorical_accuracy: 0.4793 - val_loss: 1.3920 - val_sparse_categorical_accuracy: 0.5031
+79/79 [==============================] - 1s 14ms/step - loss: 1.2463 - sparse_categorical_accuracy: 0.5525
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep5x5_64|sep3x3_32|batch_norm|avg_pool3x3|output)
+
+Epoch 1/5
+313/313 [==============================] - 73s 231ms/step - loss: 1.6120 - sparse_categorical_accuracy: 0.4275 - val_loss: 2.1800 - val_sparse_categorical_accuracy: 0.3973
+Epoch 2/5
+313/313 [==============================] - 72s 229ms/step - loss: 1.3136 - sparse_categorical_accuracy: 0.5338 - val_loss: 1.3640 - val_sparse_categorical_accuracy: 0.5405
+Epoch 3/5
+313/313 [==============================] - 73s 232ms/step - loss: 1.1888 - sparse_categorical_accuracy: 0.5792 - val_loss: 1.3117 - val_sparse_categorical_accuracy: 0.5381
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.1170 - sparse_categorical_accuracy: 0.6079
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 72s 231ms/step - loss: 1.1170 - sparse_categorical_accuracy: 0.6079 - val_loss: 1.2923 - val_sparse_categorical_accuracy: 0.5537
+79/79 [==============================] - 1s 7ms/step - loss: 1.2790 - sparse_categorical_accuracy: 0.5804
+STATUS: itr: 6 -- Best fitness: 0.7092999815940857, Total time (s): 9807.64959359169
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep5x5_32|sep3x3_128|max_pool3x3|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 82s 260ms/step - loss: 1.7111 - sparse_categorical_accuracy: 0.3750 - val_loss: 1.5905 - val_sparse_categorical_accuracy: 0.4328
+Epoch 2/5
+313/313 [==============================] - 82s 261ms/step - loss: 1.4158 - sparse_categorical_accuracy: 0.4938 - val_loss: 1.3164 - val_sparse_categorical_accuracy: 0.5296
+Epoch 3/5
+313/313 [==============================] - 81s 258ms/step - loss: 1.2711 - sparse_categorical_accuracy: 0.5468 - val_loss: 1.1824 - val_sparse_categorical_accuracy: 0.5745
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.1757 - sparse_categorical_accuracy: 0.5835
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 82s 261ms/step - loss: 1.1757 - sparse_categorical_accuracy: 0.5835 - val_loss: 1.1375 - val_sparse_categorical_accuracy: 0.5926
+79/79 [==============================] - 1s 14ms/step - loss: 0.9658 - sparse_categorical_accuracy: 0.6615
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep3x3_64|sep5x5_64|avg_pool3x3|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 82s 260ms/step - loss: 1.7419 - sparse_categorical_accuracy: 0.3629 - val_loss: 1.5128 - val_sparse_categorical_accuracy: 0.4546
+Epoch 2/5
+313/313 [==============================] - 80s 256ms/step - loss: 1.4048 - sparse_categorical_accuracy: 0.4978 - val_loss: 1.2927 - val_sparse_categorical_accuracy: 0.5355
+Epoch 3/5
+313/313 [==============================] - 81s 260ms/step - loss: 1.2537 - sparse_categorical_accuracy: 0.5533 - val_loss: 1.1818 - val_sparse_categorical_accuracy: 0.5751
+Epoch 4/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.1570 - sparse_categorical_accuracy: 0.5863 - val_loss: 1.1089 - val_sparse_categorical_accuracy: 0.6068
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0960 - sparse_categorical_accuracy: 0.6119
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 80s 257ms/step - loss: 1.0960 - sparse_categorical_accuracy: 0.6119 - val_loss: 1.0638 - val_sparse_categorical_accuracy: 0.6231
+79/79 [==============================] - 1s 13ms/step - loss: 0.8496 - sparse_categorical_accuracy: 0.6999
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep3x3_64|sep5x5_64|sep5x5_64|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.8247 - sparse_categorical_accuracy: 0.3293 - val_loss: 1.6127 - val_sparse_categorical_accuracy: 0.4166
+Epoch 2/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.5185 - sparse_categorical_accuracy: 0.4532 - val_loss: 1.4225 - val_sparse_categorical_accuracy: 0.4900
+Epoch 3/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.3799 - sparse_categorical_accuracy: 0.5089 - val_loss: 1.3106 - val_sparse_categorical_accuracy: 0.5281
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.2792 - sparse_categorical_accuracy: 0.5459
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 82s 262ms/step - loss: 1.2792 - sparse_categorical_accuracy: 0.5459 - val_loss: 1.2639 - val_sparse_categorical_accuracy: 0.5506
+79/79 [==============================] - 1s 14ms/step - loss: 1.0985 - sparse_categorical_accuracy: 0.6136
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|sep5x5_64|sep3x3_128|max_pool3x3|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.7326 - sparse_categorical_accuracy: 0.3670 - val_loss: 1.4868 - val_sparse_categorical_accuracy: 0.4657
+Epoch 2/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.3933 - sparse_categorical_accuracy: 0.5002 - val_loss: 1.2656 - val_sparse_categorical_accuracy: 0.5537
+Epoch 3/5
+313/313 [==============================] - 81s 260ms/step - loss: 1.2310 - sparse_categorical_accuracy: 0.5635 - val_loss: 1.1460 - val_sparse_categorical_accuracy: 0.5955
+Epoch 4/5
+313/313 [==============================] - 82s 263ms/step - loss: 1.1320 - sparse_categorical_accuracy: 0.5996 - val_loss: 1.0896 - val_sparse_categorical_accuracy: 0.6148
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0645 - sparse_categorical_accuracy: 0.6263
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 83s 264ms/step - loss: 1.0645 - sparse_categorical_accuracy: 0.6263 - val_loss: 1.0114 - val_sparse_categorical_accuracy: 0.6476
+79/79 [==============================] - 1s 15ms/step - loss: 0.8676 - sparse_categorical_accuracy: 0.6973
+STATUS: itr: 7 -- Best fitness: 0.7092999815940857, Total time (s): 11289.560366868973
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|sep3x3_32|sep3x3_128|max_pool3x3|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 82s 259ms/step - loss: 1.6888 - sparse_categorical_accuracy: 0.3857 - val_loss: 1.4732 - val_sparse_categorical_accuracy: 0.4812
+Epoch 2/5
+313/313 [==============================] - 81s 260ms/step - loss: 1.3699 - sparse_categorical_accuracy: 0.5108 - val_loss: 1.2401 - val_sparse_categorical_accuracy: 0.5604
+Epoch 3/5
+313/313 [==============================] - 82s 261ms/step - loss: 1.2199 - sparse_categorical_accuracy: 0.5683 - val_loss: 1.1290 - val_sparse_categorical_accuracy: 0.6052
+Epoch 4/5
+313/313 [==============================] - 81s 259ms/step - loss: 1.1192 - sparse_categorical_accuracy: 0.6057 - val_loss: 1.0529 - val_sparse_categorical_accuracy: 0.6328
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0454 - sparse_categorical_accuracy: 0.6332
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 82s 262ms/step - loss: 1.0454 - sparse_categorical_accuracy: 0.6332 - val_loss: 0.9769 - val_sparse_categorical_accuracy: 0.6537
+79/79 [==============================] - 1s 15ms/step - loss: 0.9079 - sparse_categorical_accuracy: 0.6812
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep5x5_128|max_pool3x3|sep5x5_32|sep3x3_32|output)
+
+Epoch 1/5
+313/313 [==============================] - 77s 245ms/step - loss: 1.7354 - sparse_categorical_accuracy: 0.3645 - val_loss: 1.6180 - val_sparse_categorical_accuracy: 0.4147
+Epoch 2/5
+313/313 [==============================] - 76s 243ms/step - loss: 1.4395 - sparse_categorical_accuracy: 0.4856 - val_loss: 1.3348 - val_sparse_categorical_accuracy: 0.5164
+Epoch 3/5
+313/313 [==============================] - 77s 246ms/step - loss: 1.2975 - sparse_categorical_accuracy: 0.5369 - val_loss: 1.2474 - val_sparse_categorical_accuracy: 0.5573
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.1921 - sparse_categorical_accuracy: 0.5770
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 76s 244ms/step - loss: 1.1921 - sparse_categorical_accuracy: 0.5770 - val_loss: 1.1570 - val_sparse_categorical_accuracy: 0.5909
+79/79 [==============================] - 1s 9ms/step - loss: 1.0056 - sparse_categorical_accuracy: 0.6504
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|sep3x3_64|sep3x3_128|max_pool3x3|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 83s 262ms/step - loss: 1.7041 - sparse_categorical_accuracy: 0.3796 - val_loss: 1.5042 - val_sparse_categorical_accuracy: 0.4595
+Epoch 2/5
+313/313 [==============================] - 83s 265ms/step - loss: 1.3709 - sparse_categorical_accuracy: 0.5095 - val_loss: 1.2682 - val_sparse_categorical_accuracy: 0.5531
+Epoch 3/5
+313/313 [==============================] - 84s 267ms/step - loss: 1.2225 - sparse_categorical_accuracy: 0.5682 - val_loss: 1.1006 - val_sparse_categorical_accuracy: 0.6071
+Epoch 4/5
+313/313 [==============================] - 82s 263ms/step - loss: 1.1120 - sparse_categorical_accuracy: 0.6085 - val_loss: 1.1169 - val_sparse_categorical_accuracy: 0.6050
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0466 - sparse_categorical_accuracy: 0.6334
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 83s 264ms/step - loss: 1.0466 - sparse_categorical_accuracy: 0.6334 - val_loss: 0.9727 - val_sparse_categorical_accuracy: 0.6568
+79/79 [==============================] - 1s 16ms/step - loss: 0.8751 - sparse_categorical_accuracy: 0.7006
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep5x5_128|max_pool3x3|sep5x5_32|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 80s 253ms/step - loss: 1.7244 - sparse_categorical_accuracy: 0.3695 - val_loss: 1.5199 - val_sparse_categorical_accuracy: 0.4569
+Epoch 2/5
+313/313 [==============================] - 78s 250ms/step - loss: 1.4294 - sparse_categorical_accuracy: 0.4906 - val_loss: 1.3426 - val_sparse_categorical_accuracy: 0.5184
+Epoch 3/5
+313/313 [==============================] - 79s 251ms/step - loss: 1.2942 - sparse_categorical_accuracy: 0.5396 - val_loss: 1.2063 - val_sparse_categorical_accuracy: 0.5822
+Epoch 4/5
+313/313 [==============================] - 78s 251ms/step - loss: 1.2047 - sparse_categorical_accuracy: 0.5748 - val_loss: 1.1341 - val_sparse_categorical_accuracy: 0.6042
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.1334 - sparse_categorical_accuracy: 0.6002
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 79s 253ms/step - loss: 1.1334 - sparse_categorical_accuracy: 0.6002 - val_loss: 1.0676 - val_sparse_categorical_accuracy: 0.6200
+79/79 [==============================] - 1s 12ms/step - loss: 0.9293 - sparse_categorical_accuracy: 0.6711
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|batch_norm|sep3x3_128|max_pool3x3|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 83s 264ms/step - loss: 1.5960 - sparse_categorical_accuracy: 0.4250 - val_loss: 1.4732 - val_sparse_categorical_accuracy: 0.4677
+Epoch 2/5
+313/313 [==============================] - 81s 258ms/step - loss: 1.2524 - sparse_categorical_accuracy: 0.5539 - val_loss: 1.1529 - val_sparse_categorical_accuracy: 0.5906
+Epoch 3/5
+313/313 [==============================] - 81s 260ms/step - loss: 1.1329 - sparse_categorical_accuracy: 0.6019 - val_loss: 1.0517 - val_sparse_categorical_accuracy: 0.6319
+Epoch 4/5
+313/313 [==============================] - 82s 262ms/step - loss: 1.0619 - sparse_categorical_accuracy: 0.6292 - val_loss: 1.0230 - val_sparse_categorical_accuracy: 0.6359
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0079 - sparse_categorical_accuracy: 0.6469
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 82s 261ms/step - loss: 1.0079 - sparse_categorical_accuracy: 0.6469 - val_loss: 0.9734 - val_sparse_categorical_accuracy: 0.6604
+79/79 [==============================] - 1s 15ms/step - loss: 1.0166 - sparse_categorical_accuracy: 0.6622
+STATUS: itr: 8 -- Best fitness: 0.7092999815940857, Total time (s): 13232.096977472305
+
+EVALUATION LOG: EmployeeBee ID (0) -- Candidate (input|batch_norm|dropout|batch_norm|sep3x3_128|output)
+
+Epoch 1/5
+313/313 [==============================] - 80s 254ms/step - loss: 2.0635 - sparse_categorical_accuracy: 0.3359 - val_loss: 1.6007 - val_sparse_categorical_accuracy: 0.4178
+Epoch 2/5
+313/313 [==============================] - 79s 253ms/step - loss: 1.5929 - sparse_categorical_accuracy: 0.4254 - val_loss: 1.4634 - val_sparse_categorical_accuracy: 0.4765
+Epoch 3/5
+313/313 [==============================] - ETA: 0s - loss: 1.4760 - sparse_categorical_accuracy: 0.4685
+Epoch 3: Accuracy has not reached the baseline threshold 0.5046625, terminating training... 
+
+313/313 [==============================] - 79s 252ms/step - loss: 1.4760 - sparse_categorical_accuracy: 0.4685 - val_loss: 1.4224 - val_sparse_categorical_accuracy: 0.4812
+79/79 [==============================] - 1s 11ms/step - loss: 1.2299 - sparse_categorical_accuracy: 0.5570
+
+EVALUATION LOG: EmployeeBee ID (1) -- Candidate (input|sep3x3_64|max_pool3x3|sep5x5_32|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 78s 248ms/step - loss: 1.6918 - sparse_categorical_accuracy: 0.3826 - val_loss: 1.5624 - val_sparse_categorical_accuracy: 0.4339
+Epoch 2/5
+313/313 [==============================] - 77s 246ms/step - loss: 1.3888 - sparse_categorical_accuracy: 0.5069 - val_loss: 1.3048 - val_sparse_categorical_accuracy: 0.5435
+Epoch 3/5
+313/313 [==============================] - 76s 243ms/step - loss: 1.2462 - sparse_categorical_accuracy: 0.5598 - val_loss: 1.1689 - val_sparse_categorical_accuracy: 0.5789
+Epoch 4/5
+313/313 [==============================] - 77s 247ms/step - loss: 1.1490 - sparse_categorical_accuracy: 0.5950 - val_loss: 1.1120 - val_sparse_categorical_accuracy: 0.6119
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.0884 - sparse_categorical_accuracy: 0.6170
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 77s 247ms/step - loss: 1.0884 - sparse_categorical_accuracy: 0.6170 - val_loss: 1.0304 - val_sparse_categorical_accuracy: 0.6343
+79/79 [==============================] - 1s 11ms/step - loss: 0.9842 - sparse_categorical_accuracy: 0.6556
+
+EVALUATION LOG: OnlookerBee ID (0) -- Candidate (input|batch_norm|dropout|batch_norm|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 75s 237ms/step - loss: 1.8760 - sparse_categorical_accuracy: 0.3416 - val_loss: 1.6960 - val_sparse_categorical_accuracy: 0.3912
+Epoch 2/5
+313/313 [==============================] - 74s 238ms/step - loss: 1.5638 - sparse_categorical_accuracy: 0.4324 - val_loss: 1.4922 - val_sparse_categorical_accuracy: 0.4659
+Epoch 3/5
+313/313 [==============================] - 74s 235ms/step - loss: 1.4733 - sparse_categorical_accuracy: 0.4706 - val_loss: 1.3481 - val_sparse_categorical_accuracy: 0.5113
+Epoch 4/5
+313/313 [==============================] - ETA: 0s - loss: 1.4167 - sparse_categorical_accuracy: 0.4943
+Epoch 4: Accuracy has not reached the baseline threshold 0.59455, terminating training... 
+
+313/313 [==============================] - 75s 239ms/step - loss: 1.4167 - sparse_categorical_accuracy: 0.4943 - val_loss: 1.3256 - val_sparse_categorical_accuracy: 0.5279
+79/79 [==============================] - 1s 8ms/step - loss: 1.1492 - sparse_categorical_accuracy: 0.5979
+
+EVALUATION LOG: OnlookerBee ID (1) -- Candidate (input|sep5x5_128|sep3x3_32|sep5x5_32|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 79s 251ms/step - loss: 1.9143 - sparse_categorical_accuracy: 0.2939 - val_loss: 1.6630 - val_sparse_categorical_accuracy: 0.3895
+Epoch 2/5
+313/313 [==============================] - 77s 247ms/step - loss: 1.5988 - sparse_categorical_accuracy: 0.4211 - val_loss: 1.4960 - val_sparse_categorical_accuracy: 0.4534
+Epoch 3/5
+313/313 [==============================] - ETA: 0s - loss: 1.4585 - sparse_categorical_accuracy: 0.4743
+Epoch 3: Accuracy has not reached the baseline threshold 0.5046625, terminating training... 
+
+313/313 [==============================] - 79s 251ms/step - loss: 1.4585 - sparse_categorical_accuracy: 0.4743 - val_loss: 1.4101 - val_sparse_categorical_accuracy: 0.4924
+79/79 [==============================] - 1s 10ms/step - loss: 1.3000 - sparse_categorical_accuracy: 0.5312
+
+EVALUATION LOG: OnlookerBee ID (2) -- Candidate (input|batch_norm|sep3x3_64|batch_norm|sep3x3_64|output)
+
+Epoch 1/5
+313/313 [==============================] - 76s 242ms/step - loss: 1.8277 - sparse_categorical_accuracy: 0.3614 - val_loss: 1.8676 - val_sparse_categorical_accuracy: 0.4167
+Epoch 2/5
+313/313 [==============================] - 75s 239ms/step - loss: 1.4484 - sparse_categorical_accuracy: 0.4787 - val_loss: 1.3450 - val_sparse_categorical_accuracy: 0.5209
+Epoch 3/5
+313/313 [==============================] - 76s 242ms/step - loss: 1.3228 - sparse_categorical_accuracy: 0.5289 - val_loss: 1.2196 - val_sparse_categorical_accuracy: 0.5685
+Epoch 4/5
+313/313 [==============================] - 75s 239ms/step - loss: 1.2367 - sparse_categorical_accuracy: 0.5622 - val_loss: 1.1329 - val_sparse_categorical_accuracy: 0.6054
+Epoch 5/5
+313/313 [==============================] - ETA: 0s - loss: 1.1827 - sparse_categorical_accuracy: 0.5837
+Epoch 5: Accuracy has not reached the baseline threshold 0.6844375, terminating training... 
+
+313/313 [==============================] - 76s 243ms/step - loss: 1.1827 - sparse_categorical_accuracy: 0.5837 - val_loss: 1.1109 - val_sparse_categorical_accuracy: 0.6099
+79/79 [==============================] - 1s 9ms/step - loss: 1.0216 - sparse_categorical_accuracy: 0.6407
+STATUS: itr: 9 -- Best fitness: 0.7092999815940857, Total time (s): 14781.774238109589
