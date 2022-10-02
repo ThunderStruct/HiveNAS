@@ -30,8 +30,7 @@ class NASSearchSpace(object):
 
         for l in range(self.config['depth']):
 
-            if self.config['allow_resnets'] and \
-            np.random.rand() <= self.config['residual_blocks_rate']:
+            if np.random.rand() < self.config['residual_blocks_rate']:
                 sc_depth = np.random.randint(1, self.config['depth'] - l + 1)
                 path.append('L{}_sc_{}'.format(l+1, sc_depth))
 

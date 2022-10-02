@@ -8,6 +8,9 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.layers import Input, Conv2D, Add, Dense
 from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from config import Params
+from utils import ImgAug
 from .act import TerminateOnThreshold
 from .momentum_eval import MomentumAugmentation
 

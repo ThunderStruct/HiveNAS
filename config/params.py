@@ -1,5 +1,11 @@
-from yaml import load, Loader
+import sys
+sys.path.append('..')
+
+import os
+import yaml
+from utils import FileHandler
 from functools import partial
+from tensorflow.keras.optimizers import RMSprop, Adam
 from tensorflow.keras.layers import Conv2D, Flatten, MaxPooling2D
 from tensorflow.keras.layers import SeparableConv2D, Dense, Dropout
 from tensorflow.keras.layers import AveragePooling2D, BatchNormalization, ReLU
@@ -54,7 +60,7 @@ class Params:
             Result files base path (path will be created if it does not exist) 
             A local folder will be created after the CONFIG_VERSION
         '''
-        RESULTS_BASE_PATH = '../res/archived results/'  #@param {type:"string"}
+        RESULTS_BASE_PATH = './res/archived results/'  #@param {type:"string"}
 
         ''' Training history files sub-path '''
         HISTORY_FILES_SUBPATH = 'training_history/'     #@param {type:"string"}

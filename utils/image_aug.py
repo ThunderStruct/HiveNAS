@@ -1,6 +1,8 @@
-import numpy as np
-import tensorflow as tf
+import sys
+sys.path.append('...')
 
+import numpy as np
+from tensorflow.image import random_contrast, random_saturation
 
 class ImgAug:
     ''' 
@@ -49,6 +51,8 @@ class ImgAug:
     @staticmethod
     def augment(np_tensor):
         ''' Used by ImageDataGenerator's preprocess_function '''
+
+        from config import Params
 
         if np.random.uniform() <= Params['CONTRAST_AUG_PROB']:
             np_tensor = ImgAug.random_contrast(np_tensor)
