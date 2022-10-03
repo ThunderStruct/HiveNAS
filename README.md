@@ -1,7 +1,7 @@
 
-# ![HiveNAS Logo](https://i.imgur.com/tL7ohMe.png)
+# ![HiveNAS Logo](https://i.imgur.com/TQs9jNV.jpg)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.1-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.1/) [![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.1-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.2/) [![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE)
 
 A feature-rich, Neural Architecture Search framework based on Artificial Bee Colony optimization
 
@@ -16,7 +16,6 @@ HiveNAS (publication link here) is a modular NAS framework that can find and opt
 
 `pip install HiveNAS`
 
-```
 #### Manual Installation
 Simply clone the entire repo and extract the files in the `HiveNAS` folder, then import them into your project folder.
 
