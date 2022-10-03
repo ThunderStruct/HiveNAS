@@ -1,7 +1,7 @@
 
 # ![HiveNAS Logo](https://i.imgur.com/TQs9jNV.jpg)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.1-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.2/) [![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.2-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.2/) [![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE)
 
 A feature-rich, Neural Architecture Search framework based on Artificial Bee Colony optimization
 
