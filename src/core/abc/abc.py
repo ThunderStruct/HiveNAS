@@ -11,9 +11,10 @@ from .scout_bee import ScoutBee
 from config import Params
 from utils import Logger
 
+
 class ArtificialBeeColony:
     '''
-        Main ABC optimizer
+        Artificial Bee Colony optimizer
     '''
     
     def __init__(self, obj_interface, \
@@ -164,12 +165,47 @@ class ArtificialBeeColony:
 
     def __momentum_phase(self):
         ''' 
-            Momentum Augmentation
-            
+            Momentum Evaluation Augmentation
+            Stochastic operator that adds Params['MOMENTUM_EPOCHS'] epochs 
+            to propel the evaluations of the most consistently converging candidates
         '''
 
-        pass
 
+        # calculate probabilities
+        calculated_momentums = self.results_df['momentum'] / (self.results_df['epochs'] + \
+                                                              self.results_df['momentum_epochs'])
+        probs = calculated_momentums / sum(calculated_momentums)
+
+        the_chosen_ones = dict.from_keys([x in range(len(probs))], 0)
+
+        for _ in range(Params['MOMENTUM_EPOCHS']):
+            # probabilistically assign momentum epochs
+            idx = np.random.choice(len(probs), p=probs)
+            the_chosen_ones[idx] += 1
+ 
+        # training extension loop
+        for the_one, m_epochs in the_chosen_ones.items():
+            candidate_row = self.results_df.iloc[[the_one]]
+
+            # extract candidate info for additional training
+            candidate = candidate_row['candidate'].values[0]
+            weights_file = candidate_row['weights_filename'].values[0]
+            momentum = candidate_row['momentum'].values[0]
+            epochs = candidate_row['epochs'].values[0]
+            momentum_epochs = candidate_row['momentum_epochs'].values[0]
+
+            # train for m_epochs
+            Logger.momentum_evaluation_log(candidate,
+                                           candidate_row['fitness'].values[0],
+                                           m_epochs)
+            
+            res = self.obj_interface.momentum_eval(candidate, 
+                                                   weights_file, 
+                                                   epochs, 
+                                                   momentum, 
+                                                   m_epochs)
+
+            # save new results
 
     def __reset_all(self):
         ''' Resets the ABC algorithm '''

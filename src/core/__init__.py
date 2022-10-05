@@ -1,2 +1,2 @@
-from .nas import HiveNAS
+from .nas import NASInterface
 from .abc import ArtificialBeeColony

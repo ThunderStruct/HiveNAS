@@ -9,7 +9,9 @@ Welcome to HiveNAS's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   getting_started
+   overview
+   api
 
 
 Indices and tables

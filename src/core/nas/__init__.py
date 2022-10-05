@@ -1,1 +1,1 @@
-from .nas_interface import HiveNAS
+from .nas_interface import NASInterface

@@ -8,7 +8,7 @@ from .search_space import NASSearchSpace
 from config import Params
 
 
-class HiveNAS(object):
+class NASInterface(object):
     ''' 
         An interface that combines the Search Space + Evaluation Strategy 
         for the Artificial Bee Colony algorithm
@@ -25,21 +25,21 @@ class HiveNAS(object):
         space_config = space_config or Params.search_space_config()
         eval_config = eval_config or Params.evaluation_strategy_config()
 
-        HiveNAS.search_space = NASSearchSpace(space_config)
-        HiveNAS.eval_strategy = NASEval(eval_config)
+        NASInterface.search_space = NASSearchSpace(space_config)
+        NASInterface.eval_strategy = NASEval(eval_config)
 
 
     def sample(self):
         ''' Samples new random candidate architecture from the search space '''
 
-        return HiveNAS.search_space.sample()
+        return NASInterface.search_space.sample()
 
 
     def evaluate(self, candidate):
         ''' Evaluates a given candidate architecture; returns loss value '''
 
-        formatted = HiveNAS.search_space.eval_format(candidate)
-        res = HiveNAS.eval_strategy.evaluate(formatted)
+        formatted = NASInterface.search_space.eval_format(candidate)
+        res = NASInterface.eval_strategy.evaluate(formatted)
 
         # housekeeping
         K.clear_session()
@@ -51,7 +51,7 @@ class HiveNAS(object):
     def get_neighbor(self, orig_arch):
         ''' Returns a random architecture with 1 op diff to the given candidate '''
 
-        return HiveNAS.search_space.get_neighbor(orig_arch)
+        return NASInterface.search_space.get_neighbor(orig_arch)
 
 
     def fully_train_best_model(self, from_arch=True):
@@ -78,8 +78,8 @@ class HiveNAS(object):
 
         if from_arch:
             # Retrains from scratch given the network arch
-            arch = formatted = HiveNAS.search_space.eval_format(arch)
-            return HiveNAS.eval_strategy.fully_train(arch=arch)
+            arch = formatted = NASInterface.search_space.eval_format(arch)
+            return NASInterface.eval_strategy.fully_train(arch=arch)
 
         # check existence of weight file
         weight_file = os.path.join(Params.get_results_path(), Params['WEIGHT_FILES_SUBPATH'], weight_file)
@@ -87,7 +87,7 @@ class HiveNAS(object):
         
 
         # Continues training from saved h5 model (often results in lower fitness)
-        return HiveNAS.eval_strategy.fully_train(model_file=weight_file)
+        return NASInterface.eval_strategy.fully_train(model_file=weight_file)
 
 
     @property 
