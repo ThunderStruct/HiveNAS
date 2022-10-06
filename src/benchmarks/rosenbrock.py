@@ -12,7 +12,21 @@ class Rosenbrock(NumericalBenchmark):
 
 
     def evaluate(self, pos):
-        ''' Scipy implementation '''
+        ''' Scipy implementation of Rosenbrock benchmark '''
 
-        return optimize.rosen(pos), 1, ''
+        return {
+            'fitness': optimize.rosen(pos),
+            'epochs': 1,
+            'filename': '',
+            'params': self.dim,
+            'momentum': {'': ('', 0)}
+        }
+
+
+    def momentum_eval(self, pos, weights, m_epochs):
+        ''' Evaluates a given position for additional m_epochs '''
+
+        return {
+            'fitness': optimize.rosen(pos)
+        }
 

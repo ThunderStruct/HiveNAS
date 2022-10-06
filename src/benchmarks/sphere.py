@@ -9,6 +9,22 @@ class Sphere(NumericalBenchmark):
         
     
     def evaluate(self, pos):
-        return sum(np.power(pos, 2)), 1, ''
+        ''' Evaluate a given position '''
 
- 
+        return {
+            'fitness': sum(np.power(pos, 2)),
+            'epochs': 1,
+            'filename': '',
+            'params': self.dim,
+            'momentum': {'': ('', '')}
+        }
+
+
+    def momentum_eval(self, pos, weights, m_epochs):
+        ''' Evaluates a given position for additional m_epochs '''
+
+        return {
+            'fitness': sum(np.power(pos, 2))
+        }
+
+        
