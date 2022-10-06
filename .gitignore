@@ -173,4 +173,9 @@ API
 Training
 Blog
 About
+
+# results
+res/archived results/*
+res/weights/*
+
 ThunderStruct/HiveNAS at 6a69e6baad5e7757bbd286d140b355ac3e126ffb
