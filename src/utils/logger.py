@@ -8,6 +8,7 @@ class Logger:
     __DEBUG_PREFIX  = 'DEBUG:'
     __STATUS_PREFIX = 'STATUS:'
     __EVAL_PREFIX = 'EVALUATION LOG:'
+    __MOMENTUM_PREFIX = 'MOMENTUM EVAL:'
     __FILESAVE_PREFIX = 'FILE-SAVE SUCCESSFUL:'
 
     __START_TIME = None
@@ -44,6 +45,19 @@ class Logger:
                                                            str(id),
                                                            str(candidate_pos)))
 
+
+    @staticmethod
+    def momentum_evaluation_log(candidate, fitness, epochs):
+        ''' Logs momentum evaluation augmentation info '''
+
+        if not Logger.EVALUATION_LOGGING:
+            return
+
+        print('{} Extending ({} - fitness: {}) by {} epochs...\n'.format(Logger.__MOMENTUM_PREFIX,
+                                                                         str(candidate),  
+                                                                         fitness,
+                                                                         epochs))
+    
 
     @staticmethod
     def filesave_log(candidate, filename):
