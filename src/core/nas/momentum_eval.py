@@ -15,7 +15,7 @@ class MomentumAugmentation(Callback):
 
         if epoch < 2:
             # momentum = acc at ε < 3
-            return acc
+            return (acc, acc)
 
         delta_1 = acc - self.model.momentum[epoch - 1][0]
         delta_2 = self.model.momentum[epoch - 1][0] - self.model.momentum[epoch - 2][0]
@@ -23,7 +23,7 @@ class MomentumAugmentation(Callback):
         if delta_2 == 0.0:
             # avoid division by 0
             # if previous 2 accuracies are somehow exactly the same (very unlikely) => 0 momentum
-            return 0.0
+            return (acc, 0.0)
 
         current_momentum = delta_1 / delta_2
 

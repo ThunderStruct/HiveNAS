@@ -64,6 +64,7 @@ class OnlookerBee(ArtificialBee):
             'center_fitness': self.get_center_fs().fitness,
             'momentum': sum([x[1] for _,x in momentum.items()]) / len(momentum),
             'epochs': epochs,
+            'momentum_epochs': 0,
             'params': params,
             'weights_filename': weights_filename,
             'time': self.food_source.time

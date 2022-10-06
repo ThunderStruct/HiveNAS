@@ -108,6 +108,7 @@ class EmployeeBee(ArtificialBee):
             'center_fitness': self.center_fs.fitness,
             'momentum': sum([x[1] for _,x in momentum.items()]),
             'epochs': epochs,
+            'momentum_epochs': 0,
             'params': params,
             'weights_filename': weights_filename,
             'time': self.food_source.time

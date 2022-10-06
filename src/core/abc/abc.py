@@ -170,13 +170,17 @@ class ArtificialBeeColony:
             to propel the evaluations of the most consistently converging candidates
         '''
 
-
+        
         # calculate probabilities
         calculated_momentums = self.results_df['momentum'] / (self.results_df['epochs'] + \
                                                               self.results_df['momentum_epochs'])
+        if sum(calculated_momentums) == 0:
+            # improbable edge case where the sum of momentums is exactly 0
+            return
+
         probs = calculated_momentums / sum(calculated_momentums)
 
-        the_chosen_ones = dict.from_keys([x in range(len(probs))], 0)
+        the_chosen_ones = dict.fromkeys([x for x in range(len(probs))], 0)
 
         for _ in range(Params['MOMENTUM_EPOCHS']):
             # probabilistically assign momentum epochs
@@ -192,20 +196,21 @@ class ArtificialBeeColony:
             weights_file = candidate_row['weights_filename'].values[0]
             momentum = candidate_row['momentum'].values[0]
             epochs = candidate_row['epochs'].values[0]
-            momentum_epochs = candidate_row['momentum_epochs'].values[0]
+            momentum_epochs = candidate_row['momentum_epochs'].values[0] + m_epochs
 
             # train for m_epochs
             Logger.momentum_evaluation_log(candidate,
                                            candidate_row['fitness'].values[0],
                                            m_epochs)
             
-            res = self.obj_interface.momentum_eval(candidate, 
-                                                   weights_file, 
-                                                   epochs, 
-                                                   momentum, 
+            res = self.obj_interface.momentum_eval(candidate,
+                                                   weights_file,
                                                    m_epochs)
 
             # save new results
+            self.results_df.loc[the_one, 'fitness'] = res['fitness']
+            self.results_df.loc[the_one, 'momentum_epochs'] = momentum_epochs
+
 
     def __reset_all(self):
         ''' Resets the ABC algorithm '''

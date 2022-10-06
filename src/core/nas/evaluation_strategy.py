@@ -4,7 +4,7 @@ sys.path.append('...')
 import hashlib
 import base64
 import numpy as np
-from tensorflow.keras.models import Model
+from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.layers import Input, Conv2D, Add, Dense
 from tensorflow.keras.optimizers import RMSprop
@@ -163,7 +163,7 @@ class NASEval(object):
         # save weights for later retraining when needed
         filename = self.get_weights_filename(arch) + '.h5'
 
-        if Params['ENABLE_WEIGHT_SAVING']:
+        if Params['ENABLE_WEIGHT_SAVING'] or self.config['momentum_epochs'] > 0:
             model_path = os.path.join(Params.get_results_path(), Params['WEIGHT_FILES_SUBPATH'])
             self.model.save(model_path + filename)
 
@@ -192,7 +192,7 @@ class NASEval(object):
 
         if model_file is not None:
             # load model
-            self.model = tf.keras.models.load_model(model_file)
+            self.model = load_model(model_file)
             hist_fn =  model_file.split('/')[-1] + '.full.pickle'
         else:
             # instantiate network
@@ -246,6 +246,48 @@ class NASEval(object):
             'epochs': len(history.history['loss']),
             'filename': model_file,
             'params': trainable_params
+        }
+
+        return retval
+
+
+    def momentum_training(self, weights_file, m_epochs):
+        ''' Loads and continues training of a partially-trained model '''
+
+        # load model
+        self.model = load_model(weights_file)
+        # hist_fn = model_file.split('/')[-1] + '.ma.pickle'
+        
+        history = self.model.fit(self.datagen.flow(self.X_train, 
+                                                   self.y_train,
+                                                   shuffle=True,
+                                                   batch_size=self.config['batch_size'],
+                                                   subset='training'),
+                                 validation_data=self.datagen.flow(self.X_train,
+                                                                   self.y_train,
+                                                                   batch_size=int(self.config['batch_size'] / 2), 
+                                                                   subset='validation'),
+                                  epochs=m_epochs,
+                                  verbose=1)
+
+        
+        # test model
+        eval_res = self.model.evaluate(self.X_test,
+                                       self.y_test,
+                                       batch_size=self.config['batch_size'],
+                                       verbose=1)
+        
+        # dump training history
+        # FileHandler.save_pickle(history.history, hist_path, hist_fn)
+        
+        # Save continued-training model
+        self.model.save(weights_file)
+
+        # housekeeping
+        del self.model
+        
+        retval = {
+            'fitness': eval_res[1]
         }
 
         return retval

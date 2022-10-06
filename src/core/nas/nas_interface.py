@@ -89,6 +89,18 @@ class NASInterface(object):
         # Continues training from saved h5 model (often results in lower fitness)
         return NASInterface.eval_strategy.fully_train(model_file=weight_file)
 
+    
+    def momentum_eval(self, candidate, weights_filename, m_epochs):
+        ''' Trains a given network for additional m_epochs '''
+
+        # check existence of weight file
+        weights_path = os.path.join(Params.get_results_path(), Params['WEIGHT_FILES_SUBPATH'], weights_filename)
+        FileHandler.path_must_exist(weights_path)    # breaks if file does not exist
+        
+
+        # Continues training from saved h5 model (often results in lower fitness)
+        return NASInterface.eval_strategy.momentum_training(weights_path, m_epochs)
+
 
     @property 
     def is_minimize(self):
