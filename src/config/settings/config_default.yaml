@@ -1,0 +1,85 @@
+# Current Version
+CONFIG_VERSION: default_sc_enabled
+
+# Problem Definition
+OPTIMIZATION_OBJECTIVE: NAS
+
+# Artificial Bee Colony Parameters
+ABANDONMENT_LIMIT: 3
+COLONY_SIZE: 7
+EMPLOYEE_ONLOOKER_RATIO: 0.44
+ITERATIONS_COUNT: 15
+
+# File-Handler Parameters
+RESULTS_SAVE_FREQUENCY: 1
+RESULTS_BASE_PATH: /content/gdrive/MyDrive/HiveNAS/
+HISTORY_FILES_SUBPATH: training_history/
+ENABLE_WEIGHT_SAVING: False
+WEIGHT_FILES_SUBPATH: weights/
+RESUME_FROM_RESULTS_FILE: True
+
+# NAS Search Space Parameters
+DEPTH: 4     # Excluding input / output stems
+OPERATIONS:
+    sep5x5_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+    sep3x3_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+    sep5x5_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+    sep3x3_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+    sep5x5_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+    sep3x3_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+    max_pool3x3: !Operation {op: MaxPooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
+    avg_pool3x3: !Operation {op: AveragePooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
+    batch_norm: !Operation {op: BatchNormalization}
+    dropout: !Operation {op: Dropout, rate: 0.2}
+
+RESIDUAL_BLOCKS_RATE: 0.15    # skip-connections' occurence probability
+
+# NAS Evaluation Strategy configuration
+
+DATASET: CIFAR10   # Specify the data loader in NASEval init
+OUTPUT_STEM:
+    - !Operation
+        op: Flatten
+    - !Operation
+        op: Dropout
+        rate: 0.25
+    - !Operation
+        op: Dense
+        units: 1024
+        activation: relu
+    - !Operation
+        op: Dropout
+        rate: 0.25
+    - !Operation
+        op: Dense
+        units: 512
+        activation: relu
+
+INPUT_STEM:
+    - !Operation
+        op: Conv2D
+        filters: 32
+        kernel_size: !!python/tuple [3,3]
+    - !Operation
+        op: BatchNormalization
+    - !Operation
+        op: ReLU
+
+EPOCHS: 5       # static epochs number for non-momentum variations
+FULL_TRAIN_EPOCHS: 100
+LR: 0.001
+BATCH_SIZE: 64
+OPTIMIZER: Adam
+
+# Dataset Augmentation Parameters
+AFFINE_TRANSFORMATIONS_ENABLED: True
+CUTOUT_PROB: 0
+SATURATION_AUG_PROB: 0.75
+CONTRAST_AUG_PROB: 0.75
+
+# Evaluation Augmentations
+MOMENTUM_EPOCHS: 0
+TERMINATION_THRESHOLD_FACTOR: 0.0
+TERMINATION_DIMINISHING_FACTOR: 0.25
+
+
