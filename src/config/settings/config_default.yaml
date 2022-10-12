@@ -1,26 +1,39 @@
 # Current Version
-CONFIG_VERSION: default_sc_enabled
+CONFIG_VERSION: default_sc_enabled                       # All generated results will be under this config name (must be a file-path compatible string)
 
 # Problem Definition
-OPTIMIZATION_OBJECTIVE: NAS
+OPTIMIZATION_OBJECTIVE: NAS                              # Also valid "Sphere_min", "Sphere_max", and "Rosenbrock"
 
-# Artificial Bee Colony Parameters
-ABANDONMENT_LIMIT: 3
-COLONY_SIZE: 7
-EMPLOYEE_ONLOOKER_RATIO: 0.44
-ITERATIONS_COUNT: 15
 
-# File-Handler Parameters
-RESULTS_SAVE_FREQUENCY: 1
-RESULTS_BASE_PATH: /content/gdrive/MyDrive/HiveNAS/
-HISTORY_FILES_SUBPATH: training_history/
-ENABLE_WEIGHT_SAVING: False
-WEIGHT_FILES_SUBPATH: weights/
-RESUME_FROM_RESULTS_FILE: True
+#----------------------------------#
+# Artificial Bee Colony Parameters #
+#----------------------------------#
 
-# NAS Search Space Parameters
+ABANDONMENT_LIMIT: 3                                     # ABC's central optimization position abandonment limit
+COLONY_SIZE: 7                                           # Number of Employee/Onlooker Bees in the colony -- Scout count = Employee count
+EMPLOYEE_ONLOOKER_RATIO: 0.44                            # Employees to Onlookers ratio (Employees count = colony_size * ratio)
+ITERATIONS_COUNT: 15                                     # Number of ABC iterations (not training epochs per candidate)
+
+
+#-------------------------#
+# File-Handler Parameters #
+#-------------------------#
+
+RESULTS_SAVE_FREQUENCY: 1                                # Update the main csv data file every n evaluations (not iterations! i.e ITERATIONS_COUNT * (COLONY_SIZE / RESULTS_SAVE_FREQUENCY) total saves)
+RESULTS_BASE_PATH: /content/gdrive/MyDrive/HiveNAS/      # A folder will be created within this base path containing all generated results
+HISTORY_FILES_SUBPATH: training_history/                 # Training history files relative sub-path
+ENABLE_WEIGHT_SAVING: False                              # Option to save model files (warning: each model takes up 1-2gb of space on average)
+WEIGHT_FILES_SUBPATH: weights/                           # Weight/model files relative sub-path
+RESUME_FROM_RESULTS_FILE: False                          # Resumes training from the main csv data file if present (a prompt will be shown as well to confirm)
+
+
+#-----------------------------#
+# NAS Search Space Parameters #
+#-----------------------------#
+
 DEPTH: 4     # Excluding input / output stems
 OPERATIONS:
+    # Use the custom !Operation tag to define a partial_function based on a valid Keras layer
     sep5x5_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
     sep3x3_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
     sep5x5_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
@@ -32,12 +45,15 @@ OPERATIONS:
     batch_norm: !Operation {op: BatchNormalization}
     dropout: !Operation {op: Dropout, rate: 0.2}
 
-RESIDUAL_BLOCKS_RATE: 0.15    # skip-connections' occurence probability
+RESIDUAL_BLOCKS_RATE: 0.15                                # Skip-connections probability per layer (0.0 = ResNets deactivated, 1.0 = every layer will be preceded by a skip-connection)
 
-# NAS Evaluation Strategy configuration
 
-DATASET: CIFAR10   # Specify the data loader in NASEval init
-OUTPUT_STEM:
+#---------------------------------------#
+# NAS Evaluation Strategy configuration #
+#---------------------------------------#
+
+DATASET: CIFAR10                                          # Data loader, specify custom data loaders in NASEval init
+OUTPUT_STEM:                                              # Static output layers' stem
     - !Operation
         op: Flatten
     - !Operation
@@ -55,7 +71,7 @@ OUTPUT_STEM:
         units: 512
         activation: relu
 
-INPUT_STEM:
+INPUT_STEM:                                              # Static input layers' stem
     - !Operation
         op: Conv2D
         filters: 32
@@ -65,21 +81,21 @@ INPUT_STEM:
     - !Operation
         op: ReLU
 
-EPOCHS: 5       # static epochs number for non-momentum variations
-FULL_TRAIN_EPOCHS: 100
-LR: 0.001
-BATCH_SIZE: 64
-OPTIMIZER: Adam
+EPOCHS: 5                                                # Number of epochs per candidate training
+FULL_TRAIN_EPOCHS: 100                                   # Number of epochs for the best candidates' full training
+LR: 0.001                                                # Optimizer's learning rate
+BATCH_SIZE: 128                                          # Training batch size
+OPTIMIZER: Adam                                          # SGD Optimizer ('Adam' and 'RMSprop' defined; define custom optimizers by simply importing them to Params (must be availble in globals()))
 
 # Dataset Augmentation Parameters
-AFFINE_TRANSFORMATIONS_ENABLED: True
-CUTOUT_PROB: 0
-SATURATION_AUG_PROB: 0.75
-CONTRAST_AUG_PROB: 0.75
+AFFINE_TRANSFORMATIONS_ENABLED: True                     # Enables simple affine transformations (rotation, shift, zoom, flip; customize in NASEval.__initialize_dataset())
+CUTOUT_PROB: 0                                           # Probability of applying cutout augmentation per sample (0.0 = disabled)
+SATURATION_AUG_PROB: 0.75                                # Probability of applying saturation augmentation per sample (0.0 = disabled)
+CONTRAST_AUG_PROB: 0.75                                  # Probability of applying contrast augmentation per sample (0.0 = disabled)
 
 # Evaluation Augmentations
-MOMENTUM_EPOCHS: 0
-TERMINATION_THRESHOLD_FACTOR: 0.0
-TERMINATION_DIMINISHING_FACTOR: 0.25
+MOMENTUM_EPOCHS: 0                                       # Number of additional momentum epochs to be applied to the fittest models at the end of every iteration
+TERMINATION_THRESHOLD_FACTOR: 0.0                        # Threshold factor (beta) for early-stopping (refer to the TerminateOnThreshold class for details; 0.0 = ACT disabled)
+TERMINATION_DIMINISHING_FACTOR: 0.25                     # Diminishing factor (zeta) for termination threshold over epochs (refer to the TerminateOnThreshold class for details)
 
 
