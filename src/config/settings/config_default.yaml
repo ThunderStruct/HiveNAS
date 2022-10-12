@@ -1,7 +1,15 @@
-# Current Version
+
+#-----------------#
+# Current Version #
+#-----------------#
+
 CONFIG_VERSION: default_sc_enabled                       # All generated results will be under this config name (must be a file-path compatible string)
 
-# Problem Definition
+
+#--------------------#
+# Problem Definition #
+#--------------------#
+
 OPTIMIZATION_OBJECTIVE: NAS                              # Also valid "Sphere_min", "Sphere_max", and "Rosenbrock"
 
 
@@ -44,7 +52,6 @@ OPERATIONS:
     avg_pool3x3: !Operation {op: AveragePooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
     batch_norm: !Operation {op: BatchNormalization}
     dropout: !Operation {op: Dropout, rate: 0.2}
-
 RESIDUAL_BLOCKS_RATE: 0.15                                # Skip-connections probability per layer (0.0 = ResNets deactivated, 1.0 = every layer will be preceded by a skip-connection)
 
 
@@ -70,7 +77,6 @@ OUTPUT_STEM:                                              # Static output layers
         op: Dense
         units: 512
         activation: relu
-
 INPUT_STEM:                                              # Static input layers' stem
     - !Operation
         op: Conv2D
@@ -80,20 +86,27 @@ INPUT_STEM:                                              # Static input layers' 
         op: BatchNormalization
     - !Operation
         op: ReLU
-
 EPOCHS: 5                                                # Number of epochs per candidate training
 FULL_TRAIN_EPOCHS: 100                                   # Number of epochs for the best candidates' full training
 LR: 0.001                                                # Optimizer's learning rate
 BATCH_SIZE: 128                                          # Training batch size
 OPTIMIZER: Adam                                          # SGD Optimizer ('Adam' and 'RMSprop' defined; define custom optimizers by simply importing them to Params (must be availble in globals()))
 
-# Dataset Augmentation Parameters
+
+#---------------------------------#
+# Dataset Augmentation Parameters #
+#---------------------------------#
+
 AFFINE_TRANSFORMATIONS_ENABLED: True                     # Enables simple affine transformations (rotation, shift, zoom, flip; customize in NASEval.__initialize_dataset())
 CUTOUT_PROB: 0                                           # Probability of applying cutout augmentation per sample (0.0 = disabled)
 SATURATION_AUG_PROB: 0.75                                # Probability of applying saturation augmentation per sample (0.0 = disabled)
 CONTRAST_AUG_PROB: 0.75                                  # Probability of applying contrast augmentation per sample (0.0 = disabled)
 
-# Evaluation Augmentations
+
+#--------------------------#
+# Evaluation Augmentations #
+#--------------------------#
+
 MOMENTUM_EPOCHS: 0                                       # Number of additional momentum epochs to be applied to the fittest models at the end of every iteration
 TERMINATION_THRESHOLD_FACTOR: 0.0                        # Threshold factor (beta) for early-stopping (refer to the TerminateOnThreshold class for details; 0.0 = ACT disabled)
 TERMINATION_DIMINISHING_FACTOR: 0.25                     # Diminishing factor (zeta) for termination threshold over epochs (refer to the TerminateOnThreshold class for details)
