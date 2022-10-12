@@ -5,7 +5,7 @@ import hashlib
 import base64
 import numpy as np
 from tensorflow.keras.models import Model, load_model
-from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.datasets import cifar10, mnist
 from tensorflow.keras.layers import Input, Conv2D, Add, Dense
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
