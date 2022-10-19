@@ -5,7 +5,7 @@ import hashlib
 import base64
 import numpy as np
 from tensorflow.keras.models import Model, load_model
-from tensorflow.keras.datasets import cifar10, mnist
+from tensorflow.keras.datasets import cifar10, mnist, fashion_mnist
 from tensorflow.keras.layers import Input, Conv2D, Add, Dense
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -35,8 +35,10 @@ class NASEval(object):
             # Add a placeholder dimension to the dataset to match RGB image datasets
             self.X_train = self.X_train.reshape(-1,28,28,1)
             self.X_test = self.X_test.reshape(-1,28,28,1) 
-        elif config['dataset'] == 'IMAGE_NET':
-            pass
+        elif config['dataset'] == 'FASHION_MNIST':
+            (self.X_train, self.y_train), (self.X_test, self.y_test) = fashion_mnist.load_data()
+            self.X_train = self.X_train.reshape(-1,28,28,1)
+            self.X_test = self.X_test.reshape(-1,28,28,1) 
         else:
             pass
 
@@ -285,6 +287,7 @@ class NASEval(object):
 
         # housekeeping
         del self.model
+        gc.collect()
         
         retval = {
             'fitness': eval_res[1]
@@ -321,7 +324,7 @@ class NASEval(object):
             self.datagen = ImageDataGenerator(preprocessing_function=ImgAug.augment,
                                               validation_split=0.2)
 
-        # per docs, .fit() is only needed if the generator enables:
+        # per docs, ImageDataGenerator.fit() is only needed if the generator enables:
         # featurewise_center or featurewise_std_normalization or zca_whitening
         # self.datagen.fit(self.X_train)
 

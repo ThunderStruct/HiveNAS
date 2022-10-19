@@ -33,10 +33,10 @@ class Params:
 
 
         ''' Optimization problem (NAS or Numerical Benchmarks to test ABC) '''
-        OPTIMIZATION_OBJECTIVE = 'HiveNAS'  #@param ['HiveNAS', 'Sphere_max', 'Sphere_min', 'Rosenbrock']
+        OPTIMIZATION_OBJECTIVE = 'NAS'  #@param ['NAS', 'Sphere_max', 'Sphere_min', 'Rosenbrock']
 
         ''' Max trials per Scout (i.e initial Food Source) '''
-        ABANDONMENT_LIMIT = 5  #@param {type:"slider", min:1, max:50, step:1}
+        ABANDONMENT_LIMIT = 3  #@param {type:"slider", min:1, max:50, step:1}
 
         ''' Number of bees in the colony (Employees + Onlookers) '''
         COLONY_SIZE = 7    #@param {type:"slider", min:1, max:50, step:1}
@@ -45,7 +45,7 @@ class Params:
         EMPLOYEE_ONLOOKER_RATIO = 0.43   #@param {type:"slider", min:0.1, max:1.0, step:0.05}
 
         ''' Number of ABC optimization iterations '''
-        ITERATIONS_COUNT = 20    #@param {type:"slider", min:1, max:100, step:1}
+        ITERATIONS_COUNT = 12    #@param {type:"slider", min:1, max:100, step:1}
 
 
         #@markdown \
@@ -53,14 +53,14 @@ class Params:
         #@markdown ---
 
 
-        ''' Save results every N evaluations (not iterations) '''
+        ''' Save results every N evaluations (not iterations; iterations * colony_size) '''
         RESULTS_SAVE_FREQUENCY = 1   #@param {type:"slider", min:1, max:100, step:1}
 
         '''
             Result files base path (path will be created if it does not exist) 
             A local folder will be created after the CONFIG_VERSION
         '''
-        RESULTS_BASE_PATH = './res/archived results/'  #@param {type:"string"}
+        RESULTS_BASE_PATH = '../res/archived results/'  #@param {type:"string"}
 
         ''' Training history files sub-path '''
         HISTORY_FILES_SUBPATH = 'training_history/'     #@param {type:"string"}
@@ -115,7 +115,7 @@ class Params:
         ''' -- NAS Evaluation Strategy configuration -- '''
 
         ''' Dataset (classes/inputs are inferred internally) '''
-        DATASET = 'CIFAR10'   #@param ["CIFAR10", "MNIST"]
+        DATASET = 'CIFAR10'   #@param ["CIFAR10", "MNIST", "FASHION_MNIST"]
 
         ''' Static output stem, added to every candidate '''
         OUTPUT_STEM = [
@@ -134,10 +134,10 @@ class Params:
         ]
 
         ''' Epochs count per candidate network '''
-        EPOCHS = 3  #@param {type:"slider", min:1, max:25, step:1}
+        EPOCHS = 5  #@param {type:"slider", min:1, max:25, step:1}
         
         ''' Momentum Augmentation epochs (0 = disabled ; overrides ENABLE_WEIGHT_SAVING) '''
-        MOMENTUM_EPOCHS = 10 #@param {type:"slider", min:0, max:25}
+        MOMENTUM_EPOCHS = 0 #@param {type:"slider", min:0, max:25}
 
         ''' Epochs count for the best performing candidate upon full training '''
         FULL_TRAIN_EPOCHS = 50 #@param {type:"slider", min:1, max:150, step:1}
@@ -149,7 +149,7 @@ class Params:
                 0.25 = for 10 classes, val_acc > 0.325 at epoch 1 will not be terminated
                        (tolerance decreased for every subsequent epoch)
         '''
-        TERMINATION_THRESHOLD_FACTOR = 0.25 #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        TERMINATION_THRESHOLD_FACTOR = 0.0 #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
         ''' Diminishing factor (zeta) for termination threshold over epochs '''
         TERMINATION_DIMINISHING_FACTOR = 0.25 #@param {type:"slider", min:0.1, max:1.0, step:0.05}
@@ -177,13 +177,13 @@ class Params:
         AFFINE_TRANSFORMATIONS_ENABLED = True   #@param {type:"boolean"}
 
         ''' Probability of random cutout augmentation occurence (0.0 = disabled) '''
-        CUTOUT_PROB = 0.5    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        CUTOUT_PROB = 0.8    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
         ''' Probability of random saturation augmentation occurence (0.0 = disabled) '''
-        SATURATION_AUG_PROB = 0.5    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        SATURATION_AUG_PROB = 0.75    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
         ''' Probability of random contrast augmentation occurence (0.0 = disabled) '''
-        CONTRAST_AUG_PROB = 0.5    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        CONTRAST_AUG_PROB = 0.75    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
         return locals()
 
@@ -222,6 +222,11 @@ class Params:
             return
 
         for key,val in config.items():
+            if key not in Params.__CONFIG:
+                # ensure config file keys are valid and match the hard-coded template
+                print(f'\nConfig file ({path}) is invalid. Skipping item ({key})... \n\n')
+                continue
+
             Params.__CONFIG[key] = val
 
         print(f'\nSuccessfully loaded the operational parameters from {path}.\n\n')
@@ -251,7 +256,7 @@ class Params:
         # data source (changing the Colab form does not reflect on the main dict)
         data = Params.config_form() if from_formdata else Params.__CONFIG
 
-        if FileHandler.export_yaml(Params.config_form(),
+        if FileHandler.export_yaml(data,
                                    path,
                                    filename):
             print(f'\nConfiguration file saved successfully to ({os.path.join(path, filename)})!\n\n')

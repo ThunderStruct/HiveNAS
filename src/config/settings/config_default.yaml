@@ -59,7 +59,7 @@ RESIDUAL_BLOCKS_RATE: 0.15                                # Skip-connections pro
 # NAS Evaluation Strategy configuration #
 #---------------------------------------#
 
-DATASET: CIFAR10                                          # Data loader, specify custom data loaders in NASEval init
+DATASET: CIFAR10                                          # Data loader, specify custom data loaders in NASEval init ["CIFAR10", "MNIST", "FASHION_MNIST"]
 OUTPUT_STEM:                                              # Static output layers' stem
     - !Operation
         op: Flatten
