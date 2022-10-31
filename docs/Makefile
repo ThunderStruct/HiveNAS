@@ -8,6 +8,8 @@ SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
 
+APIDOCDIR	  = $(SOURCEDIR)/api
+
 # Put it first so that "make" without argument is like "make help".
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
@@ -18,3 +20,18 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+
+# Generate rst files with sphinx-apidoc using the custom render template
+buildapi:
+	@sphinx-apidoc -o $(APIDOCDIR) ../src -fMe -t ./$(SOURCEDIR)/_templates/apidoc/
+
+	@echo API docs generated in "$(APIDOCDIR)"
+
+
+# Remove generated rst and build files
+resetbuild:
+	@rm -rf $(APIDOCDIR)/* 
+	@rm -rf $(BUILDDIR)/*
+
+	@echo Contents of "$(APIDOCDIR)" and "$(BUILDDIR)" have been removed...
