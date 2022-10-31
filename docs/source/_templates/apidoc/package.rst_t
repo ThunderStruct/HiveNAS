@@ -3,6 +3,8 @@
    'Nas': 'Neural Architecture Search'  
 } -%}
 
+{%- set PROJECTNAME = 'hivenas' -%}
+
 {%- macro automodule(modname, options) -%}
 .. automodule:: {{ modname }}
 {%- for option in options %}
@@ -31,6 +33,7 @@
 {{- [pkgname, "namespace"] | join(" ") | e | heading }}
 {% else %}
 {{- packagename(pkgname) | e | heading }}
+{{ ['(*', PROJECTNAME, '.', pkgname, '*)'] | join("") }}
 {% endif %}
 
 {%- if is_namespace %}

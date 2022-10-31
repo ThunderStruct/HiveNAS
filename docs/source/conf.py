@@ -53,7 +53,7 @@ apidoc_template_dir = 'source/_templates/autoapi'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'api/src.rst']#, 'api/modules.rst']
+exclude_patterns = ['_build', 'api/src.rst', 'api/modules.rst']
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -67,6 +67,12 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# Custom CSS
+html_css_files = ['../../../source/_static/css/custom.css']
+
+# Framework logo
+html_logo = "_static/hivenas_logo.png"
 
 # Bypass rtd theme preset navigation limit
 html_theme_options = {'navigation_depth': 6}

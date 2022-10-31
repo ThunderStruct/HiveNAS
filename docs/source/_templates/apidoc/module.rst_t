@@ -1,5 +1,25 @@
+{%- set modulename_map = {
+   'Abc': 'Artificial Bee Colony Optimizer',
+   'Act': 'Adaptive Cutoff Threshold (ACT)',
+   'Momentum Eval': 'Momentum Evaluation (ME)',
+   'Nas Interface': 'NAS Interface'
+} -%}
+
+{%- set PROJECTNAME = 'hivenas' -%}
+
+{%- macro modulename(mname) -%}
+{%- set splitname = mname.split('.')[-1] -%}
+{%- set capname = ' '.join(splitname.split('_')).title() -%}
+{%- if capname in modulename_map -%}
+{%- set capname = modulename_map[capname] -%}
+{% endif %}
+{{ capname }}
+{%- endmacro -%}
+
+
 {%- if show_headings %}
-{{- basename | e | heading }}
+{{- modulename(basename) | e | heading }}
+{{ ['(*', PROJECTNAME, '.', basename, '*)'] | join("") }}
 
 {% endif -%}
 .. automodule:: {{ qualname }}
