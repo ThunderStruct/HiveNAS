@@ -1,3 +1,6 @@
+"""The NAS Interface encapsulating the Evaluation Strategy and Search Space
+"""
+
 import sys
 sys.path.append('...')
 
@@ -5,22 +8,29 @@ import gc
 import tensorflow.keras.backend as K
 from .evaluation_strategy import NASEval
 from .search_space import NASSearchSpace
+from core.objective_interface import ObjectiveInterface
 from config import Params
 
 
-class NASInterface(object):
-    ''' 
-        An interface that combines the Search Space + Evaluation Strategy 
-        for the Artificial Bee Colony algorithm
+class NASInterface(ObjectiveInterface):
     '''
-
-    search_space = None
-    eval_strategy = None
+    An interface that combines the Search Space & Evaluation Strategy 
+    for the NAS Search Algorithm (ABC)
+    
+    Attributes:
+        cls.eval_strategy (:class:`~core.nas.evaluation_strategy.NASEval`): NASEval instance used to instantiate and evaluate candidates
+        cls.search_space (:class:`~core.nas.search_space.NASSearchSpace`): NASSearchSpace instance used to sample candidates and neighbors
+    '''
 
     def __init__(self, 
                  space_config=None,
                  eval_config=None):
-        ''' Initializes the search space and evaluator '''
+        '''Initializes the search space and evaluator 
+        
+        Args:
+            space_config (dict, optional): the predefined operational parameters pertaining to the search space (defined in :func:`~config.params.Params.search_space_config`)
+            eval_config (dict, optional): the predefined operational parameters pertaining to evaluation (defined in :func:`~config.params.Params.evaluation_strategy_config`)
+        '''
 
         space_config = space_config or Params.search_space_config()
         eval_config = eval_config or Params.evaluation_strategy_config()
@@ -30,13 +40,24 @@ class NASInterface(object):
 
 
     def sample(self):
-        ''' Samples new random candidate architecture from the search space '''
+        '''Samples new random candidate architecture from the search space 
+        
+        Returns:
+            str: string-encoded representation of the sampled candidate architecture
+        '''
 
         return NASInterface.search_space.sample()
 
 
     def evaluate(self, candidate):
-        ''' Evaluates a given candidate architecture; returns loss value '''
+        '''Evaluates a given candidate architecture
+        
+        Args:
+            candidate (str): string-encoded representation of the architecture to be evaluated
+        
+        Returns:
+            dict: a dictionary containing all relevant results to be saved, including: fitness, number of training epochs conducted (in case of ACT), hashed file name, number of trainable parameters, and the last epoch's momentum value if applicable
+        '''
 
         formatted = NASInterface.search_space.eval_format(candidate)
         res = NASInterface.eval_strategy.evaluate(formatted)
@@ -49,15 +70,37 @@ class NASInterface(object):
 
 
     def get_neighbor(self, orig_arch):
-        ''' Returns a random architecture with 1 op diff to the given candidate '''
+        '''Returns a random architecture with 1 op diff to the given candidate 
+        
+        Args:
+            orig_arch (str): string-encoded representation of the candidate architecture
+        
+        Returns:
+            str: string-encoded representation of the neighbor architecture
+        '''
 
         return NASInterface.search_space.get_neighbor(orig_arch)
 
 
     def fully_train_best_model(self, from_arch=True):
         '''
-            Fully-train best-performing model
-            (relies on paths set in Params)
+        Fully-train best-performing model
+        (relies on paths set in :class:`~config.params.Params`)
+        
+        Args:
+            from_arch (bool, optional): determines whether to train model from scratch \
+            using the string representations of the architecture (:code:`from_arch = True`) \
+            or load the saved model file and continue training (:code:`from_arch = False`). \
+            \
+            `Note: optimizer settings are typically not saved, \
+            therefore training continuation from a model's file can result in a worse overall accuracy` \
+            (`read more... <https://stackoverflow.com/a/58693088/3551916>`_).
+        
+        Returns:
+            dict: a dictionary containing all relevant results to be saved, including: fitness, number of training epochs conducted (not including any previous trainings), hashed file name, number of trainable parameters
+        
+        Raises:
+            :class:`FileNotFoundError`: raises an error if the results file or model h5 file (when applicable) do not exist
         '''
 
         # check existence of results file
@@ -91,7 +134,16 @@ class NASInterface(object):
 
     
     def momentum_eval(self, candidate, weights_filename, m_epochs):
-        ''' Trains a given network for additional m_epochs '''
+        '''Trains a given network for additional :code:`m_epochs` 
+        
+        Args:
+            candidate (str): string-encoded representation of the candidate architecture
+            weights_filename (str): the SHA1-hashed unique string ID for the given architecture
+            m_epochs (int): the additional momentum epochs the candidate should be trained for
+        
+        Returns:
+            dict: final fitness value (accuracy) after training continuation
+        '''
 
         # check existence of weight file
         weights_path = os.path.join(Params.get_results_path(), Params['WEIGHT_FILES_SUBPATH'], weights_filename)
@@ -104,9 +156,12 @@ class NASInterface(object):
 
     @property 
     def is_minimize(self):
-        ''' 
-            Used by the ABC algorithm to determine whether this is 
-            a minimization or maximization problem (we're maximizing accuracy)
+        '''
+        Used by the optimization algorithm to determine whether this is 
+        a minimization or maximization problem
+        
+        Returns:
+            bool: hard-coded :code:`False`; the search algorithm is always maximizing accuracy
         '''
 
         return False

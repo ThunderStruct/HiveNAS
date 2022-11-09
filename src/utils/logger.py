@@ -1,8 +1,15 @@
+"""Main event logging methods
+"""
+
 import time
 
 class Logger:
-    '''
-        Wrapper for debug- and info-logging methods
+    '''Wrapper for debug- and info-logging methods
+    
+    Attributes:
+        EVALUATION_LOGGING (bool): determines whether to log evaluation data \
+        *(toggle to manage logging clutter in case the data points' count is large \
+        -- i.e Numerical Benchmarks, for instance)*
     '''
 
     __DEBUG_PREFIX  = 'DEBUG:'
@@ -18,7 +25,12 @@ class Logger:
 
     @staticmethod
     def debug(msg=None):
-        ''' Debugging messages '''
+        '''Debugging messages 
+        
+        Args:
+            msg (str, optional): debug message, defaults to \
+            "MARK" to indicate whether the statement is reached
+        '''
 
         print('{} {}'.format(Logger.__DEBUG_PREFIX,
                             ('MARK' if msg is None else str(msg))))
@@ -26,7 +38,13 @@ class Logger:
     
     @staticmethod
     def status(itr, msg=None):
-        ''' Generic logging '''
+        '''Generic logging 
+        
+        Args:
+            itr (int): current optimization iteration
+            msg (str, optional): status message, defaults to \
+            "MARK" to indicate whether the statement is reached
+        '''
 
         print('{} itr: {} -- {}'.format(Logger.__STATUS_PREFIX,
                                         str(itr),
@@ -35,7 +53,14 @@ class Logger:
 
     @staticmethod
     def evaluation_log(type, id, candidate_pos):
-        ''' Logs pre-evaluation info for every candidate '''
+        '''Logs pre-evaluation info for every candidate 
+        
+        Args:
+            type (str): bee type (Employee/Onlooker)
+            id (int): bee ID
+            candidate_pos (str): candidate position on the solution surface \
+            (the string-encoded architecture in the case of NAS)
+        '''
 
         if not Logger.EVALUATION_LOGGING:
             return
@@ -48,7 +73,14 @@ class Logger:
 
     @staticmethod
     def momentum_evaluation_log(candidate, fitness, epochs):
-        ''' Logs momentum evaluation augmentation info '''
+        '''Logs momentum evaluation augmentation info 
+        
+        Args:
+            candidate (str): candidate string representation \
+            (architecture in the case of NAS)
+            fitness (float): fitness value
+            epochs (int): number of additional momentum epochs assigned
+        '''
 
         if not Logger.EVALUATION_LOGGING:
             return
@@ -61,7 +93,13 @@ class Logger:
 
     @staticmethod
     def filesave_log(candidate, filename):
-        ''' Logs candidate info upon file-save '''
+        '''Logs candidate info upon file-save 
+        
+        Args:
+            candidate (str): candidate string representation \
+            (architecture in the case of NAS)
+            filename (str): output filename
+        '''
 
         if not Logger.EVALUATION_LOGGING:
             return
@@ -73,7 +111,8 @@ class Logger:
 
     @staticmethod
     def start_log():
-        ''' Logs the start msg and intializes the global timer '''
+        '''Logs the start msg and intializes the global timer 
+        '''
 
         Logger.__START_TIME = time.time()
         dashes = '------------------------'
@@ -82,7 +121,8 @@ class Logger:
 
     @staticmethod
     def end_log():
-        ''' Logs total time taken upon optimization end '''
+        '''Logs total time taken upon optimization end 
+        '''
 
         end_time = time.time() - Logger.__START_TIME
         dashes = '---------------------'

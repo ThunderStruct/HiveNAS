@@ -1,14 +1,21 @@
+"""User prompts-handler
+"""
 
 class PromptHandler:
+    '''Wrapper for input prompt-handling methods
     '''
-        Wrapper for input prompt-handling methods
-    '''
-
 
     @staticmethod
     def prompt_yes_no(question, default='y'):
-        '''
-            Yes/no query; reverts to default value if no input is given
+        '''Yes/no query; reverts to default value if no input is given
+        
+        Args:
+            question (str): printed prompt question
+            default (str, optional): user answer to revert to if no \
+            response is given (empty input) ; defaults to "yes"
+        
+        Returns:
+            bool: user response
         '''
 
         valid_res = {

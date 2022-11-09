@@ -1,3 +1,6 @@
+"""The main Artificial Bee Colony optimization algorithm
+"""
+
 import sys
 sys.path.append('...')
 
@@ -13,8 +16,27 @@ from utils import Logger
 
 
 class ArtificialBeeColony:
-    '''
-        Artificial Bee Colony optimizer
+    '''Artificial Bee Colony optimizer
+    
+    Attributes:
+        colony_size (int, optional): bee population size; defaults to value set in \
+        :class:`~config.params.Params`
+        employees (list): list of all :class:`~core.abc.employee_bee.EmployeeBee` used in the \
+        optimization
+        eo_colony_ratio (float, optional): employees to onlookers ratio; defaults to value set in \
+        :class:`~config.params.Params`
+        obj_interface (:class:`~core.objective_interface.ObjectiveInterface`): the objective \
+        interface defining the task boundaries
+        onlookers (list): list of all :class:`~core.abc.onlooker_bee.OnlookerBee` used in the \
+        optimization
+        results_df (:class:`pandas.DataFrame`): the main results DataFrame containing all evaluated \
+        results
+        scouts (list): list of all :class:`~core.abc.scout_bee.ScoutBee`-sampled positions used in  \
+        the optimization. Scout Bees are *not* instantiated.
+        scouts_count (int): number of scouts / parallel explorations. Follows the classical ABC \
+        1-to-1 scout-to-employee ratio
+        total_evals (int): total number of :func:`~core.abc.artificial_bee.ArtificialBee.evaluate` \
+        calls (for both Employees and Onlookers)
     '''
     
     def __init__(self, obj_interface, \
@@ -30,9 +52,8 @@ class ArtificialBeeColony:
 
 
     def __init_scouts(self):
-        ''' 
-            Instantiate Scout bees and sample random positions 
-            (does not evaluate fitness) 
+        '''Initial :class:`~core.abc.food_source.FoodSource` sampling by Scout Bees \
+        *(does not evaluate fitness)*
         '''
 
         for _ in range(self.scouts_count):
@@ -40,7 +61,7 @@ class ArtificialBeeColony:
     
 
     def __init_employees(self):
-        ''' Instantiate Employee bees and assign a Scout position to each '''
+        ''' Instantiate Employee Bees and assign a Scout position to each '''
 
         # Floor of (colony_size * ratio)
         employee_count = int(self.colony_size * self.eo_colony_ratio)
@@ -53,9 +74,8 @@ class ArtificialBeeColony:
 
 
     def __init_onlookers(self):
-        ''' 
-            Instantiate Onlooker bees (assigning Employees occurs after 
-            evaluation and probability calculation) 
+        '''Instantiate Onlooker Bees *(assigning Employees occurs after \
+        evaluation and probability calculation)*
         '''
 
         onlooker_count = self.colony_size - int(self.colony_size * self.eo_colony_ratio)
@@ -65,10 +85,12 @@ class ArtificialBeeColony:
 
     
     def __employee_bee_phase(self, itr):
-        ''' 
-            Evaluate Scout-initialized position after reset()
-            or Search + Evaluate neighbor every subsequent iteration
-            until abandonment limit
+        '''Evaluate Scout-initialized position after :func:`~core.abc.scout_bee.ScoutBee.reset` \
+        or Search + Evaluate neighbor every subsequent iteration \
+        until abandonment limit
+
+        Args:
+            itr (int): current main ABC optimization iteration
         '''
         
         # Search and evaluate new or existing neighbor
@@ -91,9 +113,10 @@ class ArtificialBeeColony:
 
 
     def __onlooker_bee_phase(self, itr):
-        ''' 
-            Assign each Onlooker to an Employee, 
-            then Search + Evaluate a random neighbor
+        '''Assign each Onlooker to an Employee, then Search + Evaluate a random neighbor
+
+        Args:
+            itr (int): current main ABC optimization iteration
         '''
 
         # Calculate Employee probability
@@ -141,16 +164,18 @@ class ArtificialBeeColony:
 
 
     def __scout_bee_phase(self):
-        ''' 
-            Check abandonment limits and rest employees accordingly
+        '''Check abandonment limits and rest employees accordingly
         '''
 
-        ScoutBee.check_employee_trials(self.employees, self.obj_interface)
+        ScoutBee.check_abandonment(self.employees, self.obj_interface)
 
 
     def __save_results(self, series):
-        '''
-            Save results dataframe
+        '''Save results dataframe to specified disk path
+
+        Args:
+            series (:class:`pandas.Series): Pandas Series (row) to be appended to the \
+            current :code:`results_df`
         '''
 
         if self.total_evals % Params['RESULTS_SAVE_FREQUENCY'] == 0:
@@ -164,10 +189,9 @@ class ArtificialBeeColony:
 
 
     def __momentum_phase(self):
-        ''' 
-            Momentum Evaluation Augmentation
-            Stochastic operator that adds Params['MOMENTUM_EPOCHS'] epochs 
-            to propel the evaluations of the most consistently converging candidates
+        '''Momentum Evaluation Augmentation Stochastic operator that adds \
+        :code:`Params['MOMENTUM_EPOCHS']` epochs to propel the evaluations of \
+        the most consistently converging candidates
         '''
 
         
@@ -213,7 +237,8 @@ class ArtificialBeeColony:
 
 
     def __reset_all(self):
-        ''' Resets the ABC algorithm '''
+        ''' Resets the ABC algorithm 
+        '''
 
         self.scouts = []            # List of FoodSources initially sampled
         self.employees = []
@@ -249,7 +274,8 @@ class ArtificialBeeColony:
 
 
     def optimize(self):
-        ''' Initialize ABC algorithm'''
+        ''' Main optimization loop
+        '''
 
         Params.export_yaml(Params.get_results_path(), 
                            f'{Params["CONFIG_VERSION"]}.yaml')

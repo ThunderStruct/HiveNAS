@@ -1,3 +1,9 @@
+"""An barebone instantiation interface used by the analysis script
+
+Attributes:
+    EVAL_CONFIG (dict): the predefined operational parameters pertaining to the search space (defined in :func:`~config.params.Params.search_space_config`)
+    SS_CONFIG (dict): the predefined operational parameters pertaining to evaluation (defined in :func:`~config.params.Params.evaluation_strategy_config`)
+"""
 import sys
 sys.path.append('...')
 
@@ -59,13 +65,17 @@ EVAL_CONFIG = {'dataset': 'CIFAR10',
 
 
 class NASSearchSpace(object):
-    ''' Defines the Search Space used to sample candidates by HiveNAS '''
+    '''Defines the Search Space used to sample candidates by HiveNAS 
+    '''
                     
 
     @staticmethod
     def sample():
         '''
-            Samples a random point in the search space
+        Samples a random point in the search space
+        
+        Returns:
+            str: string-encoded representation of the sampled candidate architecture
         '''
 
         # assert self.all_paths != None, 'Search space needs to be initialized!'
@@ -92,7 +102,14 @@ class NASSearchSpace(object):
 
     @staticmethod
     def get_neighbor(path_str):
-        ''' Returns a path with 1-op difference (a neighbor)'''
+        '''Returns a path with 1-op difference (a neighbor)
+        
+        Args:
+            path_str (str): string-encoded representation of the architecture
+        
+        Returns:
+            str: string-encoded representation of a neighbor architecture
+        '''
 
         path = NASSearchSpace.__strip_path(NASSearchSpace.__decode_path(path_str))
 
@@ -121,9 +138,15 @@ class NASSearchSpace(object):
 
     @staticmethod
     def eval_format(path):
-        ''' 
-            Formats a path for evaluation (stripped, decoded, and
-            excluding input/output layers) given a string-encoded path
+        '''
+        Formats a path for evaluation (stripped, decoded, and
+        excluding input/output layers) given a string-encoded path
+        
+        Args:
+            path (str): string-encoded representation of the architecture
+        
+        Returns:
+            list: a list of operations ([str]) representing a model architecture to be used by the evaluation strategy
         '''
 
         return NASSearchSpace.__strip_path(NASSearchSpace.__decode_path(path))[1:-1]
@@ -132,14 +155,28 @@ class NASSearchSpace(object):
 
     @staticmethod
     def __encode_path(path):
-        ''' Returns a string encoding of a given path (list of ops)'''
+        '''Returns a string encoding of a given path (list of ops)
+        
+        Args:
+            path (list): list of operations ([str]) representing the architecture
+        
+        Returns:
+            str: string-encoded representation of the given architecture
+        '''
 
         return '|'.join(NASSearchSpace.__strip_path(path))
 
 
     @staticmethod
     def __decode_path(path):
-        ''' Returns a list of ops given a string-encoded path '''
+        '''Returns a list of operations given a string-encoded path 
+        
+        Args:
+            path (str): string-encoded representation of an architecture
+        
+        Returns:
+            list: list of operations ([str]) representing the given architecture
+        '''
 
         ops = path.split('|')
 
@@ -151,16 +188,26 @@ class NASSearchSpace(object):
 
     @staticmethod
     def __strip_path(path):
-        ''' Strips path of layer ID prefixes given a list of ops '''
+        '''Strips path of layer ID prefixes given a list of ops 
+        
+        Args:
+            path (list): list of operations ([str]), each with a layer ID prefix (as was needed for the DAG version of the search space)
+        
+        Returns:
+            list: list of operations ([str]) stipped of the layer IDs
+        '''
         
         return [re.sub('L\d+_', '', s) for s in path]
 
 
     @staticmethod
     def compute_space_size():
-        ''' 
-            Returns the number of possible architectures in the given space
-            (i.e operations and depth) for analytical purposes
+        '''
+        Returns the number of possible architectures in the given space
+        (i.e operations and depth) for analytical purposes
+        
+        Returns:
+            int: the size of the search space (number of all possible candidates)
         '''
 
         return len(list(SS_CONFIG['operations'].keys())) ** \
@@ -170,12 +217,20 @@ class NASSearchSpace(object):
 
 
 class NASEval(object):
-    ''' Responsible for instantiating and evaluating candidate architectures '''
+    '''Responsible for instantiating and evaluating candidate architectures 
+    '''
 
 
     @staticmethod
     def instantiate_network(arch):
-        ''' Instantiates a Keras network given an architecture op list '''
+        '''Instantiates a Keras network given an architecture op list 
+        
+        Args:
+            arch (str): string-encoded representation of the sampled candidate architecture
+        
+        Returns:
+            :class:`~tensorflow.keras.models.Model`: the instantiated Keras functional Model
+        '''
 
         # residual counters
         res_count = []
@@ -232,8 +287,14 @@ class NASEval(object):
 
     @staticmethod
     def get_weights_filename(self, arch):
-        ''' 
-            Hashes the architecture op-list into a filename
+        '''
+        Hashes the architecture op-list into a filename using SHA1
+        
+        Args:
+            arch (list): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
+        
+        Returns:
+            str: SHA1-hashed unique string ID for the given architecture
         '''
 
         return hashlib.sha1(''.join(arch).encode("UTF-8")).hexdigest()
@@ -241,7 +302,11 @@ class NASEval(object):
 
     @staticmethod
     def __compile_model(model):
-        ''' Compiles model in preparation for evaluation '''
+        '''Compiles model in preparation for evaluation 
+        
+        Args:
+            model (:class:`~tensorflow.keras.models.Model`): the Keras model to be compiled
+        '''
 
         model.compile(loss='sparse_categorical_crossentropy', \
                       optimizer=self.config['optimizer'](), \
@@ -252,7 +317,16 @@ class NASEval(object):
 ''' Exposed API '''
 
 def instantiate_network(arch_str):
-    ''' Returns un-compiled model '''
+    '''Instantiates the network without compiling it (not needed for analysis purposes)
+    
+    Args:
+        arch_str (str): string-encoded representation of the sampled candidate architecture
+    
+    Returns:
+        (:class:`~tensorflow.keras.models.Model`, tuple): a tuple containing the \
+        un-compiled Keras functional model from the given string-encoded architecture \
+        and the model's input shape
+    '''
     model, in_shape = NASEval.instantiate_network(NASSearchSpace.eval_format(arch_str))
 
     return (model, in_shape)

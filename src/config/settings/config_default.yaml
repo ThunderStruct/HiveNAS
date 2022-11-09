@@ -39,7 +39,7 @@ RESUME_FROM_RESULTS_FILE: False                          # Resumes training from
 # NAS Search Space Parameters #
 #-----------------------------#
 
-DEPTH: 4     # Excluding input / output stems
+DEPTH: 4                                                 # Excluding input / output stems
 OPERATIONS:
     # Use the custom !Operation tag to define a partial_function based on a valid Keras layer
     sep5x5_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}

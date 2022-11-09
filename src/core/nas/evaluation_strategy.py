@@ -1,3 +1,6 @@
+"""The Evaluation Strategy phase of the NAS framework
+"""
+
 import sys
 sys.path.append('...')
 
@@ -16,13 +19,22 @@ from .momentum_eval import MomentumAugmentation
 
 
 class NASEval(object):
-    ''' Responsible for instantiating and evaluating candidate architectures '''
+    '''Responsible for instantiating and evaluating candidate architectures
+    
+    Attributes:
+        config (dict): the predefined operational parameters pertaining to evaluation (defined in :func:`~config.params.Params.evaluation_strategy_config`)
+        datagen (:class:`tensorflow.keras.preprocessing.image.ImageDataGenerator`): the data generator used to train all candidates (instantiated once to preserve resources)
+        model (:class:`~tensorflow.keras.models.Model`): the candidate model to be evaluated (overwritten and deleted with every evaluation process to prevent leaks)
+    '''
 
     def __init__(self, config):
-        ''' 
-            Initializes the evaluation parameters' configuration ;
-            for a different dataset, a data-loader must be specified below
-            as with CIFAR10 Keras loader
+        '''
+        Initializes the evaluation parameters' configuration ;
+        for a different dataset, a data-loader must be specified below
+        as with CIFAR10 Keras loader
+        
+        Args:
+            config (dict): the predefined operational parameters pertaining to evaluation (defined in :func:`~config.params.Params.evaluation_strategy_config`)
         '''
         
         self.config = config
@@ -51,7 +63,11 @@ class NASEval(object):
 
 
     def __instantiate_network(self, arch):
-        ''' Instantiates a Keras network given an architecture op list '''
+        '''Instantiates a Keras network given an architecture op list 
+        
+        Args:
+            arch (list): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
+        '''
 
         # residual counters
         res_count = []
@@ -102,8 +118,14 @@ class NASEval(object):
 
 
     def get_weights_filename(self, arch):
-        ''' 
-            Hashes the architecture op-list into a filename
+        '''
+        Hashes the architecture op-list into a filename using SHA1
+        
+        Args:
+            arch (list): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
+        
+        Returns:
+            str: SHA1-hashed unique string ID for the given architecture
         '''
 
         return hashlib.sha1(''.join(arch).encode("UTF-8")).hexdigest()
@@ -111,8 +133,14 @@ class NASEval(object):
 
     def evaluate(self, arch):
         '''
-            Evaluates the candidate architecture given a string-encoded
-            representation of the model
+        Evaluates the candidate architecture given a string-encoded
+        representation of the model
+        
+        Args:
+            arch (list): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
+        
+        Returns:
+            dict: a dictionary containing all relevant results to be saved, including: fitness, number of training epochs conducted (in case of ACT), hashed file name, number of trainable parameters, and the last epoch's momentum value if applicable
         '''
 
         # instantiate/compile model
@@ -187,7 +215,15 @@ class NASEval(object):
 
     
     def fully_train(self, model_file=None, arch=None):
-        ''' Loads and continues training of a partially-trained model '''
+        '''Loads and continues training of a partially-trained model using either a string-encoded architecture (instantiates the model and trains from scratch) or a model h5 file
+        
+        Args:
+            model_file (str, optional): a previously saved h5 model file (continues training)
+            arch (list, optional): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
+        
+        Returns:
+            dict: a dictionary containing all relevant results to be saved, including: fitness, number of training epochs conducted (not including any previous trainings), hashed file name, number of trainable parameters
+        '''
 
         hist_path = os.path.join(Params.get_results_path(), Params['HISTORY_FILES_SUBPATH'])
         hist_fn = ''
@@ -254,7 +290,15 @@ class NASEval(object):
 
 
     def momentum_training(self, weights_file, m_epochs):
-        ''' Loads and continues training of a partially-trained model '''
+        '''Loads and continues training of a partially-trained model 
+        
+        Args:
+            weights_file (str): the previously saved h5 model file (continues training)
+            m_epochs (int): number of momentum epochs to continue training for
+        
+        Returns:
+            dict: final fitness value (accuracy) after training continuation
+        '''
 
         # load model
         self.model = load_model(weights_file)
@@ -297,9 +341,12 @@ class NASEval(object):
 
     
     def __initialize_dataset(self):
-        ''' 
-            Prepares the dataset (Normalization -> One-Hot Encoding)
-            and initializes the ImageGenerator for evaluation
+        '''
+        Prepares the dataset
+
+        Preprocessing includes standardization and affine transformation (if applicable)
+
+        Initializes the :class:`tensorflow.keras.preprocessing.image.ImageDataGenerator` for evaluation
         '''
 
         # Standardize data
@@ -335,7 +382,8 @@ class NASEval(object):
 
 
     def __compile_model(self):
-        ''' Compiles model in preparation for evaluation '''
+        '''Compiles model in preparation for evaluation 
+        '''
 
         self.model.compile(loss='sparse_categorical_crossentropy', \
                            optimizer=self.config['optimizer'](), \

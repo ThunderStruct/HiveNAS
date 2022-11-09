@@ -2,7 +2,9 @@
    'Abc': 'Artificial Bee Colony Optimizer',
    'Act': 'Adaptive Cutoff Threshold (ACT)',
    'Momentum Eval': 'Momentum Evaluation (ME)',
-   'Nas Interface': 'NAS Interface'
+   'Nas Interface': 'NAS Interface',
+   'Artificial Bee': 'Artificial Bee (base class)',
+   'Hivenas': 'HiveNAS'
 } -%}
 
 {%- set PROJECTNAME = 'hivenas' -%}

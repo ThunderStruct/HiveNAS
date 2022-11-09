@@ -1,3 +1,6 @@
+"""All operational parameters used by HiveNAS and configuration methods
+"""
+
 import sys
 sys.path.append('..')
 
@@ -12,15 +15,17 @@ from tensorflow.keras.layers import AveragePooling2D, BatchNormalization, ReLU
 
 
 class Params:
-    '''
-        Wrapper for all global operational parameters
-        and the configuration loader
+    '''Wrapper for all global operational parameters
+    and the configuration loader
     '''
 
     @staticmethod
     def config_form():
-        '''
-            Facilitates the notebook's form and returns a config dict
+        '''Facilitates the configuration UI form (for Google Colab) \
+        and exports all parameters as a dictionary
+        
+        Returns:
+            dict: main global parameters dictionary (locals)
         '''
 
 
@@ -194,9 +199,25 @@ class Params:
 
     @staticmethod
     def init_from_yaml(path):
-        ''' Initializes the global parameters from a given yaml config file '''
+        '''Initializes the global parameters from a given yaml config file 
+        
+        Args:
+            path (str): path to yaml configuration file
+        
+        '''
 
         def param_op_constructor(loader: yaml.SafeLoader, node: yaml.nodes.MappingNode):
+            '''Constructs NAS Search Space operations (using the custom \
+            yaml :code:`!Operation` tag)
+            
+            Args:
+                loader (:class:`yaml.SafeLoader`): yaml default safe loader
+                node (:class:`yaml.nodes.MappingNode`): yaml mapping node
+            
+            Returns:
+                :class:`functools.partial`: partial function containing the neural operation
+            '''
+
             # constructs an operation partial function from yaml !Operation tags
             op_dict = loader.construct_mapping(node)
             op = op_dict['op']
@@ -206,6 +227,18 @@ class Params:
             
  
         def param_tuple_constructor(loader: yaml.SafeLoader, node: yaml.nodes.MappingNode):
+            '''Constructs a tuple from the standard \
+            :code:`tag:yaml.org,2002:python/tuple` (:code:`!!python/tuple`) yaml tag
+            
+            Args:
+                loader (:class:`yaml.SafeLoader`): yaml default safe loader
+                node (:class:`yaml.nodes.MappingNode`): yaml mapping node
+            
+            Returns:
+                tuple: constructed tuple, \
+                typically used to define kernel sizes/shapes in yaml
+            '''
+
             # because for some reason we need an explicit tuple constructor
 
             return tuple(loader.construct_sequence(node))
@@ -234,9 +267,30 @@ class Params:
 
     @staticmethod
     def export_yaml(path, filename, from_formdata=False):
-        ''' Saves the current configurations to the given path as yaml '''
+        '''Saves the current configurations to the given path as yaml 
+        
+        Args:
+            path (str): output path to save the yaml config file to
+            filename (str): output file name
+            from_formdata (bool, optional): determines whether the export instruction \
+            originated from the Google Colab UI form or called in code. *When it originates \
+            from the form, data reload is required to ensure consistency (could be \
+            altered within the form)*
+        '''
 
         def param_op_representer(dumper, data):
+            '''Serializes a partial function into the custom :code:`!Operation` \
+            yaml tag
+            
+            Args:
+                dumper (:class:`yaml.Dumper`): default pyyaml dumper
+                data (partial): partial function data to be serialized
+            
+            Returns:
+                :class:`yaml.nodes.MappingNode`: yaml mapping node representing \
+                the operation
+            '''
+
             # serialize partial functions into yaml !Operation
             serialized_data = {'op': data.func.__name__}
             serialized_data.update(data.keywords)
@@ -244,6 +298,18 @@ class Params:
             return dumper.represent_mapping('!Operation', serialized_data, flow_style=True)
 
         def param_tuple_representer(dumper, data):
+            '''Serializes a tuple into the :code:`tag:yaml.org,2002:python/tuple` \
+            (:code:`!!python/tuple`) yaml tag
+            
+            Args:
+                dumper (:class:`yaml.Dumper`): default pyyaml dumper
+                data (tuple): tuple data to be serialized
+            
+            Returns:
+                :class:`yaml.nodes.MappingNode`: yaml mapping node representing \
+                the tuple
+            '''
+
             # serialize tuples into yaml !!python/tuple
 
             return dumper.represent_sequence(u'tag:yaml.org,2002:python/tuple', data, flow_style=True)
@@ -266,7 +332,12 @@ class Params:
 
     @staticmethod
     def search_space_config():
-        '''  Returns the search space config dict '''
+        '''Returns the search space config dict 
+        
+        Returns:
+            dict: dictionary containing the :class:`~core.nas.search_space.NASSearchSpace`-related \
+            parameters
+        '''
 
         res = {
             'depth': Params['DEPTH'],
@@ -279,7 +350,12 @@ class Params:
 
     @staticmethod
     def evaluation_strategy_config():
-        '''  Returns the evaluation strategy config dict '''
+        '''Returns the evaluation strategy config dict 
+        
+        Returns:
+            dict: dictionary containing the :class:`~core.nas.evaluation_strategy.NASEval`-related \
+            parameters
+        '''
 
         res = {
             'dataset': Params['DATASET'],
@@ -301,7 +377,12 @@ class Params:
 
     @staticmethod
     def get_results_path():
-        '''  Gets the results path from RESULTS_BASE_PATH and CONFIG_VERSION '''
+        '''Gets the results path from :code:`RESULTS_BASE_PATH` and :code:`CONFIG_VERSION`
+        
+        Returns:
+            str: the joined path to the results directory or :code:`None` if either \
+            :code:`RESULTS_BASE_PATH` or :code:`CONFIG_VERSION` is invalid
+        '''
 
         path = os.path.join(Params.__CONFIG['RESULTS_BASE_PATH'],
                             f'{Params.__CONFIG["CONFIG_VERSION"]}/')
@@ -313,7 +394,18 @@ class Params:
 
 
     def __class_getitem__(cls, key):
-        ''' Subscript operator definition '''
+        '''Subscript operator definition
+
+        *Static class subscripting :code:`__class_getitem__` requires Python 3.7+*
+
+        Used as :code:`Params['KEY']`
+        
+        Args:
+            key (str): dictionary key to select parameter
+        
+        Returns:
+            Any: subscripted parameter from the configuration dictionary
+        '''
             
         return Params.__CONFIG[key]
 

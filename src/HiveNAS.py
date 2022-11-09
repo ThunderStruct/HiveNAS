@@ -3,7 +3,7 @@ import plaidml.keras
 from config import Params
 from utils import Logger
 from benchmarks import Sphere, Rosenbrock
-from core import HiveNAS, ArtificialBeeColony
+from core import NASInterface, ArtificialBeeColony
 
 
 plaidml.keras.install_backend()
@@ -16,8 +16,7 @@ class HiveNAS(object):
 
     @staticmethod
     def find_topology(evaluation_logging=True,
-                      config_path=None,
-                      kill_after=True)
+                      config_path=None):
         ''' Runs the base NAS optimization loop '''
 
         if config_path:
@@ -39,14 +38,9 @@ class HiveNAS(object):
 
         abc.optimize()
 
-        if kill_after:
-            # Disconnect runtime / free up GPU instance (mainly for Colab)
-            !kill -9 -1
-
     
     @staticmethod
-    def fully_train_topology(config_path=None,
-                             kill_after=True):
+    def fully_train_topology(config_path=None):
         ''' 
             Given the current configuration file, 
             extract the best previously-found topology and fully-train it 
@@ -67,10 +61,10 @@ class HiveNAS(object):
 
         print(res)
 
-        if kill_after:
-            # Disconnect runtime / free up GPU instance
-            !kill -9 -1
-
 
 # Run HiveNAS
-HiveNAS.find_topology()
+if __name__ == "__main__":
+
+    HiveNAS.find_topology()
+
+    

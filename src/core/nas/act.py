@@ -1,21 +1,36 @@
+"""Calculates a cutoff performance threshold, below which a model stops training
+"""
+
 from tensorflow.keras.callbacks import Callback
 
 class TerminateOnThreshold(Callback):
-    """
-        Adaptive Cutoff Threshold (ACT)
-
-        Keras Callback that terminates training if a given 'sparse_categorical_accuracy'
-        dynamic threshold is not reached after n_epochs.
-        The termination threshold has a logarithmic nature where the threshold
-        increases by a decaying factor.
-    """
+    '''Adaptive Cutoff Threshold (ACT)
+    
+    Keras Callback that terminates training if a given :code:`val_sparse_categorical_accuracy`
+    dynamic threshold is not reached after :math:`\\epsilon` epochs.
+    The termination threshold has a logarithmic nature where the threshold
+    increases by a decaying factor.
+    
+    Attributes:
+        beta (float): threshold coefficient (captures the leniency of the calculated threshold)
+        monitor (str): the optimizer metric type to monitor and calculate ACT on
+        n_classes (int): number of classes
+        zeta (float): diminishing factor; a positive, non-zero factor that controls how steeply the function horizontally asymptotes at :math:`y = 1.0` (i.e 100% accuracy)
+    '''
 
     def __init__(self, 
                 monitor='val_sparse_categorical_accuracy', 
                 threshold_multiplier=0.25,
                 diminishing_factor=0.25,
                 n_classes = None):
-        ''' Initialize threshold-based termination callback '''
+        '''Initialize threshold-based termination callback 
+        
+        Args:
+            monitor (str, optional): the optimizer metric type to monitor and calculate ACT on
+            threshold_multiplier (float, optional): threshold coefficient (captures the leniency of the calculated threshold)
+            diminishing_factor (float, optional): iminishing factor; a positive, non-zero factor that controls how steeply the function horizontally asymptotes at y = 1.0 (i.e 100% accuracy)
+            n_classes (None, optional): number of classes / output neurons
+        '''
         
         super(TerminateOnThreshold, self).__init__()
 
@@ -24,34 +39,48 @@ class TerminateOnThreshold(Callback):
         self.zeta = diminishing_factor
         self.n_classes = n_classes
 
-    def get_threshold(self, epoch):
-        ''' Calculates val_acc termination threshold given the current epoch '''
-        '''
-            ΔThreshold = ß(1 - (1 / n))
-            Threshold_base = (1 / n) + ΔThreshold = (1 / n) + ß(1 - (1 / n))
-                                                  = (1 + ßn - ß) / n
 
-            Range of Threshold_base = (1 / n, 1) ; horizontal asymptote at 1
-            ΔThreshold decays as the number of classes decreases
+    def get_threshold(self, epoch):
+        '''Calculates the termination threshold given the current epoch 
+        
+            .. math:: ΔThreshold = ß(1 - \\frac{1}{n})
+
+            .. math:: 
+
+                Threshold_{base} = \\frac{1}{n} + ΔThreshold &= \\frac{1}{n} + ß(1 - \\frac{1}{n}) \\
+                                                              
+                                                        &= \\frac{(1 + ßn - ß)}{n}
+            
+            .. math:: Threshold_{base} \\Rightarrow (\\frac{1}{n},\\: 1) \\; ; \\text{horizontal asymptote at} \\; Threshold_{base} = 1
+
+            :math:`ΔThreshold` decays as the number of classes decreases
             
             --------------
 
             To account for the expected increase in accuracy over the number
-            of epochs ε, a growth_factor is added to the base threshold:
+            of epochs :math:`ε` , a growth factor :math:`g` is added to the base threshold:
 
-            growth_factor = (1 - Threshold_base) - (1 / (1 / 1-Threshold_base) + ζ(ε - 1))
+            .. math:: g = (1 - Threshold_{base}) - \\frac{1}{\\frac{1}{1-Threshold_{base}} + ζ(ε - 1)}
             
-            Threshold_adaptive = Threshold_base + growth_factor
+            .. math:: Threshold_{adaptive} = Threshold_{base} + g
 
-            Range of growth_factor = [Threshold_base, 1) ; horizontal asymptote at 1
+            .. math:: g \\Rightarrow [Threshold_{base}, 1) \\; ; \\text{horizontal asymptote at} \\; g = 1
+
+        Args:
+            epoch (int): current epoch
+        
+        Returns:
+            float: calculated cutoff threshold
         '''
 
         baseline = 1.0 / self.n_classes     # baseline (random) val_acc
         complement_baseline = 1 - baseline
         delta_threshold = complement_baseline * self.beta
         base_threshold = baseline + delta_threshold
-        ''' n_classes = 10, threshold_multiplier = 0.15 '''
-        ''' yields .325 acc threshold for epoch 1 '''
+        ''' 
+        n_classes = 10, threshold_multiplier = 0.15
+        yields .325 acc threshold for epoch 1 
+        '''
 
         # epoch-based decaying increase in val_acc threshold
         complement_threshold = 1 - base_threshold    # the increase factor's upper limit
@@ -72,7 +101,12 @@ class TerminateOnThreshold(Callback):
 
 
     def on_epoch_end(self, epoch, logs=None):
-        ''' Called by Keras backend after each epoch during .fit() & .evaluate() '''
+        '''Called by Keras backend after each epoch during :code:`.fit()` & :code:`.evaluate()` 
+        
+        Args:
+            epoch (int): current epoch
+            logs (None, optional): contains all the monitors (or metrics) used by the optimizer in the training and evaluation contexts
+        '''
 
         logs = logs or {}
 

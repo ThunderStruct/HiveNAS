@@ -8,8 +8,9 @@ HiveNAS Documentation
 
 .. toctree::
    :maxdepth: 5
-   :caption: Contents:
+   :caption: Documentation
 
+   installation
    api
 
 
@@ -18,4 +19,3 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`modindex`
-* :ref:`search`

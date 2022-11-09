@@ -1,15 +1,27 @@
+"""The Search Space phase of the NAS framework
+"""
+
 import re
 import numpy as np
 import networkx as nx
 
 class NASSearchSpace(object):
-    ''' Defines the Search Space used to sample candidates by HiveNAS '''
+    '''Defines the Search Space used to sample candidates by HiveNAS 
+    
+    Attributes:
+        all_paths (list): a list of all Directed Acyclic sub-Graphs in the search space (i.e all candidates)
+        config (dict): the predefined operational parameters pertaining to the search space (defined in :func:`~config.params.Params.search_space_config`)
+        dag (:class:`~networkx.DiGraph`): the search space graph (depracated; otf-encoding used at the moment)
+    '''
          
     def __init__(self, config):
         '''
-            Configurations are predefined in the Params class,
-            the implementation should work given any set of operations' mapping
-            and depth
+        Configurations are predefined in the Params class (:func:`~config.params.Params.search_space_config`),
+        the implementation should work given any set of operations' mapping
+        and depth
+        
+        Args:
+            config (dict): the predefined operational parameters pertaining to the search space (defined in :func:`~config.params.Params.search_space_config`)
         '''
 
         self.config = config
@@ -18,7 +30,10 @@ class NASSearchSpace(object):
 
     def sample(self):
         '''
-            Samples a random point in the search space
+        Samples a random point (i.e a candidate architecture) from the search space
+        
+        Returns:
+            str: string-encoded representation of the architecture
         '''
 
         # assert self.all_paths != None, 'Search space needs to be initialized!'
@@ -44,7 +59,23 @@ class NASSearchSpace(object):
 
 
     def get_neighbor(self, path_str):
-        ''' Returns a path with 1-op difference (a neighbor)'''
+        '''Returns a path with 1-op difference (a neighbor).
+
+        The definition of a neighbor architecture differs from one model to another in the literature,
+        however, the general consensus is a 1-op difference network [1].
+
+
+
+        [1] `Colin White et al. “How Powerful are Performance Predictors in Neural Architecture Search?” 
+        In: Advances in Neural Information Processing Systems 34 (2021).`
+
+
+        Args:
+            path_str (str): string-encoded representation of the architecture
+        
+        Returns:
+            str: string-encoded representation of a neighbor architecture
+        '''
 
         path = self.__strip_path(self.__decode_path(path_str))
 
@@ -72,9 +103,15 @@ class NASSearchSpace(object):
 
 
     def eval_format(self, path):
-        ''' 
-            Formats a path for evaluation (stripped, decoded, and
-            excluding input/output layers) given a string-encoded path
+        '''
+        Formats a path for evaluation (stripped, decoded, and
+        excluding input/output layers) given a string-encoded path
+        
+        Args:
+            path (str): string-encoded representation of the architecture
+        
+        Returns:
+            list: a list of operations ([str]) representing a model architecture to be used by the evaluation strategy
         '''
 
         return self.__strip_path(self.__decode_path(path))[1:-1]
@@ -82,9 +119,12 @@ class NASSearchSpace(object):
 
     def __initialize_graph(self):
         '''
-            Initializes the search space DAG for easier sampling by the
-            search algorithm
-            [Deprecated] -- The search space DAG-representation is too memory-expensive
+        .. deprecated:: 0.1.0
+
+        Initializes the search space DAG for easier sampling by the
+        search algorithm.
+
+        :class:`~networkx.DiGraph` search space encoding consumes too much memory -- deprecated
         '''
         
         self.dag = nx.DiGraph()
@@ -112,13 +152,27 @@ class NASSearchSpace(object):
 
 
     def __encode_path(self, path):
-        ''' Returns a string encoding of a given path (list of ops)'''
+        '''Returns a string encoding of a given path (list of ops)
+        
+        Args:
+            path (list): list of operations ([str]) representing the architecture
+        
+        Returns:
+            str: string-encoded representation of the given architecture
+        '''
 
         return '|'.join(self.__strip_path(path))
 
 
     def __decode_path(self, path):
-        ''' Returns a list of ops given a string-encoded path '''
+        '''Returns a list of operations given a string-encoded path 
+        
+        Args:
+            path (str): string-encoded representation of an architecture
+        
+        Returns:
+            list: list of operations ([str]) representing the given architecture
+        '''
 
         ops = path.split('|')
 
@@ -129,15 +183,25 @@ class NASSearchSpace(object):
 
 
     def __strip_path(self, path):
-        ''' Strips path of layer ID prefixes given a list of ops '''
+        '''Strips path of layer ID prefixes given a list of ops 
+        
+        Args:
+            path (list): list of operations ([str]), each with a layer ID prefix (as was needed for the DAG version of the search space)
+        
+        Returns:
+            list: list of operations ([str]) stipped of the layer IDs
+        '''
         
         return [re.sub('L\d+_', '', s) for s in path]
 
 
     def compute_space_size(self):
-        ''' 
-            Returns the number of possible architectures in the given space
-            (i.e operations and depth) for analytical purposes
+        '''
+        Returns the number of possible architectures in the given space
+        (i.e operations and depth) for analytical purposes
+        
+        Returns:
+            int: the size of the search space (number of all possible candidates)
         '''
 
         return len(list(self.config['operations'].keys())) ** \

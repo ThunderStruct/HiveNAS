@@ -1,3 +1,6 @@
+"""Image Augmentation methods
+"""
+
 import sys
 sys.path.append('...')
 
@@ -5,21 +8,30 @@ import numpy as np
 from tensorflow.image import random_contrast, random_saturation
 
 class ImgAug:
-    ''' 
-        Element-wise image augmentation methods, used to preprocess a
-        given dataset.
-        (most affine transformations are already implemented in 
-        Keras' ImageDataGenerator)
+    '''Element-wise image augmentation methods, used to preprocess a
+    given dataset.
+
+    (most affine transformations used are implemented in \
+    :class:`tensorflow.keras.preprocessing.image.ImageDataGenerator`)
     '''
 
     @staticmethod
-    def random_cutout(np_tensor):
-        '''
-            Randomly applies cutout augmentation to a given rank 3 tensor as
-            defined in [1].
-
-            [1] DeVries, T., & Taylor, G. W. (2017). Improved regularization of 
-            convolutional neural networks with cutout.
+    def random_cutout(np_tensor, cutout_color=127):
+        '''Randomly applies cutout augmentation to a given rank 3 tensor as
+        defined in [1]. Defaults to grey cutout
+        
+        [1] DeVries, T., & Taylor, G. W. (2017). Improved regularization of 
+        convolutional neural networks with cutout.
+        
+        Args:
+            np_tensor (:class:`numpy.array`): rank 3 numpy tensor-respresentation of \
+            the data sample
+            cutout_color (int, optional): RGB-uniform value of the cutout color \
+            *(defaults to grey (:code:`127`). white (:code:`255`) and black \
+            (:code:`0`) are also valid)*
+        
+        Returns:
+            :class:`numpy.array`: augmented numpy tensor (with a random cutout)
         '''
 
         cutout_height = int(np.random.uniform(0.1, 0.2) * np_tensor.shape[0])
@@ -30,27 +42,52 @@ class ImgAug:
 
         np_tensor[cutout_height_point: cutout_height_point + cutout_height, 
                   cutout_width_point: cutout_width_point + cutout_width, 
-                  :] = 127    # 127 = grey cutout,
-                              # 0 (black) or 255 (white) also valid
+                  :] = cutout_color    # 127 = grey cutout,
+                                       # 0 (black) or 255 (white) also valid
         
         return np.array(np_tensor)
 
 
     @staticmethod
     def random_contrast(np_tensor):
-        ''' Apply random contrast augmentation '''
+        '''Apply random contrast augmentation 
+        
+        Args:
+            np_tensor (:class:`numpy.array`): rank 3 numpy tensor-respresentation of \
+            the data sample
+        
+        Returns:
+            (:class:`numpy.array`): transformed numpy tensor with random contrast
+        '''
         
         return np.array(random_contrast(np_tensor, 0.5, 2))
 
     @staticmethod
     def random_saturation(np_tensor):
-        ''' Apply random saturation augmentation '''
+        '''Apply random saturation augmentation 
+        
+        Args:
+            np_tensor (:class:`numpy.array`): rank 3 numpy tensor-respresentation of \
+            the data sample
+        
+        Returns:
+            (:class:`numpy.array`): transformed numpy tensor with random saturation
+        '''
 
         return np.array(random_saturation(np_tensor, 0.2, 3))
 
     @staticmethod
     def augment(np_tensor):
-        ''' Used by ImageDataGenerator's preprocess_function '''
+        '''Used by ImageDataGenerator's preprocess_function 
+        
+        Args:
+            np_tensor (:class:`numpy.array`): rank 3 numpy tensor-respresentation of \
+            the data sample
+        
+        Returns:
+            (:class:`numpy.array`): augmented numpy tensor with all applicable \
+            transformations/augmentations
+        '''
 
         from config import Params
 

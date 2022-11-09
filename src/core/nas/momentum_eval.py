@@ -1,17 +1,39 @@
+"""Calculates and incentivizes the stability of convergence
+"""
+
 from tensorflow.keras.callbacks import Callback
 
+
 class MomentumAugmentation(Callback):
-    ''' Calculates the momentum's moving average of the parent model '''
+    '''Calculates the momentum's moving average of the parent model 
+    
+    Attributes:
+        monitor (str): the optimizer metric type to monitor and calculate momentums on
+    '''
 
     def __init__(self, monitor='val_sparse_categorical_accuracy'):
-        ''' Initialize MA '''
+        '''Initialize MA 
+        
+        Args:
+            monitor (str, optional): the optimizer metric type to monitor and calculate momentums on
+        '''
 
         super(MomentumAugmentation, self).__init__()
         self.monitor = monitor
 
     
     def get_momentum(self, epoch, acc):
-        ''' Calculates the momentums based on the given accuracies and epochs '''
+        '''Calculates the momentums based on the given accuracies and epochs
+
+        .. math:: μm(ε) = \\frac{αm(ε) − αm(ε − 1)}{αm(ε − 1) − αm(ε − 2)} \\quad    \\forall \; ε \\ge 2
+        
+        Args:
+            epoch (int): current epoch
+            acc (float): current epoch's accuracy
+        
+        Returns:
+            (float, float): a tuple consisting of the (current accuracy, current momentum)
+        '''
 
         if epoch < 2:
             # momentum = acc at ε < 3
@@ -31,7 +53,12 @@ class MomentumAugmentation(Callback):
 
     
     def on_epoch_end(self, epoch, logs=None):
-        ''' Called by Keras backend after each epoch during .fit() & .evaluate() '''
+        '''Called by Keras backend after each epoch during :code:`.fit()` & :code:`.evaluate()` 
+        
+        Args:
+            epoch (int): current epoch
+            logs (dict, optional): contains all the monitors (or metrics) used by the optimizer in the training and evaluation contexts
+        '''
 
         logs = logs or {}
 

@@ -1,29 +1,47 @@
+"""HiveNAS file-handling methods
+"""
+
 import os
 import yaml
+import errno
 import pickle
 import pandas as pd
 from .prompt_handler import PromptHandler
 
 
 class FileHandler:
-    '''
-        Wrapper for file-handling methods
+    '''Wrapper for file-handling methods
     '''
     
     __VALID_PATHS = {}
 
     @staticmethod
     def __path_exists(path):
-        ''' Checks if file exists '''
+        '''Checks if file exists 
+        
+        Args:
+            path (str): path to file (includes filename and extension)
+        
+        Returns:
+            bool: whether or not the file exists
+        '''
 
         return os.path.exists(path)
 
 
     @staticmethod
-    def validate_path(path, ignore_abs_format=True):
-        ''' 
-            Ensures that a given path is universaly valid
-            (Windows/Linux/MacOS/POSIX)
+    def validate_path(path):
+        '''Ensures that a given directory path is universaly valid \
+        (Windows/Linux/MacOS/POSIX) and creates it.
+
+        Prompts user for overwriting (using :class:`~utils.prompt_handler.PromptHandler`) \
+        if it already exists
+
+        Args:
+            path (str): path to validated
+        
+        Returns:
+            bool: validity of the given path
         '''
 
         # Directory already exists, prompt for overwrite permission (first time only)
@@ -58,7 +76,11 @@ class FileHandler:
 
     @staticmethod
     def create_dir(path):
-        ''' Recursively creates new directory if it does not exist '''
+        '''Recursively creates new directory if it does not exist 
+        
+        Args:
+            path (str): directory path to be created
+        '''
 
         if not FileHandler.__path_exists(path):
             os.makedirs(path)
@@ -66,9 +88,14 @@ class FileHandler:
 
     @staticmethod
     def path_must_exist(path):
-        ''' 
-            Checks if file exists and raises error if it does not.
-            Used when the logic of the algorithm depends on the loaded file
+        '''Checks if file exists and raises error if it is not.
+        Used when the logic of the algorithm depends on the loaded file
+        
+        Args:
+            path (str): path to file
+        
+        Raises:
+            :class:`FileNotFoundError`: file does not exist
         '''
 
         if not FileHandler.__path_exists(path):
@@ -79,7 +106,18 @@ class FileHandler:
 
     @staticmethod
     def save_pickle(p_dict, path, filename, force_dir=True):
-        ''' Saves the given dictionary as pickle '''
+        '''Saves the given dictionary as a :class:`pickle` 
+        
+        Args:
+            p_dict (dict): data to be saved
+            path (str): path to save directory
+            filename (str): output filename
+            force_dir (bool, optional): whether or not to force create \
+            the directory if it does not exist
+        
+        Returns:
+            bool: save operation status
+        '''
 
         if not FileHandler.__path_exists(path):
             if force_dir:
@@ -97,7 +135,16 @@ class FileHandler:
 
     @staticmethod
     def load_pickle(path, default_dict={}):
-        ''' Loads pickle and returns decoded dictionary '''
+        '''Loads :class:`pickle`  and returns decoded dictionary 
+        
+        Args:
+            path (str): path to :class:`pickle` file (includes filename)
+            default_dict (dict, optional): default dictionary to return \
+            if the pickle does not exist (defaults to :code:`{ }`)
+        
+        Returns:
+            dict: loaded data
+        '''
 
         res = default_dict
 
@@ -110,7 +157,18 @@ class FileHandler:
 
     @staticmethod
     def save_df(df, path, filename, force_dir=True):
-        ''' Saves the given dataframe to a given path+filename '''
+        '''Saves a Pandas DataFrame to the given path
+        
+        Args:
+            df (:class:`pandas.DataFrame`): dataframe to be saved
+            path (str): save directory path
+            filename (str): output filename
+            force_dir (bool, optional): whether or not to force create \
+            the directory if it does not exist
+        
+        Returns:
+            bool: save operation status
+        '''
 
         if not FileHandler.__path_exists(path):
             if force_dir:
@@ -125,7 +183,16 @@ class FileHandler:
 
     @staticmethod
     def load_df(path, default_df=None):
-        ''' Loads dataframe if it exists or defaults to an empty df '''
+        '''Loads a :class:`pandas.DataFrame`
+        
+        Args:
+            path (str): path to the dataframe
+            default_df (None, optional): default dictionary to return \
+            if the dataframe does not exist (defaults to empty dataframe)
+        
+        Returns:
+            :class:`pandas.DataFrame`: loaded dataframe or default
+        '''
 
         res = default_df or pd.DataFrame()
 
@@ -137,7 +204,21 @@ class FileHandler:
     
     @staticmethod
     def export_yaml(config_dict, path, filename, file_version_comment='', force_dir=True):
-        ''' Exports a given dictionary to a yaml file '''
+        '''Exports a given dictionary to a yaml file 
+        
+        Args:
+            config_dict (dict): dictionary to be saved as yaml
+            path (str): save directory path
+            filename (str): output filename
+            file_version_comment (str, optional): optional string to be prepended at /
+            the top of the yaml file as a comment (typically used to highlight the /
+            configuration version)
+            force_dir (bool, optional): whether or not to force create \
+            the directory if it does not exist
+        
+        Returns:
+            bool: save operation status
+        '''
         
         if not FileHandler.__path_exists(path):
             if force_dir:
@@ -155,7 +236,18 @@ class FileHandler:
     
     @staticmethod
     def load_yaml(path, loader, default_dict={}):
-        ''' Loads a yaml config file and returns it as dict '''
+        '''Loads a yaml config file and returns it as dict 
+        
+        Args:
+            path (str): path to the yaml file (includes filename)
+            loader (:class:`yaml.SafeLoader`): yaml custom loader defined \
+            in :func:`~config.params.Params.export_yaml`
+            default_dict (dict, optional): default dictionary to return \
+            if the yaml file does not exist (defaults to :code:`{ }`)
+        
+        Returns:
+            dict: loaded yaml data
+        '''
 
         res = default_dict
 
