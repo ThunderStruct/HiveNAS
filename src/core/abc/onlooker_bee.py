@@ -28,8 +28,8 @@ class OnlookerBee(ArtificialBee):
         '''Initializes an onlooker bee 
         '''
 
-        if not hasattr(EmployeeBee, 'id_tracker'):
-            EmployeeBee.id_tracker = 0
+        if not hasattr(OnlookerBee, 'id_tracker'):
+            OnlookerBee.id_tracker = 0
 
         super(OnlookerBee, self).__init__(None, OnlookerBee.id_tracker)
         

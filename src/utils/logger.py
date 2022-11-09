@@ -20,7 +20,9 @@ class Logger:
 
     __START_TIME = None
 
-    EVALUATION_LOGGING = False
+    # Define EVALUATION_LOGGING in top-level module /
+    # (i.e :code:`Logging.EVALUATION_LOGGING = False`)
+    # EVALUATION_LOGGING = False
 
 
     @staticmethod
@@ -62,7 +64,7 @@ class Logger:
             (the string-encoded architecture in the case of NAS)
         '''
 
-        if not Logger.EVALUATION_LOGGING:
+        if hasattr(Logger, 'EVALUATION_LOGGIN') and not Logger.EVALUATION_LOGGING:
             return
 
         print('\n{} {} ID ({}) -- Candidate ({})\n'.format(Logger.__EVAL_PREFIX,
@@ -82,7 +84,7 @@ class Logger:
             epochs (int): number of additional momentum epochs assigned
         '''
 
-        if not Logger.EVALUATION_LOGGING:
+        if hasattr(Logger, 'EVALUATION_LOGGIN') and not Logger.EVALUATION_LOGGING:
             return
 
         print('{} Extending ({} - fitness: {}) by {} epochs...\n'.format(Logger.__MOMENTUM_PREFIX,
@@ -101,7 +103,7 @@ class Logger:
             filename (str): output filename
         '''
 
-        if not Logger.EVALUATION_LOGGING:
+        if hasattr(Logger, 'EVALUATION_LOGGIN') and not Logger.EVALUATION_LOGGING:
             return
 
         print('\n{} Candidate ({}) was saved to {}\n'.format(Logger.__FILESAVE_PREFIX,
