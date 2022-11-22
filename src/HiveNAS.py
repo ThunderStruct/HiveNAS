@@ -2,7 +2,7 @@
 """
 
 import os
-import plaidml.keras
+# import plaidml.keras
 from argparse import ArgumentParser
 from config import Params
 from utils import Logger
@@ -10,8 +10,8 @@ from benchmarks import Sphere, Rosenbrock
 from core import NASInterface, ArtificialBeeColony
 
 
-plaidml.keras.install_backend()
-os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
+# plaidml.keras.install_backend()
+# os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 
 
 class HiveNAS(object):
