@@ -1,4 +1,4 @@
-"""HiveNAS file-handling methods
+"""HiveNAS file-handling methods.
 """
 
 import os
@@ -210,8 +210,8 @@ class FileHandler:
             config_dict (dict): dictionary to be saved as yaml
             path (str): save directory path
             filename (str): output filename
-            file_version_comment (str, optional): optional string to be prepended at /
-            the top of the yaml file as a comment (typically used to highlight the /
+            file_version_comment (str, optional): optional string to be prepended at \
+            the top of the yaml file as a comment (typically used to highlight the \
             configuration version)
             force_dir (bool, optional): whether or not to force create \
             the directory if it does not exist

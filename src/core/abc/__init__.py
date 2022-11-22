@@ -1,4 +1,4 @@
-"""All Artificial Bee Colony optimizer modules. 
+"""All modules relating to the Artificial Bee Colony optimization algorithm.
 """
 
 from .abc import ArtificialBeeColony

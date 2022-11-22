@@ -1,4 +1,4 @@
-"""Shere optimization benchmark
+"""Shere optimization benchmark.
 """
 
 import numpy as np

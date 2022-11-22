@@ -4,7 +4,8 @@
    'Momentum Eval': 'Momentum Evaluation (ME)',
    'Nas Interface': 'NAS Interface',
    'Artificial Bee': 'Artificial Bee (base class)',
-   'Hivenas': 'HiveNAS'
+   'Hivenas': 'HiveNAS',
+   'Image Aug': 'Image Augmentation'
 } -%}
 
 {%- set PROJECTNAME = 'hivenas' -%}

@@ -1,4 +1,5 @@
-"""ABC's Scout Bee module
+"""Scout Bees' class responsible for the initialization phase of the
+Artificial Bee Colony optimization.
 """
 
 import sys

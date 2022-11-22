@@ -30,6 +30,11 @@ release = '0.1.3'
 
 add_module_names = False
 
+
+html_title = "HiveNAS - Neural Architecture Search using Artificial Bee Colony Optimization"
+html_short_title = "HiveNAS"
+html_favicon = '_static/favicon.png'
+
 # autoclass_content = 'both'
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -40,14 +45,20 @@ extensions = [
 	#'sphinx.ext.autosummary',
 	'sphinx.ext.coverage',
 	'sphinx.ext.napoleon',
-	'sphinx.ext.mathjax'
+	'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinx_copybutton',
+    'myst_parser',
 	# 'sphinx.ext.graphviz',
 	# 'sphinx.ext.inheritance_diagram'
 ]
 
+source_suffix = ['.rst', '.md']
+
+pygments_style = 'sphinx'
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['source/_templates']
+templates_path = ['_templates']
 apidoc_template_dir = 'source/_templates/autoapi'
 
 # List of patterns, relative to source directory, that match files and
@@ -61,7 +72,7 @@ exclude_patterns = ['_build', 'api/src.rst', 'api/modules.rst']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo' # 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -72,10 +83,18 @@ html_static_path = ['_static']
 html_css_files = ['../../../source/_static/css/custom.css']
 
 # Framework logo
-html_logo = "_static/hivenas_logo.png"
+# html_logo = "_static/hivenas_logo.png"
 
 # Bypass rtd theme preset navigation limit
-html_theme_options = {'navigation_depth': 6}
+# html_theme_options = {'navigation_depth': 6}
+html_theme_options = {
+    'sidebar_hide_name': True,
+    'light_logo': 'hivenas_logo.svg',
+    'dark_logo': 'hivenas_logo_light.svg'
+}
+
+html_show_sphinx = False
+html_show_furo = False
 
 # -- Options for AutoAPI -----------------------------------------------------
 

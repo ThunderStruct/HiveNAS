@@ -1,4 +1,4 @@
-"""The abstract definition of Objective Interfaces in HiveNAS
+"""The abstract definition of Objective Interfaces in **HiveNAS**.
 """
 
 from abc import ABC, abstractmethod

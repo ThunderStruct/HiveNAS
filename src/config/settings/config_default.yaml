@@ -3,7 +3,7 @@
 # Current Version #
 #-----------------#
 
-CONFIG_VERSION: default_sc_enabled                       # All generated results will be under this config name (must be a file-path compatible string)
+CONFIG_VERSION: default_config                           # All generated results will be under this config name (must be a file-path compatible string)
 
 
 #--------------------#
@@ -27,8 +27,8 @@ ITERATIONS_COUNT: 15                                     # Number of ABC iterati
 # File-Handler Parameters #
 #-------------------------#
 
-RESULTS_SAVE_FREQUENCY: 1                                # Update the main csv data file every n evaluations (not iterations! i.e ITERATIONS_COUNT * (COLONY_SIZE / RESULTS_SAVE_FREQUENCY) total saves)
-RESULTS_BASE_PATH: /content/gdrive/MyDrive/HiveNAS/      # A folder will be created within this base path containing all generated results
+RESULTS_SAVE_FREQUENCY: 1                                # Update the main csv data file every n evaluations (not iterations! i.e ITERATIONS_COUNT * (COLONY_SIZE / RESULTS_SAVE_FREQUENCY) = total saves)
+RESULTS_BASE_PATH: ./results/                            # A folder will be created within this base path containing all generated results
 HISTORY_FILES_SUBPATH: training_history/                 # Training history files relative sub-path
 ENABLE_WEIGHT_SAVING: False                              # Option to save model files (warning: each model takes up 1-2gb of space on average)
 WEIGHT_FILES_SUBPATH: weights/                           # Weight/model files relative sub-path
@@ -60,6 +60,15 @@ RESIDUAL_BLOCKS_RATE: 0.15                                # Skip-connections pro
 #---------------------------------------#
 
 DATASET: CIFAR10                                          # Data loader, specify custom data loaders in NASEval init ["CIFAR10", "MNIST", "FASHION_MNIST"]
+INPUT_STEM:                                               # Static input layers' stem
+    - !Operation
+        op: Conv2D
+        filters: 32
+        kernel_size: !!python/tuple [3,3]
+    - !Operation
+        op: BatchNormalization
+    - !Operation
+        op: ReLU
 OUTPUT_STEM:                                              # Static output layers' stem
     - !Operation
         op: Flatten
@@ -77,15 +86,6 @@ OUTPUT_STEM:                                              # Static output layers
         op: Dense
         units: 512
         activation: relu
-INPUT_STEM:                                              # Static input layers' stem
-    - !Operation
-        op: Conv2D
-        filters: 32
-        kernel_size: !!python/tuple [3,3]
-    - !Operation
-        op: BatchNormalization
-    - !Operation
-        op: ReLU
 EPOCHS: 5                                                # Number of epochs per candidate training
 FULL_TRAIN_EPOCHS: 100                                   # Number of epochs for the best candidates' full training
 LR: 0.001                                                # Optimizer's learning rate
@@ -98,7 +98,7 @@ OPTIMIZER: Adam                                          # SGD Optimizer ('Adam'
 #---------------------------------#
 
 AFFINE_TRANSFORMATIONS_ENABLED: True                     # Enables simple affine transformations (rotation, shift, zoom, flip; customize in NASEval.__initialize_dataset())
-CUTOUT_PROB: 0                                           # Probability of applying cutout augmentation per sample (0.0 = disabled)
+CUTOUT_PROB: 0.5                                         # Probability of applying cutout augmentation per sample (0.0 = disabled)
 SATURATION_AUG_PROB: 0.75                                # Probability of applying saturation augmentation per sample (0.0 = disabled)
 CONTRAST_AUG_PROB: 0.75                                  # Probability of applying contrast augmentation per sample (0.0 = disabled)
 
@@ -108,7 +108,7 @@ CONTRAST_AUG_PROB: 0.75                                  # Probability of applyi
 #--------------------------#
 
 MOMENTUM_EPOCHS: 0                                       # Number of additional momentum epochs to be applied to the fittest models at the end of every iteration
-TERMINATION_THRESHOLD_FACTOR: 0.0                        # Threshold factor (beta) for early-stopping (refer to the TerminateOnThreshold class for details; 0.0 = ACT disabled)
+TERMINATION_THRESHOLD_FACTOR: 0.25                       # Threshold factor (beta) for early-stopping (refer to the TerminateOnThreshold class for details; 0.0 = ACT disabled)
 TERMINATION_DIMINISHING_FACTOR: 0.25                     # Diminishing factor (zeta) for termination threshold over epochs (refer to the TerminateOnThreshold class for details)
 
 

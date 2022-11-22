@@ -1,4 +1,4 @@
-"""Image Augmentation methods
+"""Image Augmentation methods.
 """
 
 import sys
@@ -27,8 +27,8 @@ class ImgAug:
             np_tensor (:class:`numpy.array`): rank 3 numpy tensor-respresentation of \
             the data sample
             cutout_color (int, optional): RGB-uniform value of the cutout color \
-            *(defaults to grey (:code:`127`). white (:code:`255`) and black \
-            (:code:`0`) are also valid)*
+            *(defaults to grey (* :code:`127` *). white (* :code:`255` *) and black \
+            (* :code:`0` *) are also valid)*
         
         Returns:
             :class:`numpy.array`: augmented numpy tensor (with a random cutout)
@@ -64,7 +64,8 @@ class ImgAug:
 
     @staticmethod
     def random_saturation(np_tensor):
-        '''Apply random saturation augmentation 
+        '''Apply random saturation augmentation (only works on RGB images, \
+        skipped on grayscale datasets)
         
         Args:
             np_tensor (:class:`numpy.array`): rank 3 numpy tensor-respresentation of \
@@ -73,6 +74,10 @@ class ImgAug:
         Returns:
             (:class:`numpy.array`): transformed numpy tensor with random saturation
         '''
+
+        if np_tensor.shape[-1] != 3:
+            # not an RGB image, skip augmentation
+            return np.array(np_tensor)
 
         return np.array(random_saturation(np_tensor, 0.2, 3))
 

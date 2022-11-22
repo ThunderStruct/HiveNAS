@@ -1,5 +1,5 @@
 """Employee Bees' class responsible for the exploration phase of the 
-Artificial Bee Colony optimization
+Artificial Bee Colony optimization.
 """
 
 import sys
@@ -8,8 +8,9 @@ sys.path.append('...')
 import time
 import numpy as np
 import pandas as pd
-from .artificial_bee import ArtificialBee
 from utils import Logger
+from config import Params
+from .artificial_bee import ArtificialBee
 
 class EmployeeBee(ArtificialBee):
     '''Employee Bees, responsible for explorations and partial exploitation of the

@@ -1,5 +1,5 @@
 """Abstract :class:`~core.objective_interface.ObjectiveInterface` class for \
-numerical benchmarks
+numerical benchmarks.
 """
 
 import sys

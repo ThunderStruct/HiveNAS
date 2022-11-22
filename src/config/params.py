@@ -1,4 +1,4 @@
-"""All operational parameters used by HiveNAS and configuration methods
+"""All operational parameters used by HiveNAS and configuration methods.
 """
 
 import sys
@@ -21,7 +21,8 @@ class Params:
 
     @staticmethod
     def config_form():
-        '''Facilitates the configuration UI form (for Google Colab) \
+        '''Facilitates the configuration UI form (for the `Google Colab version \
+        <https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb>`_) \
         and exports all parameters as a dictionary
         
         Returns:
@@ -391,6 +392,36 @@ class Params:
             return path
 
         return None
+
+
+    @staticmethod
+    def get_all_config():
+        '''Returns all operational parameters
+
+        Returns:
+            dict: returns the dict containing all configurations *(for \
+            argparsing purposes)*
+        '''
+
+        return Params.__CONFIG
+
+
+    @staticmethod
+    def set_parameter(key, val):
+        '''Overrides a default parameter (used by argparser)
+        
+        Args:
+            key (str): dictionary key to select parameter
+            val (any): new value to override default parameter
+        '''
+
+        if key not in Params.__CONFIG or not isinstance(val, type(Params.__CONFIG[key])):
+            # invalid key or value type
+            return False
+
+        Params.__CONFIG[key] = val
+
+        return True
 
 
     def __class_getitem__(cls, key):

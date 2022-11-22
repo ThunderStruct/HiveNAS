@@ -1,5 +1,5 @@
 """Onlooker Bees' class responsible for the exploitation phase of the
-Artificial Bee Colony optimization
+Artificial Bee Colony optimization.
 """
 
 import sys

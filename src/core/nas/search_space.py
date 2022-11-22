@@ -1,4 +1,4 @@
-"""The Search Space phase of the NAS framework
+"""The Search Space phase of the NAS framework.
 """
 
 import re

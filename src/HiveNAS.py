@@ -1,5 +1,9 @@
+"""Top-level module used to run the framework.
+"""
+
 import os
 import plaidml.keras
+from argparse import ArgumentParser
 from config import Params
 from utils import Logger
 from benchmarks import Sphere, Rosenbrock
@@ -10,14 +14,21 @@ plaidml.keras.install_backend()
 os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 
 
-
 class HiveNAS(object):
-    ''' Encapsulates all high level modules and runs the ABC-based optimization '''
+    '''Encapsulates all high level modules and runs the ABC-based optimization
+    '''
 
     @staticmethod
     def find_topology(evaluation_logging=True,
                       config_path=None):
-        ''' Runs the base NAS optimization loop '''
+        '''Runs the base NAS optimization loop 
+        
+        Args:
+            evaluation_logging (bool, optional): determines whether to log \
+            evaluation info or not; defaults to :code:`True`
+            config_path (str, optional): yaml configuration file path; \
+            defaults to hard-coded config in :class:`~config.params.Params`
+        '''
 
         if config_path:
             # load yaml config from given path
@@ -41,9 +52,12 @@ class HiveNAS(object):
     
     @staticmethod
     def fully_train_topology(config_path=None):
-        ''' 
-            Given the current configuration file, 
-            extract the best previously-found topology and fully-train it 
+        '''Given the current configuration file, 
+        extract the best previously-found topology and fully-train it 
+        
+        Args:
+            config_path (str, optional): yaml configuration file path; \
+            defaults to hard-coded config in :class:`~config.params.Params`
         '''
 
         if config_path:
@@ -65,6 +79,52 @@ class HiveNAS(object):
 # Run HiveNAS
 if __name__ == "__main__":
 
-    HiveNAS.find_topology()
+    # parse arguments
+    parser = ArgumentParser()
+
+    parser.add_argument('-ft', '--fully-train',
+                        type=bool,
+                        help='Specifies whether to fully-train the best \
+                        candidate or perform the initial shallow NAS',
+                        choices=[True, False],
+                        default=False)
+    parser.add_argument('-vb', '--verbose',
+                        help='Specifies whether to log all evaluation details',
+                        default=False,
+                        action='store_true')
+    parser.add_argument('-c', '--config-file',
+                        type=str,
+                        help='Configuration file (relative) path',
+                        default=None)
+
+    abbrevs = []
+    for key, val in Params.get_all_config().items():
+        # TODO: add :code:`help` argument to generated args list
+        if not isinstance(val, list) and not isinstance(val, dict):
+            split_ls = key.lower().split('_')
+            abbrev = '-' + ''.join([w[0] for w in split_ls])
+            param = '--' + '-'.join(split_ls)
+
+            if abbrev in abbrevs:
+                # handle abbreviation conflicts
+                abbrev = f'-{split_ls[0][0]}{split_ls[0][int(len(split_ls[0])/2)+1]}'
+
+            parser.add_argument(abbrev, param, default=val, type=type(val))
+            abbrevs.append(abbrev)
+
+
+    args = parser.parse_args()
+    args = vars(args)
+
+    # set config args
+    for key, val in args.items():
+        if key.upper() in Params.get_all_config():
+            Params.set_parameter(key.upper(), val)
+                
+    # run HiveNAS
+    if args['fully_train']:
+        HiveNAS.fully_train_topology(args['verbose'], args['config_file'])
+    else:
+        HiveNAS.find_topology(args['config_file'])
 
     

@@ -1,7 +1,7 @@
 
 # ![HiveNAS Logo](https://i.imgur.com/mDTdNim.jpg)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.2-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.2/) [![License](https://img.shields.io/badge/license-MIT-orange)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.4-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.4/) [![License](https://img.shields.io/badge/license-MIT-orange)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE) [![Read the Docs](https://readthedocs.org/projects/hivenas/badge/?version=latest)](https://hivenas.readthedocs.io/en/latest/)
 
 A feature-rich, Neural Architecture Search framework based on Artificial Bee Colony optimization
 
@@ -9,12 +9,19 @@ A feature-rich, Neural Architecture Search framework based on Artificial Bee Col
 
 ## Getting Started
 
-HiveNAS (publication link here) is a modular NAS framework that can find and optimize a neural architecture with state-of-the-art performance.
+**HiveNAS** ([preprint](https://arxiv.org/abs/2211.10250)) is a modular NAS framework that can find and optimize a neural architecture with state-of-the-art performance.
 
 ### Installation
+
 #### PyPi (recommended)
 
-`pip install HiveNAS`
+The Python package is hosted on the [Python Package Index (PyPI)](https://pypi.org/project/hivenas/).
+
+The latest published version of HiveNAS can be installed using
+
+```sh
+pip install HiveNAS
+```
 
 #### Manual Installation
 Simply clone the entire repo and extract the files in the `HiveNAS` folder, then import them into your project folder.
@@ -41,9 +48,9 @@ Or use one of the shorthand methods below
   - Import the newly checked out files into your project folder
   
 
-### Usage
-(readthedocs link here)
+### Documentation
 
+Detailed examples and the full API docs are [hosted on Read the Docs](https://hivenas.readthedocs.io/en/latest/).
 
 ## License
 

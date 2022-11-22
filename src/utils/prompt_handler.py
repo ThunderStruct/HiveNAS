@@ -1,4 +1,4 @@
-"""User prompts-handler
+"""User prompts' handle.
 """
 
 class PromptHandler:

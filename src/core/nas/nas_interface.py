@@ -1,4 +1,4 @@
-"""The NAS Interface encapsulating the Evaluation Strategy and Search Space
+"""The NAS Interface encapsulating the Evaluation Strategy and Search Space.
 """
 
 import sys

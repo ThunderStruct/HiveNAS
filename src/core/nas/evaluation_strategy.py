@@ -1,4 +1,4 @@
-"""The Evaluation Strategy phase of the NAS framework
+"""The Evaluation Strategy phase of the NAS framework.
 """
 
 import sys
@@ -44,15 +44,16 @@ class NASEval(object):
             (self.X_train, self.y_train), (self.X_test, self.y_test) = cifar10.load_data()
         elif config['dataset'] == 'MNIST':
             (self.X_train, self.y_train), (self.X_test, self.y_test) = mnist.load_data()
-            # Add a placeholder dimension to the dataset to match RGB image datasets
+            # Add a placeholder dimension to the dataset to match CIFAR10's
             self.X_train = self.X_train.reshape(-1,28,28,1)
             self.X_test = self.X_test.reshape(-1,28,28,1) 
         elif config['dataset'] == 'FASHION_MNIST':
             (self.X_train, self.y_train), (self.X_test, self.y_test) = fashion_mnist.load_data()
+            # Add a placeholder dimension to the dataset to match CIFAR10's
             self.X_train = self.X_train.reshape(-1,28,28,1)
             self.X_test = self.X_test.reshape(-1,28,28,1) 
         else:
-            pass
+            raise ValueError('Dataset loader undefined!')
 
         if Params['ENABLE_WEIGHT_SAVING']:
             # create directory if it does not exist

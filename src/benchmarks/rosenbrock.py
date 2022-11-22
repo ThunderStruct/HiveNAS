@@ -1,4 +1,4 @@
-"""Rosenbrock optimization benchmark
+"""`Rosenbrock optimization <https://academic.oup.com/comjnl/article/3/3/175/345501>`_ benchmark.
 """
 
 from .base import NumericalBenchmark

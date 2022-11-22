@@ -1,4 +1,4 @@
-"""Calculates a cutoff performance threshold, below which a model stops training
+"""Calculates a cutoff performance threshold, below which a model stops training.
 """
 
 from tensorflow.keras.callbacks import Callback
@@ -43,28 +43,28 @@ class TerminateOnThreshold(Callback):
     def get_threshold(self, epoch):
         '''Calculates the termination threshold given the current epoch 
         
-            .. math:: ΔThreshold = ß(1 - \\frac{1}{n})
+        .. math:: ΔThreshold = ß(1 - \\frac{1}{n})
 
-            .. math:: 
+        .. math:: 
 
-                Threshold_{base} = \\frac{1}{n} + ΔThreshold &= \\frac{1}{n} + ß(1 - \\frac{1}{n}) \\
-                                                              
-                                                        &= \\frac{(1 + ßn - ß)}{n}
-            
-            .. math:: Threshold_{base} \\Rightarrow (\\frac{1}{n},\\: 1) \\; ; \\text{horizontal asymptote at} \\; Threshold_{base} = 1
+            Threshold_{base} = \\frac{1}{n} + ΔThreshold &= \\frac{1}{n} + ß(1 - \\frac{1}{n}) \\
+                                                          
+                                                    &= \\frac{(1 + ßn - ß)}{n}
+        
+        :math:`Threshold_{base} \\Rightarrow (\\frac{1}{n},\\: 1) \\;` ; horizontal asymptote at :math:`\\; Threshold_{base} = 1`
 
-            :math:`ΔThreshold` decays as the number of classes decreases
-            
-            --------------
+        :math:`ΔThreshold` decays as the number of classes decreases.
+        
+        --------------
 
-            To account for the expected increase in accuracy over the number
-            of epochs :math:`ε` , a growth factor :math:`g` is added to the base threshold:
+        To account for the expected increase in accuracy over the number
+        of epochs :math:`ε` , a growth factor :math:`g` is added to the base threshold:
 
-            .. math:: g = (1 - Threshold_{base}) - \\frac{1}{\\frac{1}{1-Threshold_{base}} + ζ(ε - 1)}
-            
-            .. math:: Threshold_{adaptive} = Threshold_{base} + g
+        .. math:: g = (1 - Threshold_{base}) - \\frac{1}{\\frac{1}{1-Threshold_{base}} + ζ(ε - 1)}
+        
+        .. math:: Threshold_{adaptive} = Threshold_{base} + g
 
-            .. math:: g \\Rightarrow [Threshold_{base}, 1) \\; ; \\text{horizontal asymptote at} \\; g = 1
+        .. math:: g \\Rightarrow [Threshold_{base}, 1) \\; ; \\text{horizontal asymptote at} \\; g = 1
 
         Args:
             epoch (int): current epoch

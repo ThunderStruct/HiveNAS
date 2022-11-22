@@ -1,6 +1,6 @@
 """Abstract definitions of the 
 :class:`~core.abc.employee_bee.EmployeeBee` and 
-:class:`~core.abc.onlooker_bee.OnlookerBee` methods
+:class:`~core.abc.onlooker_bee.OnlookerBee` methods.
 """
 
 import sys
@@ -109,7 +109,7 @@ class ArtificialBee(ABC):
 
     @abstractmethod
     def evaluate(self, obj_interface: ObjectiveInterface):
-        '''Evaluates the current :class:`core.abc.food_source.FoodSource`
+        '''Evaluates the current :class:`~core.abc.food_source.FoodSource`
         
         Args:
             obj_interface (:class:`~core.objective_interface.ObjectiveInterface`): the objective interface \

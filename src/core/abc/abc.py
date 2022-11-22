@@ -1,4 +1,4 @@
-"""The main Artificial Bee Colony optimization algorithm
+"""The main Artificial Bee Colony optimization algorithm.
 """
 
 import sys
@@ -13,6 +13,7 @@ from .onlooker_bee import OnlookerBee
 from .scout_bee import ScoutBee
 from config import Params
 from utils import Logger
+from utils import FileHandler
 
 
 class ArtificialBeeColony:

@@ -1,4 +1,4 @@
-"""Calculates and incentivizes the stability of convergence
+"""Calculates and incentivizes the stability of convergence.
 """
 
 from tensorflow.keras.callbacks import Callback
