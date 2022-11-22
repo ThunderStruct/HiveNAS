@@ -1,7 +1,7 @@
 
 # ![HiveNAS Logo](https://i.imgur.com/mDTdNim.jpg)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.4-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.4/) [![License](https://img.shields.io/badge/license-MIT-orange)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE) [![Read the Docs](https://readthedocs.org/projects/hivenas/badge/?version=latest)](https://hivenas.readthedocs.io/en/latest/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.5-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.5/) [![License](https://img.shields.io/badge/license-MIT-orange)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE) [![Read the Docs](https://readthedocs.org/projects/hivenas/badge/?version=latest)](https://hivenas.readthedocs.io/en/latest/)
 
 A feature-rich, Neural Architecture Search framework based on Artificial Bee Colony optimization
 
