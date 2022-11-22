@@ -30,7 +30,6 @@ release = '0.1.3'
 
 add_module_names = False
 
-
 html_title = "HiveNAS - Neural Architecture Search using Artificial Bee Colony Optimization"
 html_short_title = "HiveNAS"
 html_favicon = '_static/favicon.png'
@@ -59,7 +58,7 @@ pygments_style = 'sphinx'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
-apidoc_template_dir = 'source/_templates/autoapi'
+# apidoc_template_dir = 'source/_templates/autoapi'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -94,7 +93,7 @@ html_theme_options = {
 }
 
 html_show_sphinx = False
-html_show_furo = False
+# html_show_furo = False
 
 # -- Options for AutoAPI -----------------------------------------------------
 

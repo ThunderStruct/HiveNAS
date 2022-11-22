@@ -5,6 +5,19 @@
     background-color: white;
 }
 
+div.bottom-of-page div.left-details {
+    visibility: hidden;
+}
+
+div.bottom-of-page div.left-details div.copyright {
+    visibility: visible !important;
+}
+
+div.bottom-of-page div.left-details a,
+div.bottom-of-page div.left-details #text {
+    display: none;
+}
+
 body:not([data-theme="dark"]) div.highlight {
     background: #f8f9fb;
 }

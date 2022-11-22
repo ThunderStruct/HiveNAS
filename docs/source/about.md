@@ -1,6 +1,6 @@
 # About
 
-**HiveNAS** is a feature-rich, Neural Architecture Search *(NAS)* framework based on Artificial Bee Colony optimization.
+**HiveNAS** is a feature-rich, Neural Architecture Search *(NAS)* framework based on [Artificial Bee Colony optimization](https://link.springer.com/chapter/10.1007/978-3-540-72950-1_77).
 
 ## Abstract
 
