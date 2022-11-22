@@ -128,7 +128,8 @@ section#about h2 {
     font-size: 1.35em;
 }
 
-section#about strong {
+section#about strong,
+section#usage strong {
     font-size: 0.95em;
 }
 

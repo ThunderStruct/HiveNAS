@@ -14,6 +14,7 @@ The top-level entry point of the framework is the :class:`~HiveNAS` class.
 Examples
 --------
 
+
 The simplest way to run **HiveNAS** is to use the default parameters (which are empirically optimized for simple image-classification tasks) as follows:
 
 .. code-block:: bash
@@ -26,6 +27,16 @@ To specify a custom configuration file (see :ref:`Configuration <configuration>`
 .. code-block:: bash
 
   python HiveNAS.py --verbose -c="path/to/config.yaml"
+
+
+
+To import the top-level module into an existing project:
+
+.. code-block:: python
+
+  from HiveNAS import HiveNAS
+
+  HiveNAS.find_topology()
 
 
 All primitive, non-iterable :ref:`operational parameters <parameters-table>` (i.e :python:`int`, :python:`float`, :python:`bool`, :python:`str`) are defined as CLI arguments. Find more customizable use cases below.
