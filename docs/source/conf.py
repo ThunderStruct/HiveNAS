@@ -110,3 +110,19 @@ autoapi_options = [
 
 toc_object_entries_show_parents = 'hide'
 
+
+# RTD generate API
+
+def run_apidoc(_):
+	from sphinx.ext.apidoc import main
+
+	cur_dir = os.path.abspath(os.path.dirname(__file__))
+	out_dir = os.path.join(cur_dir, 'api')
+	module = os.path.join(cur_dir, '../../src')
+	template_dir = os.path.join(cur_dir, '_templates', 'apidoc')
+	main(['-o', out_dir, module, '-fMe', '-t', template_dir])
+
+def setup(app):
+	app.connect('builder-inited', run_apidoc)
+
+
