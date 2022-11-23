@@ -22,11 +22,10 @@ copyright = '2022, Mohamed Shahawy'
 author = 'Mohamed Shahawy'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.3'
+release = '0.1.5'
 
 
 # -- General configuration ---------------------------------------------------
-
 
 add_module_names = False
 
@@ -93,22 +92,22 @@ html_theme_options = {
 }
 
 html_show_sphinx = False
-# html_show_furo = False
 
 # -- Options for AutoAPI -----------------------------------------------------
 
 autoapi_options = [
-	'members', 
-	'undoc-members', 
-	'private-members', 
-	'show-inheritance', 
-	'show-module-summary', 
-	'special-members', 
+	'members',
+	'undoc-members',
+	'private-members',
+	'show-inheritance',
+	'show-module-summary',
+	'special-members',
 	'imported-members',
 	'titlesonly'
 ]
 
 toc_object_entries_show_parents = 'hide'
+add_function_parentheses = False
 
 # ----------------------------------------------------------------------------
 

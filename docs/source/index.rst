@@ -18,7 +18,7 @@ HiveNAS
    usage
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 4
    :caption: Technical Documentation
 
    api
