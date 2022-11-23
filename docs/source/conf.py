@@ -79,7 +79,7 @@ html_theme = 'furo' # 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 # Custom CSS
-html_css_files = ['../../../source/_static/css/custom.css']
+#html_css_files = ['../../../source/_static/css/custom.css']
 
 # Framework logo
 # html_logo = "_static/hivenas_logo.png"
@@ -122,9 +122,10 @@ def run_apidoc(_):
 	template_dir = os.path.join(cur_dir, '_templates', 'apidoc')
 
 	main(['-o', out_dir, module, '-fMe', '-t', template_dir])
-	
+
 
 def setup(app):
 	app.connect('builder-inited', run_apidoc)
+	app.add_css_file('css/custom.css')
 
 
