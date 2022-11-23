@@ -8,7 +8,7 @@ API
    <hr>
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
    api/HiveNAS
    api/benchmarks
