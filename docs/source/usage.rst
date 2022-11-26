@@ -107,3 +107,14 @@ To override any of the :ref:`default parameters <parameters-table>`, refer to th
     SATURATION_AUG_PROB                :bash:`--saturation-aug-prob`               :bash:`-sap`
     CONTRAST_AUG_PROB                  :bash:`--contrast-aug-prob`                 :bash:`-cap`
   ==================================  ==========================================  ===============
+
+
+Alternative Datasets
+~~~~~~~~~~~~~~~~~~~~
+
+In addition to the predefined datasets, virtually any labeled type of data can be used by defining a custom loader in :class:`~core.nas.evaluation_strategy.NASEval`\'s initializer.
+
+.. note::
+  Ensure that the input data (i.e :python:`(X_train, X_test)`) have a 4-dimensional shape, matching `Keras' CIFAR10 <https://keras.io/api/datasets/cifar10/>`_ . If the data has less channels, consider adding placeholders as demonstrated in :class:`~core.nas.evaluation_strategy.NASEval` with MNIST/FashionMNIST (:python:`X_train.reshape(-1,28,28,1)`)
+
+**HiveNAS** currently supports CNNs only, with plans to expand to RNNs in the future.

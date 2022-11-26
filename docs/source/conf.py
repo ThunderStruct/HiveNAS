@@ -51,6 +51,10 @@ extensions = [
 	# 'sphinx.ext.inheritance_diagram'
 ]
 
+myst_enable_extensions = [
+	'html_admonition'
+]
+
 source_suffix = ['.rst', '.md']
 
 pygments_style = 'sphinx'
