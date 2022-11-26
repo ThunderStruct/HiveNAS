@@ -7,7 +7,7 @@ This framework is provided under the {ref}`MIT License <mit_license>`. *Sufficie
 
 ## MIT License
 
-*Copyright (c) 2022 Mohamed Shahawy, Elhadj Benkhelifa*
+*Copyright (c) 2022 Mohamed Shahawy*
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
