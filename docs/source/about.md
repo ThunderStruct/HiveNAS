@@ -13,4 +13,4 @@ For more information on the motivation, methodology, and results acquired by Hiv
 
 ## Acknowledgment
 
-This research was conducted under the supervision of [Prof. Elhadj Benkhelifa](https://scholar.google.com/citations?user=KylI32wAAAAJ&hl=en&oi=ao).
+This research was funded by [Staffordshire University](https://www.staffs.ac.uk/) and conducted under the supervision of [Prof. Elhadj Benkhelifa](https://scholar.google.com/citations?user=KylI32wAAAAJ&hl=en&oi=ao).
