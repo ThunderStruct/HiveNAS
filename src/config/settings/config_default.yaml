@@ -41,17 +41,43 @@ RESUME_FROM_RESULTS_FILE: False                          # Resumes training from
 
 DEPTH: 4                                                 # Excluding input / output stems
 OPERATIONS:
-    # Use the custom !Operation tag to define a partial_function based on a valid Keras layer
-    sep5x5_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
-    sep3x3_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
-    sep5x5_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
-    sep3x3_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
-    sep5x5_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
-    sep3x3_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
-    max_pool3x3: !Operation {op: MaxPooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
-    avg_pool3x3: !Operation {op: AveragePooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
-    batch_norm: !Operation {op: BatchNormalization}
-    dropout: !Operation {op: Dropout, rate: 0.2}
+    search_space:
+        # Use the custom !Operation tag to define a partial_function based on a valid Keras layer
+        sep5x5_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+        sep3x3_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+        sep5x5_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+        sep3x3_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+        sep5x5_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+        sep3x3_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+        max_pool3x3: !Operation {op: MaxPooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
+        avg_pool3x3: !Operation {op: AveragePooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
+        dropout: !Operation {op: Dropout, rate: 0.2}
+        identity: !Operation {op: Activation, activation: "linear"}
+
+    reference_space:
+        avg_pool3x3: !Operation {op: AveragePooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
+        batch_norm: !Operation {op: BatchNormalization}
+        conv3x3_128bnreluavgpool: !Operation {conv_filt: 128, conv_kern: 3, op: ConvBnReLUAvgPool}
+        conv3x3_16: !Operation {activation: relu, filters: 16, kernel_size: !!python/tuple [3, 3], op: Conv2D}
+        conv3x3_16bnrelu: !Operation {conv_filt: 16, conv_kern: 3, op: ConvBnReLU}
+        conv3x3_256bnreluavgpool: !Operation {conv_filt: 256, conv_kern: 3, op: ConvBnReLUAvgPool}
+        conv3x3_32bnrelu: !Operation {conv_filt: 32, conv_kern: 3, op: ConvBnReLU}
+        conv3x3_64bnreluavgpool: !Operation {conv_filt: 64, conv_kern: 3, op: ConvBnReLUAvgPool}
+        conv3x3_8: !Operation {activation: relu, filters: 8, kernel_size: !!python/tuple [3, 3], op: Conv2D}
+        conv5x5_16: !Operation {activation: relu, filters: 16, kernel_size: !!python/tuple [5, 5], op: Conv2D}
+        conv5x5_8: !Operation {activation: relu, filters: 8, kernel_size: !!python/tuple [5, 5], op: Conv2D}
+        dropout: !Operation {op: Dropout, rate: 0.15}
+        global_avg_pool: !Operation {op: GlobalAveragePooling2D}
+        identity: !Operation {op: Activation}
+        max_pool3x3: !Operation {op: MaxPooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
+        sep3x3_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+        sep3x3_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+        sep3x3_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
+        sep5x5_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+        sep5x5_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+        sep5x5_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
+
+
 RESIDUAL_BLOCKS_RATE: 0.15                                # Skip-connections probability per layer (0.0 = ResNets deactivated, 1.0 = every layer will be preceded by a skip-connection)
 
 
