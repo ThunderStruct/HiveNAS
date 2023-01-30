@@ -9,7 +9,7 @@ import base64
 import numpy as np
 from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.datasets import cifar10, mnist, fashion_mnist
-from tensorflow.keras.layers import Input, Conv2D, Add, Dense
+from tensorflow.keras.layers import Input, Conv2D, Add, Dense, Activation
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from config import Params
@@ -32,7 +32,7 @@ class NASEval(object):
         Initializes the evaluation parameters' configuration ;
         for a different dataset, a data-loader must be specified below
         as with CIFAR10 Keras loader
-        
+
         Args:
             config (dict): the predefined operational parameters pertaining to evaluation (defined in :func:`~config.params.Params.evaluation_strategy_config`)
         '''
@@ -64,8 +64,9 @@ class NASEval(object):
 
 
     def __instantiate_network(self, arch):
-        '''Instantiates a Keras network given an architecture op list 
-        
+        '''
+        Instantiates a Keras network given an architecture op list 
+
         Args:
             arch (list): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
         '''
@@ -78,7 +79,7 @@ class NASEval(object):
 
         # add input stem
         for op in self.config['input_stem']:
-            net = op()(net)
+            net = self.config['operations']['reference_space'][op]()(net)
 
         # add hidden layers
         for layer in arch:
@@ -88,29 +89,29 @@ class NASEval(object):
                 res_count.append((net, int(layer[3:])))
                 continue
 
-            assert layer in self.config['operations'], 'Operation must be defined as a partial in HIVE_EVAL_CONFIG'
-            net = self.config['operations'][layer]()(net)
+            assert layer in self.config['operations']['reference_space'], 'Operation must be defined as a partial in HIVE_EVAL_CONFIG'
+            net = self.config['operations']['reference_space'][layer]()(net)
 
-            for idx, row in enumerate(res_count):
-                connection, counter = row
-                counter -= 1
+        for idx, row in enumerate(res_count):
+            connection, counter = row
+            counter -= 1
 
-                # apply pooling to residual blocks to maintain shape
-                # [deprecated] -- pooling layers padded
-                # if 'pool' in layer:
-                #     connection = self.config['operations'][layer]()(connection)
+            # apply pooling to residual blocks to maintain shape
+            # [deprecated] -- pooling layers padded
+            # if 'pool' in layer:
+            #     connection = self.config['operations'][layer]()(connection)
 
-                if counter == 0:
-                    # conv1x1 to normalize channels
-                    fx = Conv2D(net.shape[-1], (1, 1), padding='same')(connection)
-                    net = Add()([fx, net])
-                    del res_count[idx]
-                else:
-                    res_count[idx] = (connection, counter)
+            if counter == 0:
+            # conv1x1 to normalize channels
+                fx = Conv2D(net.shape[-1], (1, 1), padding='same')(connection)
+                net = Add()([fx, net])
+                del res_count[idx]
+            else:
+                res_count[idx] = (connection, counter)
 
         # add output stem
         for op in self.config['output_stem']:
-            net = op()(net)
+            net = self.config['operations']['reference_space'][op]()(net)
 
         # add output layer
         net = Dense(len(np.unique(self.y_test)), activation='softmax')(net)
@@ -120,7 +121,7 @@ class NASEval(object):
 
     def get_weights_filename(self, arch):
         '''
-        Hashes the architecture op-list into a filename using SHA1
+        Hashes the architecture op-list into a unique filename using SHA1
         
         Args:
             arch (list): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
@@ -129,7 +130,7 @@ class NASEval(object):
             str: SHA1-hashed unique string ID for the given architecture
         '''
 
-        return hashlib.sha1(''.join(arch).encode("UTF-8")).hexdigest()
+        return hashlib.sha1(''.join(arch).encode('UTF-8')).hexdigest()
 
 
     def evaluate(self, arch):
@@ -385,6 +386,10 @@ class NASEval(object):
     def __compile_model(self):
         '''Compiles model in preparation for evaluation 
         '''
+
+        if self.config['lr'] > 0.0:
+            # override learning rate
+            self.config['optimizer'].keywords['learning_rate'] = self.config['lr']
 
         self.model.compile(loss='sparse_categorical_crossentropy', \
                            optimizer=self.config['optimizer'](), \

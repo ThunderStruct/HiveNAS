@@ -6,12 +6,14 @@ sys.path.append('..')
 
 import os
 import yaml
+from config import OperationCells
 from utils import FileHandler
 from functools import partial
-from tensorflow.keras.optimizers import RMSprop, Adam
+from tensorflow.keras.optimizers import RMSprop, Adam, SGD
 from tensorflow.keras.layers import Conv2D, Flatten, MaxPooling2D
-from tensorflow.keras.layers import SeparableConv2D, Dense, Dropout
+from tensorflow.keras.layers import SeparableConv2D, Dense, Dropout, Activation
 from tensorflow.keras.layers import AveragePooling2D, BatchNormalization, ReLU
+from tensorflow.keras.layers import GlobalAveragePooling2D
 
 
 class Params:
@@ -21,8 +23,7 @@ class Params:
 
     @staticmethod
     def config_form():
-        '''Facilitates the configuration UI form (for the `Google Colab version \
-        <https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb>`_) \
+        '''Facilitates the configuration UI form (for Google Colab) \
         and exports all parameters as a dictionary
         
         Returns:
@@ -31,7 +32,7 @@ class Params:
 
 
         ''' Configuration Version (used as filenames) '''
-        CONFIG_VERSION = 'config_version'   #@param {type:"string"}
+        CONFIG_VERSION = 'hivenas_default'   #@param {type:"string"}
 
 
         #@markdown ## ABC Optimizer Parameters
@@ -95,22 +96,72 @@ class Params:
 
         ''' Search space operations '''
         OPERATIONS = {
-            'sep5x5_128': partial(SeparableConv2D, filters=128, kernel_size=(5,5), activation='relu', padding='same'),
-            'sep3x3_128': partial(SeparableConv2D, filters=128, kernel_size=(3,3), activation='relu', padding='same'),
-            'sep5x5_64': partial(SeparableConv2D, filters=64, kernel_size=(5,5), activation='relu', padding='same'),
-            'sep3x3_64': partial(SeparableConv2D, filters=64, kernel_size=(3,3), activation='relu', padding='same'),
-            'sep5x5_32': partial(SeparableConv2D, filters=32, kernel_size=(5,5), activation='relu', padding='same'),
-            'sep3x3_32': partial(SeparableConv2D, filters=32, kernel_size=(3,3), activation='relu', padding='same'),
-            'max_pool3x3': partial(MaxPooling2D, pool_size=(3,3), strides=(1,1), padding='same'),
-            'avg_pool3x3': partial(AveragePooling2D, pool_size=(3,3), strides=(1,1), padding='same'),
-            'batch_norm': partial(BatchNormalization),
-            'dropout': partial(Dropout, rate=0.2)
+            'search_space': [
+                # 'conv3x3_64bnreluavgpool', 
+                # 'resx2reg_32_conv3x3_64bnrelu', 
+                # 'conv3x3_128bnreluavgpool', 
+                # 'conv3x3_256bnreluavgpool', 
+                # 'resx1reg_128_conv3x3_256bnrelu',
+                # 'resx2reg_128_conv3x3_128bnrelu'
+
+                'conv3x3_64bnreluavgpool', 
+                'resx2reg_32_conv3x3_64bnrelu', 
+                'conv3x3_128bnreluavgpool', 
+                'conv3x3_256bnreluavgpool', 
+                'resx1reg_128_conv3x3_256bnrelu',
+                'resx1reg_128_conv3x3_128bnrelu'
+            ],
+            'reference_space': {
+                'conv5x5_16': partial(Conv2D, filters=16, kernel_size=(5,5), activation='relu'),
+                'conv3x3_16': partial(Conv2D, filters=16, kernel_size=(3,3), activation='relu'),
+                'conv5x5_8': partial(Conv2D, filters=8, kernel_size=(5,5), activation='relu'),
+                'conv3x3_8': partial(Conv2D, filters=8, kernel_size=(3,3), activation='relu'),
+                'sep5x5_128': partial(SeparableConv2D, filters=128, kernel_size=(5,5), activation='relu', padding='same'),
+                'sep3x3_128': partial(SeparableConv2D, filters=128, kernel_size=(3,3), activation='relu', padding='same'),
+                'sep5x5_64': partial(SeparableConv2D, filters=64, kernel_size=(5,5), activation='relu', padding='same'),
+                'sep3x3_64': partial(SeparableConv2D, filters=64, kernel_size=(3,3), activation='relu', padding='same'),
+                'sep5x5_32': partial(SeparableConv2D, filters=32, kernel_size=(5,5), activation='relu', padding='same'),
+                'sep3x3_32': partial(SeparableConv2D, filters=32, kernel_size=(3,3), activation='relu', padding='same'),
+                'max_pool3x3': partial(MaxPooling2D, pool_size=(3,3), strides=(1,1), padding='same'),
+                'avg_pool3x3': partial(AveragePooling2D, pool_size=(3,3), strides=(1,1), padding='same'),
+                'global_avg_pool': partial(GlobalAveragePooling2D),
+                'batch_norm': partial(BatchNormalization),
+                'dropout': partial(Dropout, rate=0.15),
+                'identity': partial(Activation, 'linear'),
+
+                'conv3x3_32bnrelu': partial(OperationCells.ConvBnReLU, conv_kern=3, conv_filt=32),
+                'conv3x3_16bnrelu': partial(OperationCells.ConvBnReLU, conv_kern=3, conv_filt=16),
+                'conv3x3_256bnreluavgpool': partial(OperationCells.ConvBnReLUAvgPool, conv_kern=3, conv_filt=256),
+                'conv3x3_128bnreluavgpool': partial(OperationCells.ConvBnReLUAvgPool, conv_kern=3, conv_filt=128),
+                'conv3x3_64bnreluavgpool': partial(OperationCells.ConvBnReLUAvgPool, conv_kern=3, conv_filt=64),
+
+                'resx2reg_128_conv3x3_256bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=256, reg_filters=128, block_count=2),
+                'resx2reg_128_conv3x3_128bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=128, reg_filters=128, block_count=2),
+                'resx2reg_128_conv3x3_64bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=64, reg_filters=128, block_count=2),
+                'resx2reg_64_conv3x3_256bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=256, reg_filters=64, block_count=2),
+                'resx2reg_64_conv3x3_128bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=128, reg_filters=64, block_count=2),
+                'resx2reg_64_conv3x3_64bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=64, reg_filters=64, block_count=2),
+                'resx2reg_32_conv3x3_256bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=256, reg_filters=32, block_count=2),
+                'resx2reg_32_conv3x3_128bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=128, reg_filters=32, block_count=2),
+                'resx2reg_32_conv3x3_64bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=64, reg_filters=32, block_count=2),
+                'resx1reg_128_conv3x3_256bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=256, reg_filters=128, block_count=1),
+                'resx1reg_128_conv3x3_128bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=128, reg_filters=128, block_count=1),
+                'resx1reg_128_conv3x3_64bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=64, reg_filters=128, block_count=1),
+                'resx1reg_64_conv3x3_256bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=256, reg_filters=64, block_count=1),
+                'resx1reg_64_conv3x3_128bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=128, reg_filters=64, block_count=1),
+                'resx1reg_64_conv3x3_64bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=64, reg_filters=64, block_count=1),
+                'resx1reg_32_conv3x3_256bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=256, reg_filters=32, block_count=1),
+                'resx1reg_32_conv3x3_128bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=128, reg_filters=32, block_count=1),
+                'resx1reg_32_conv3x3_64bnrelu': partial(OperationCells.ResidualConvBnReLU, conv_kern=3, conv_filt=64, reg_filters=32, block_count=1),
+
+            }
         }
 
-        ''' '''
+        ''' Skip-Connections'/Residual Blocks' occurence rate (0.0 = disabled) '''
+        STOCHASTIC_SC_RATE = 0.0    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
-        # Skip-Connections'/Residual Blocks' occurence rate (0.0 = disabled)
-        RESIDUAL_BLOCKS_RATE = 0.15    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        ''' Squeeze-Excitation blocks ratio (not implemented) '''
+        # SE_RATIO = 0.0  #@param {type:"slider", min:0.0, max:0.25, step:0.25}
 
 
         #@markdown \
@@ -125,28 +176,22 @@ class Params:
 
         ''' Static output stem, added to every candidate '''
         OUTPUT_STEM = [
-            partial(Flatten),
-            partial(Dropout, rate=0.15),
-            partial(Dense, units=1024, activation='relu'),
-            partial(Dropout, rate=0.15),
-            partial(Dense, units=512, activation='relu')
+            'global_avg_pool'
         ]
 
         ''' Static input stem, added to every candidate '''
         INPUT_STEM = [
-            partial(Conv2D, filters=32, kernel_size=(3,3)),
-            partial(BatchNormalization),
-            partial(ReLU)
+            'conv3x3_32bnrelu'
         ]
 
         ''' Epochs count per candidate network '''
-        EPOCHS = 5  #@param {type:"slider", min:1, max:25, step:1}
+        EPOCHS = 7  #@param {type:"slider", min:1, max:25, step:1}
         
         ''' Momentum Augmentation epochs (0 = disabled ; overrides ENABLE_WEIGHT_SAVING) '''
         MOMENTUM_EPOCHS = 0 #@param {type:"slider", min:0, max:25}
 
         ''' Epochs count for the best performing candidate upon full training '''
-        FULL_TRAIN_EPOCHS = 50 #@param {type:"slider", min:1, max:150, step:1}
+        FULL_TRAIN_EPOCHS = 1 #@param {type:"slider", min:1, max:150, step:1}
 
         ''' 
             Threshold factor (beta) for early-stopping (refer to the TerminateOnThreshold class for details)
@@ -160,14 +205,14 @@ class Params:
         ''' Diminishing factor (zeta) for termination threshold over epochs '''
         TERMINATION_DIMINISHING_FACTOR = 0.25 #@param {type:"slider", min:0.1, max:1.0, step:0.05}
 
-        ''' Learning rate (overrides default optimizer lr) '''
-        LR = 0.001  #@param {type:"slider", min:0.001, max:0.1, step:0.001}
+        ''' Learning rate (overrides lr defined in the OPTIMIZER param, 0.0 = disabled) '''
+        LR = 0.0  #@param {type:"slider", min:0.0, max:0.1, step:0.001}
 
         ''' Batch size for every candidate evaluation '''
         BATCH_SIZE = 128     #@param {type:"slider", min:8, max:256, step:2}
 
         ''' Optimizer used for both NAS and full-training methods '''
-        OPTIMIZER = 'Adam'    #@param ["Adam", "RMSprop"]
+        OPTIMIZER = partial(SGD, learning_rate=0.08, decay=5e-4, momentum=0.9, nesterov=True)
 
 
         #@markdown \
@@ -180,17 +225,20 @@ class Params:
             (horizontal/vertical shifts, rotation, etc...)
         '''
 
-        AFFINE_TRANSFORMATIONS_ENABLED = True   #@param {type:"boolean"}
+        AFFINE_TRANSFORMATIONS_ENABLED = False   #@param {type:"boolean"}
 
         ''' Probability of random cutout augmentation occurence (0.0 = disabled) '''
-        CUTOUT_PROB = 0.8    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        CUTOUT_PROB = 0.00    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
         ''' Probability of random saturation augmentation occurence (0.0 = disabled) '''
-        SATURATION_AUG_PROB = 0.75    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        SATURATION_AUG_PROB = 0.00    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
         ''' Probability of random contrast augmentation occurence (0.0 = disabled) '''
-        CONTRAST_AUG_PROB = 0.75    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
+        CONTRAST_AUG_PROB = 0.00    #@param {type:"slider", min:0.0, max:1.0, step:0.05}
 
+        # Parameters not defined as a dictionary to enable Colab Forms
+        # Generally, locals() would introduce a security threat, however, 
+        # in this controlled and undeloyable Colab environment, it's safe.
         return locals()
 
 
@@ -206,6 +254,7 @@ class Params:
             path (str): path to yaml configuration file
         
         '''
+
 
         def param_op_constructor(loader: yaml.SafeLoader, node: yaml.nodes.MappingNode):
             '''Constructs NAS Search Space operations (using the custom \
@@ -343,7 +392,7 @@ class Params:
         res = {
             'depth': Params['DEPTH'],
             'operations': Params['OPERATIONS'],
-            'residual_blocks_rate': Params['RESIDUAL_BLOCKS_RATE']
+            'stochastic_sc_rate': Params['STOCHASTIC_SC_RATE'],
         }
 
         return res
@@ -367,7 +416,7 @@ class Params:
             'full_train_epochs': Params['FULL_TRAIN_EPOCHS'],
             'lr': Params['LR'],
             'batch_size': Params['BATCH_SIZE'],
-            'optimizer': globals()[Params['OPTIMIZER']],
+            'optimizer': Params['OPTIMIZER'],
             'termination_threshold_factor': Params['TERMINATION_THRESHOLD_FACTOR'],
             'termination_diminishing_factor': Params['TERMINATION_DIMINISHING_FACTOR'],
             'momentum_epochs': Params['MOMENTUM_EPOCHS']
@@ -391,7 +440,7 @@ class Params:
         if FileHandler.validate_path(path):
             return path
 
-        return None
+        raise RuntimeError('Configuration overwriting denied; aborting...') 
 
 
     @staticmethod

@@ -45,12 +45,12 @@ class NASSearchSpace(object):
 
         for l in range(self.config['depth']):
 
-            if np.random.rand() < self.config['residual_blocks_rate']:
+            if np.random.rand() < self.config['stochastic_sc_rate']:
                 sc_depth = np.random.randint(1, self.config['depth'] - l + 1)
                 path.append('L{}_sc_{}'.format(l+1, sc_depth))
 
             path.append('L{}_{}'.format(l+1, np.random.choice(
-                list(self.config['operations'].keys())
+                list(self.config['operations']['search_space'])
             )))
         
         path.append('output')
@@ -89,7 +89,7 @@ class NASSearchSpace(object):
             ops.remove(path[component])
         else:
             # modify operation
-            ops = list(self.config['operations'].keys())
+            ops = list(self.config['operations']['search_space'])
             ops.remove(path[component])
         
         # Replace randomly chosen component (operation) with any other op
@@ -131,7 +131,7 @@ class NASSearchSpace(object):
         self.dag.add_node('input')
 
         for l in range(self.config['depth']):
-            for op in self.config['operations']:
+            for op in self.config['operations']['search_space']:
                 # Connect input layer to first hidden layer
                 if l == 0:
                     self.dag.add_edges_from([('input', 
@@ -139,7 +139,7 @@ class NASSearchSpace(object):
                     continue
 
                 # Densely connect middle layers
-                for prev_op in self.config['operations']:
+                for prev_op in self.config['operations']['search_space']:
                     self.dag.add_edges_from([('L{}_{}'.format(l, prev_op), 
                                               'L{}_{}'.format(l+1, op))])
 
@@ -204,7 +204,7 @@ class NASSearchSpace(object):
             int: the size of the search space (number of all possible candidates)
         '''
 
-        return len(list(self.config['operations'].keys())) ** \
+        return len(list(self.config['operations']['search_space'])) ** \
         self.config['depth']
 
         
