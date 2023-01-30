@@ -116,7 +116,7 @@ class EmployeeBee(ArtificialBee):
         return self.calculate_fitness() / sum_fitness
 
     
-    def evaluate(self, obj_interface, itr):
+   def evaluate(self, obj_interface, itr):
         '''Evaluates sampled position and increments trial counter 
         
         Args:
@@ -139,6 +139,7 @@ class EmployeeBee(ArtificialBee):
         weights_filename = res['filename']
         params = res['params']
         momentum = res['momentum']
+        momentum = sum([x[1] for _,x in momentum.items()]) / len(momentum) if len(momentum) else 0
 
         self.food_source.time = time.time() - t
         # ACT early bandonment (ACT enabled and network could not pass epoch 1)
@@ -162,13 +163,14 @@ class EmployeeBee(ArtificialBee):
             'candidate': self.food_source.position,
             'fitness': self.food_source.fitness,
             'center_fitness': self.center_fs.fitness,
-            'momentum': sum([x[1] for _,x in momentum.items()]),
+            'momentum': momentum,
             'epochs': epochs,
             'momentum_epochs': 0,
             'params': params,
             'weights_filename': weights_filename,
             'time': self.food_source.time
         })
+        
         return series
 
 
