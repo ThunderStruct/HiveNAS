@@ -86,6 +86,7 @@ class OnlookerBee(ArtificialBee):
         weights_filename = res['filename']
         params = res['params']
         momentum = res['momentum']
+        momentum = sum([x[1] for _,x in momentum.items()]) / len(momentum) if len(momentum) else 0
 
         self.food_source.time = time.time() - t
         self.employee.trials += 1
@@ -99,13 +100,14 @@ class OnlookerBee(ArtificialBee):
             'candidate': self.food_source.position,
             'fitness': self.food_source.fitness,
             'center_fitness': self.get_center_fs().fitness,
-            'momentum': sum([x[1] for _,x in momentum.items()]) / len(momentum),
+            'momentum': momentum,
             'epochs': epochs,
             'momentum_epochs': 0,
             'params': params,
             'weights_filename': weights_filename,
             'time': self.food_source.time
         })
+        
         return series
         
 
