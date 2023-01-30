@@ -116,7 +116,7 @@ class EmployeeBee(ArtificialBee):
         return self.calculate_fitness() / sum_fitness
 
     
-   def evaluate(self, obj_interface, itr):
+    def evaluate(self, obj_interface, itr):
         '''Evaluates sampled position and increments trial counter 
         
         Args:
@@ -170,7 +170,7 @@ class EmployeeBee(ArtificialBee):
             'weights_filename': weights_filename,
             'time': self.food_source.time
         })
-        
+
         return series
 
 

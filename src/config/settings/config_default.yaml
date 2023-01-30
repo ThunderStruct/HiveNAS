@@ -3,7 +3,7 @@
 # Current Version #
 #-----------------#
 
-CONFIG_VERSION: default_config                           # All generated results will be under this config name (must be a file-path compatible string)
+CONFIG_VERSION: hivenas_default                          # All generated results will be under this config name (must be a file-path compatible string)
 
 
 #--------------------#
@@ -28,7 +28,7 @@ ITERATIONS_COUNT: 15                                     # Number of ABC iterati
 #-------------------------#
 
 RESULTS_SAVE_FREQUENCY: 1                                # Update the main csv data file every n evaluations (not iterations! i.e ITERATIONS_COUNT * (COLONY_SIZE / RESULTS_SAVE_FREQUENCY) = total saves)
-RESULTS_BASE_PATH: ./results/                            # A folder will be created within this base path containing all generated results
+RESULTS_BASE_PATH: ../res/archived results/              # A folder will be created within this base path containing all generated results
 HISTORY_FILES_SUBPATH: training_history/                 # Training history files relative sub-path
 ENABLE_WEIGHT_SAVING: False                              # Option to save model files (warning: each model takes up 1-2gb of space on average)
 WEIGHT_FILES_SUBPATH: weights/                           # Weight/model files relative sub-path
@@ -70,6 +70,24 @@ OPERATIONS:
         global_avg_pool: !Operation {op: GlobalAveragePooling2D}
         identity: !Operation {op: Activation}
         max_pool3x3: !Operation {op: MaxPooling2D, padding: same, pool_size: !!python/tuple [3, 3], strides: !!python/tuple [1, 1]}
+        resx1reg_128_conv3x3_128bnrelu: !Operation {block_count: 1, conv_filt: 128, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 128}
+        resx1reg_128_conv3x3_256bnrelu: !Operation {block_count: 1, conv_filt: 256, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 128}
+        resx1reg_128_conv3x3_64bnrelu: !Operation {block_count: 1, conv_filt: 64, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 128}
+        resx1reg_32_conv3x3_128bnrelu: !Operation {block_count: 1, conv_filt: 128, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 32}
+        resx1reg_32_conv3x3_256bnrelu: !Operation {block_count: 1, conv_filt: 256, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 32}
+        resx1reg_32_conv3x3_64bnrelu: !Operation {block_count: 1, conv_filt: 64, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 32}
+        resx1reg_64_conv3x3_128bnrelu: !Operation {block_count: 1, conv_filt: 128, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 64}
+        resx1reg_64_conv3x3_256bnrelu: !Operation {block_count: 1, conv_filt: 256, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 64}
+        resx1reg_64_conv3x3_64bnrelu: !Operation {block_count: 1, conv_filt: 64, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 64}
+        resx2reg_128_conv3x3_128bnrelu: !Operation {block_count: 2, conv_filt: 128, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 128}
+        resx2reg_128_conv3x3_256bnrelu: !Operation {block_count: 2, conv_filt: 256, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 128}
+        resx2reg_128_conv3x3_64bnrelu: !Operation {block_count: 2, conv_filt: 64, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 128}
+        resx2reg_32_conv3x3_128bnrelu: !Operation {block_count: 2, conv_filt: 128, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 32}
+        resx2reg_32_conv3x3_256bnrelu: !Operation {block_count: 2, conv_filt: 256, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 32}
+        resx2reg_32_conv3x3_64bnrelu: !Operation {block_count: 2, conv_filt: 64, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 32}
+        resx2reg_64_conv3x3_128bnrelu: !Operation {block_count: 2, conv_filt: 128, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 64}
+        resx2reg_64_conv3x3_256bnrelu: !Operation {block_count: 2, conv_filt: 256, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 64}
+        resx2reg_64_conv3x3_64bnrelu: !Operation {block_count: 2, conv_filt: 64, conv_kern: 3, op: ResidualConvBnReLU, reg_filters: 64}
         sep3x3_128: !Operation {activation: relu, filters: 128, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
         sep3x3_32: !Operation {activation: relu, filters: 32, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
         sep3x3_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [3, 3], op: SeparableConv2D, padding: same}
@@ -78,45 +96,29 @@ OPERATIONS:
         sep5x5_64: !Operation {activation: relu, filters: 64, kernel_size: !!python/tuple [5, 5], op: SeparableConv2D, padding: same}
 
 
-RESIDUAL_BLOCKS_RATE: 0.15                                # Skip-connections probability per layer (0.0 = ResNets deactivated, 1.0 = every layer will be preceded by a skip-connection)
+STOCHASTIC_SC_RATE: 0.0                                  # Skip-connections probability per layer (0.0 = ResNets deactivated, 1.0 = every layer will be preceded by a skip-connection)
 
 
 #---------------------------------------#
 # NAS Evaluation Strategy configuration #
 #---------------------------------------#
 
-DATASET: CIFAR10                                          # Data loader, specify custom data loaders in NASEval init ["CIFAR10", "MNIST", "FASHION_MNIST"]
-INPUT_STEM:                                               # Static input layers' stem
-    - !Operation
-        op: Conv2D
-        filters: 32
-        kernel_size: !!python/tuple [3,3]
-    - !Operation
-        op: BatchNormalization
-    - !Operation
-        op: ReLU
-OUTPUT_STEM:                                              # Static output layers' stem
-    - !Operation
-        op: Flatten
-    - !Operation
-        op: Dropout
-        rate: 0.25
-    - !Operation
-        op: Dense
-        units: 1024
-        activation: relu
-    - !Operation
-        op: Dropout
-        rate: 0.25
-    - !Operation
-        op: Dense
-        units: 512
-        activation: relu
+DATASET: CIFAR10                                         # Data loader, specify custom data loaders in NASEval init ["CIFAR10", "MNIST", "FASHION_MNIST"]
+INPUT_STEM:                                              # Static input layers' stem (reference strings)
+    - conv3x3_32bnrelu
+OUTPUT_STEM:                                             # Static output layers' stem (reference strings)
+    - global_avg_pool
 EPOCHS: 5                                                # Number of epochs per candidate training
 FULL_TRAIN_EPOCHS: 100                                   # Number of epochs for the best candidates' full training
-LR: 0.001                                                # Optimizer's learning rate
+LR: 0.001                                                # Optimizer's learning rate, overrides default
 BATCH_SIZE: 128                                          # Training batch size
-OPTIMIZER: Adam                                          # SGD Optimizer ('Adam' and 'RMSprop' defined; define custom optimizers by simply importing them to Params (must be availble in globals()))
+OPTIMIZER: !Operation {                                  # Optimizer partial function ('Adam' and 'RMSprop' defined; define custom optimizers by simply importing them to Params (must be availble in globals()))
+                op: SGD,                          
+                nesterov: true,
+                momentum: 0.9,
+                learning_rate: 0.08,
+                decay: 0.0005
+            }                        
 
 
 #---------------------------------#
