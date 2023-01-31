@@ -132,6 +132,24 @@ class NASInterface(ObjectiveInterface):
         # Continues training from saved h5 model (often results in lower fitness)
         return NASInterface.eval_strategy.fully_train(model_file=weight_file)
 
+
+    def train_custom_arch(self, arch_str):
+        '''Fully trains a given string-encoded architecture (primarily used for debugging)
+        
+        Args:
+            arch_str (str): string-encoded representation of the architecture
+
+        Returns:
+            dict: a dictionary containing all relevant results to be saved, \
+            including: fitness, number of training epochs conducted (not including \
+            any previous trainings), hashed file name, number of trainable parameters
+        '''
+
+        arch = NASInterface.search_space.eval_format(arch_str)
+        print(f'Training {arch}...')
+        
+        return NASInterface.eval_strategy.fully_train(arch=arch)
+
     
     def momentum_eval(self, candidate, weights_filename, m_epochs):
         '''Trains a given network for additional :code:`m_epochs` 
