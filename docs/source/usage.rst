@@ -69,7 +69,7 @@ To experiment with Artificial Bee Colony and Numerical Benchmarks (:class:`Rosen
 CLI Arguments
 ~~~~~~~~~~~~~
 
-To override any of the :ref:`default parameters <parameters-table>`, refer to the table below:
+To override any of the :ref:`default parameters <parameters-table>`, refer to the table below (or use the :bash:`-h` / :bash:`--help` argument):
 
 .. rst-class:: arguments-cli-table
 
@@ -92,7 +92,7 @@ To override any of the :ref:`default parameters <parameters-table>`, refer to th
     WEIGHT_FILES_SUBPATH               :bash:`--weight-files-subpath`              :bash:`-wfs`
     RESUME_FROM_RESULTS_FILE           :bash:`--resume-from-results-file`          :bash:`-rfrf`
     DEPTH                              :bash:`--depth`                             :bash:`-d`
-    RESIDUAL_BLOCKS_RATE               :bash:`--residual-blocks-rate`              :bash:`-rbr`
+    STOCHASTIC_SC_RATE                 :bash:`--stochastic-sc-rate`                :bash:`-ssr`
     DATASET                            :bash:`--dataset`                           :bash:`-ds`
     EPOCHS                             :bash:`--epochs`                            :bash:`-e`
     MOMENTUM_EPOCHS                    :bash:`--momentum-epochs`                   :bash:`-me`
@@ -101,7 +101,6 @@ To override any of the :ref:`default parameters <parameters-table>`, refer to th
     TERMINATION_DIMINISHING_FACTOR     :bash:`--termination-diminishing-factor`    :bash:`-tdf`
     LR                                 :bash:`--lr`                                :bash:`-l`
     BATCH_SIZE                         :bash:`--batch-size`                        :bash:`-bs`
-    OPTIMIZER                          :bash:`--optimizer`                         :bash:`-o`
     AFFINE_TRANSFORMATIONS_ENABLED     :bash:`--affine-transformations-enabled`    :bash:`-ate`
     CUTOUT_PROB                        :bash:`--cutout-prob`                       :bash:`-cp`
     SATURATION_AUG_PROB                :bash:`--saturation-aug-prob`               :bash:`-sap`

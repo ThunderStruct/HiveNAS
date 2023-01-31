@@ -3,6 +3,7 @@
 
 import os
 # import plaidml.keras
+from functools import partial
 from argparse import ArgumentParser
 from config import Params
 from utils import Logger
@@ -76,12 +77,43 @@ class HiveNAS(object):
         print(res)
 
 
+    @staticmethod
+    def manual_arch_evaluation(arch_str,
+                               config_path=None):
+        '''Evaluates a given architecture string (used primarily for debugging)
+
+        Args:
+            config_path (str, optional): yaml configuration file path; \
+            defaults to hard-coded config in :class:`~config.params.Params`
+            arch_str (str): string-encoded representation of the architecture to evaluate
+        '''
+
+        if config_path:
+            # load yaml config from given path
+            Params.init_from_yaml(config_path)
+
+        Logger.start_log()
+
+        # loads architecture and optimizes its weights over a larger number of epochs; 
+        # from_arch sepcifies whether to re-instantiate the network and train from scratch 
+        # or resume training from weights file
+        res = NASInterface().train_custom_arch(arch_str=arch_str)
+
+        Logger.end_log()
+
+        print(res)
+
+
 # Run HiveNAS
 if __name__ == "__main__":
 
     # parse arguments
     parser = ArgumentParser()
 
+    parser.add_argument('-ea', '--evaluate-arch',
+                        type=bool,
+                        help='Manually evaluate an architecture (string-encoded)',
+                        default=None)
     parser.add_argument('-ft', '--fully-train',
                         type=bool,
                         help='Specifies whether to fully-train the best \
@@ -100,7 +132,7 @@ if __name__ == "__main__":
     abbrevs = []
     for key, val in Params.get_all_config().items():
         # TODO: add :code:`help` argument to generated args list
-        if not isinstance(val, list) and not isinstance(val, dict):
+        if not isinstance(val, list) and not isinstance(val, dict) and not isinstance(val, partial):
             split_ls = key.lower().split('_')
             abbrev = '-' + ''.join([w[0] for w in split_ls])
             param = '--' + '-'.join(split_ls)
@@ -122,8 +154,10 @@ if __name__ == "__main__":
             Params.set_parameter(key.upper(), val)
                 
     # run HiveNAS
-    if args['fully_train']:
+    if args['fully-train']:
         HiveNAS.fully_train_topology(args['verbose'], args['config_file'])
+    elif args['evaluate-arch']:
+        HiveNAS.manual_arch_evaluation(args['evaluate-arch'], args['config_file'])
     else:
         HiveNAS.find_topology(args['config_file'])
 
