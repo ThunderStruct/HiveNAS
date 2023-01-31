@@ -123,20 +123,23 @@ In addition to the documentation below, the `default configuration file <https:/
                                                          |
                                                          | :param_default:`Default:` :python:`4`
 
-  *OPERATIONS*                        :python:`dict`     | A dictionary of all operations to sample candidates from. These \
-                                                           along with the depth define the Search Space and therefore largely influence the performance of the framework.
-                                                         | *Note: operations are defined as partial functions* \
+  *OPERATIONS*                        :python:`dict`     | A dictionary defining a :code:`search_space` \
+                                                           :python:`list` (searchable operations) and a :code:`reference_space` :python:`dict` (a lookup table for discretized operations/hyperparameters). These \
+                                                           along with the :code:`DEPTH` define the Search Space, and therefore largely influence the performance of the framework.
+                                                         |
+                                                         | The :code:`search_space` / :code:`reference_space` allow hybrid layer-wise and cell-based operations (by defining a cell in :class:`~config.operation_cells.OperationCells` and treating it as any Keras layer (see built-in example cells)).
+                                                         |
+                                                         | *Note: operations in the :code:`reference_space` are defined as partial functions* \
                                                            (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/main/src/config/settings/config_default.yaml>`_ *)*.
                                                          |
                                                          | :param_default:`Default:` *(refer to example file)*
 
-  *RESIDUAL_BLOCKS_RATE*             :python:`float`     | Rate at which skip-connections could occur per layer. The depth \
-                                                           of the residual block is randomly sampled \
-                                                           (bounded between [1, :code:`DEPTH` - *current_layer*])
-                                                         | A value of :python:`0.0` disables ResNets, while a value \
-                                                           of :python:`1.0` guarantees a skip-connection between all operations.
+  *STOCHASTIC_SC_RATE*               :python:`float`     | Rate at which skip-connections could occur \ 
+                                                           per layer. The depth of the residual block is randomly sampled (bounded between [1, :code:`DEPTH` - *current_layer*])
+                                                         | A value of :python:`0.0` disables ResNets, \ 
+                                                           while a value of :python:`1.0` guarantees a skip-connection between all operations.
                                                          |
-                                                         | :param_default:`Default:` :python:`0.15`
+                                                         | :param_default:`Default:` :python:`0.0`
 
   *DATASET*                           :python:`str`      | The optimization problem's dataset (for \
                                                            :python:`OPTIMIZATION_OBJECTIVE = 'NAS'`).
@@ -144,16 +147,16 @@ In addition to the documentation below, the `default configuration file <https:/
                                                          |
                                                          | :param_default:`Default:` :python:`'CIFAR10'`
 
-  *INPUT_STEM*                        :python:`list`     | A list of operations defining the static input \
+  *INPUT_STEM*                        :python:`list`     | A list of operations' keys defining the static input \
                                                            stem for all candidates.
-                                                         | *Note: operations are defined as partial functions* \
+                                                         | *Note: operations referenced here must be defined in :code:`OPERATIONS.reference_space`* \
                                                            (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/main/src/config/settings/config_default.yaml>`_ *)*.
                                                          |
                                                          | :param_default:`Default:` *(refer to example file)*
 
   *OUTPUT_STEM*                       :python:`list`     | A list of operations defining the static output \
                                                            stem for all candidates.
-                                                         | *Note: operations are defined as partial functions* \
+                                                         | *Note: operations referenced here must be defined in :code:`OPERATIONS.reference_space`* \
                                                            (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/main/src/config/settings/config_default.yaml>`_ *)*.
                                                          |
                                                          | :param_default:`Default:` *(refer to example file)*
@@ -164,24 +167,27 @@ In addition to the documentation below, the `default configuration file <https:/
                                                          |
                                                          | :param_default:`Default:` :python:`5`
 
-  *FULL_TRAIN_EPOCHS*                 :python:`int`      | Number of training epochs to train the best-performing \
-                                                           candidate resulting from the shallow search (used by :func:`~core.nas.nas_interface.NASInterface.fully_train_best_model`).
+  *FULL_TRAIN_EPOCHS*                 :python:`int`      | Number of training epochs to train \ 
+                                                           the best-performing candidate resulting from the shallow search (used by :func:`~core.nas.nas_interface.NASInterface.fully_train_best_model`).
                                                          |
                                                          | :param_default:`Default:` :python:`100`
 
   *LR*                               :python:`float`     | The learning rate used when evaluating candidates.
                                                          |
-                                                         | :param_default:`Default:` :python:`0.001`
+                                                         | *Note: this parameter overrides the :code:`learning_rate` defined in the :code:`OPTIMIZER` partial. A value of :python:`0.0` disables it*
+                                                         | :param_default:`Default:` :python:`0.0`
 
   *BATCH_SIZE*                        :python:`int`      | The candidates' training batch size.
                                                          |
                                                          | :param_default:`Default:` :python:`128`
 
-  *OPTIMIZER*                         :python:`str`      | The evaluation SGD optimizer.
-                                                         | *Valid options:* :python:`['Adam', 'RMSprop']`.
-                                                         | *define custom optimizers by simply importing them to* :class:`~config.params.Params` *(must be availble in the* :python:`globals()` *variable).*
+  *OPTIMIZER*                         :python:`str`      | The Evaluation Strategy's optimizer, defined \
+                                                           as partial functions (:python:`functools.partial`)
+                                                         | *Included optimizers:* :python:`Adam`, :python:`SGD`, :python:`RMSprop`.
                                                          |
-                                                         | :param_default:`Default:` :python:`'Adam'`    
+                                                         | *Note: define custom optimizers by simply importing them to* :class:`~config.params.Params` *(must be availble in the* :python:`globals()` *variable).*
+                                                         |
+                                                         | :param_default:`Default:` :python:`partial(SGD, learning_rate=0.08, decay=5e-4, momentum=0.9, nesterov=True)`    
 
   *AFFINE_TRANSFORMATIONS_ENABLE*     :python:`bool`     | Enables simple affine transformations \
                                                            *(rotation, shift, zoom, sheer, flip -- customize in the* :class:`~core.nas.evaluation_strategy.NASEval` *class).*

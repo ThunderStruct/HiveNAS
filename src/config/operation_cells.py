@@ -12,7 +12,7 @@ class OperationCells:
     each group of operations (cell) is defined as a function that \
     returns a function. This is to conform to Keras' functional models' design pattern.
     
-    i.e: ConvBnReLU(3, 32, 1)(input_layer). This ensures that cells defined here \
+    i.e: :code:`ConvBnReLU(3, 32, 1)(input_layer)`. This ensures that cells defined here \
     and primitive Keras layers are interchangeable and behave the same way in the \
     remainder of the code.
     '''
@@ -26,7 +26,7 @@ class OperationCells:
 
     @staticmethod
     def ConvBnReLU(conv_kern=3, conv_filt=32, conv_stride=1):
-        '''Cell consisting of Conv2D+BatchNormalization+ReLU
+        '''Cell consisting of :code:`Conv2D` | :code:`BatchNormalization` | :code:`ReLU`
 
         Args:
             conv_kern (int, optional): the convolution's kernel size
@@ -64,7 +64,7 @@ class OperationCells:
     @staticmethod
     def ConvBnReLUAvgPool(conv_kern=3, conv_filt=32, conv_stride=1,
                           pool_size=2, pool_stride=2):
-        '''Cell consisting of Conv2D+BatchNormalization+ReLU+AveragePooling2D
+        '''Cell consisting of :code:`Conv2D` | :code:`BatchNormalization` | :code:`ReLU` | :code:`AveragePooling2D`
 
         Args:
             conv_kern (int, optional): the convolution's kernel size
@@ -99,7 +99,7 @@ class OperationCells:
     def ResidualConvBnReLU(conv_kern=3, conv_filt=32, conv_stride=1, 
                            reg_identity=True, reg_filters=32,
                            block_count=2):
-        '''Residual cell consisting of :code:`block_count` x (Conv2D+BatchNormalization+ReLU)
+        '''Residual cell consisting of :code:`block_count` :math:`\\times` (:code:`Conv2D` | :code:`BatchNormalization` | :code:`ReLU`)
 
         Args:
             conv_kern (int, optional): the convolution's kernel size
@@ -107,7 +107,7 @@ class OperationCells:
             conv_stride (int, optional): the convolution's stride value
             reg_identity (bool, optional): specifies whether an initial \
             regularizing identity layer is added
-            block_count (int, optional): number of Conv2D+BatchNormalization+ReLU \
+            block_count (int, optional): number of (:code:`Conv2D` | :code:`BatchNormalization` | :code:`ReLU`) \
             cells are used in the residual block
 
         Returns:
