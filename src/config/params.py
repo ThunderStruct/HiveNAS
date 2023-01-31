@@ -9,7 +9,8 @@ import yaml
 from config import OperationCells
 from utils import FileHandler
 from functools import partial
-from tensorflow.keras.optimizers import RMSprop, Adam, SGD
+from tensorflow.keras.optimizers import RMSprop, Adam
+from tensorflow.keras.optimizers.legacy import SGD
 from tensorflow.keras.layers import Conv2D, Flatten, MaxPooling2D
 from tensorflow.keras.layers import SeparableConv2D, Dense, Dropout, Activation
 from tensorflow.keras.layers import AveragePooling2D, BatchNormalization, ReLU
