@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../../src'))
 # -- Project information -----------------------------------------------------
 
 project = 'HiveNAS'
-copyright = '2022, Mohamed Shahawy'
+copyright = '2023, Mohamed Shahawy'
 author = 'Mohamed Shahawy'
 
 # The full version, including alpha/beta/rc tags
