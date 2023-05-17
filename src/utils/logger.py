@@ -5,11 +5,6 @@ import time
 
 class Logger:
     '''Wrapper for debug- and info-logging methods
-    
-    Attributes:
-        EVALUATION_LOGGING (bool): determines whether to log evaluation data \
-        *(toggle to manage logging clutter in case the data points' count is large \
-        -- i.e Numerical Benchmarks, for instance)*
     '''
 
     __DEBUG_PREFIX  = 'DEBUG:'
