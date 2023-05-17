@@ -32,8 +32,17 @@ class Params:
         '''
 
 
-        ''' Configuration Version (used as filenames) '''
+        ''' 
+            Configuration Version (used as filename). 
+            Can be considered the experiment setup's ID
+        '''
         CONFIG_VERSION = 'hivenas_default'   #@param {type:"string"}
+
+        ''' 
+            Seed value used to reproduce results, -ve results will default to not specifying a seed 
+            (may not be exact reproductions if the GPU backend is used) 
+        '''
+        SEED_VALUE = 42   #@param {type:"integer"}
 
 
         #@markdown ## ABC Optimizer Parameters
@@ -53,7 +62,7 @@ class Params:
         EMPLOYEE_ONLOOKER_RATIO = 0.43   #@param {type:"slider", min:0.1, max:1.0, step:0.05}
 
         ''' Number of ABC optimization iterations '''
-        ITERATIONS_COUNT = 12    #@param {type:"slider", min:1, max:100, step:1}
+        ITERATIONS_COUNT = 10    #@param {type:"slider", min:1, max:100, step:1}
 
 
         #@markdown \
@@ -192,7 +201,7 @@ class Params:
         MOMENTUM_EPOCHS = 0 #@param {type:"slider", min:0, max:25}
 
         ''' Epochs count for the best performing candidate upon full training '''
-        FULL_TRAIN_EPOCHS = 1 #@param {type:"slider", min:1, max:150, step:1}
+        FULL_TRAIN_EPOCHS = 20 #@param {type:"slider", min:1, max:150, step:1}
 
         ''' 
             Threshold factor (beta) for early-stopping (refer to the TerminateOnThreshold class for details)
@@ -206,14 +215,17 @@ class Params:
         ''' Diminishing factor (zeta) for termination threshold over epochs '''
         TERMINATION_DIMINISHING_FACTOR = 0.25 #@param {type:"slider", min:0.1, max:1.0, step:0.05}
 
-        ''' Learning rate (overrides lr defined in the OPTIMIZER param, 0.0 = disabled) '''
-        LR = 0.0  #@param {type:"slider", min:0.0, max:0.1, step:0.001}
+        ''' Initial learning rate for a LR scheduler (overrides lr defined in the OPTIMIZER param, 0.0 = disabled) '''
+        INITIAL_LR = 0.08  #@param {type:"slider", min:0.0, max:0.1, step:0.001}
+
+        ''' Final learning rate for a LR scheduler (overrides lr defined in the OPTIMIZER param, 0.0 = disabled) '''
+        FINAL_LR = 0.01  #@param {type:"slider", min:0.0, max:0.1, step:0.001}
 
         ''' Batch size for every candidate evaluation '''
         BATCH_SIZE = 128     #@param {type:"slider", min:8, max:256, step:2}
 
         ''' Optimizer used for both NAS and full-training methods '''
-        OPTIMIZER = partial(SGD, learning_rate=0.08, decay=5e-4, momentum=0.9, nesterov=True)
+        OPTIMIZER = partial(SGD, learning_rate=0.08, momentum=0.9, nesterov=True)
 
 
         #@markdown \
@@ -255,7 +267,6 @@ class Params:
             path (str): path to yaml configuration file
         
         '''
-
 
         def param_op_constructor(loader: yaml.SafeLoader, node: yaml.nodes.MappingNode):
             '''Constructs NAS Search Space operations (using the custom \
@@ -415,7 +426,8 @@ class Params:
             'input_stem': Params['INPUT_STEM'],
             'epochs': Params['EPOCHS'],
             'full_train_epochs': Params['FULL_TRAIN_EPOCHS'],
-            'lr': Params['LR'],
+            'initial_lr': Params['INITIAL_LR'],
+            'final_lr': Params['FINAL_LR'],
             'batch_size': Params['BATCH_SIZE'],
             'optimizer': Params['OPTIMIZER'],
             'termination_threshold_factor': Params['TERMINATION_THRESHOLD_FACTOR'],

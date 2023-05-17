@@ -11,6 +11,7 @@ from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.datasets import cifar10, mnist, fashion_mnist
 from tensorflow.keras.layers import Input, Conv2D, Add, Dense, Activation
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.optimizers.schedules import ExponentialDecay
 from config import Params
 from utils import ImgAug
 from .act import TerminateOnThreshold
@@ -31,6 +32,9 @@ class NASEval(object):
         Initializes the evaluation parameters' configuration ;
         for a different dataset, a data-loader must be specified below
         as with CIFAR10 Keras loader
+
+        Raises:
+            :class:`ValueError`: raised when an invalid DATASET parameter is provided
 
         Args:
             config (dict): the predefined operational parameters pertaining to evaluation (defined in :func:`~config.params.Params.evaluation_strategy_config`)
@@ -62,10 +66,10 @@ class NASEval(object):
         self.__initialize_dataset()
 
 
-    def __instantiate_network(self, arch):
+    def instantiate_network(self, arch):
         '''
         Instantiates a Keras network given an architecture op list 
-
+        
         Args:
             arch (list): a list of architecture operations ([str]), encoded by :class:`~core.nas.search_space.NASSearchSpace`
         '''
@@ -91,22 +95,22 @@ class NASEval(object):
             assert layer in self.config['operations']['reference_space'], 'Operation must be defined as a partial in HIVE_EVAL_CONFIG'
             net = self.config['operations']['reference_space'][layer]()(net)
 
-        for idx, row in enumerate(res_count):
-            connection, counter = row
-            counter -= 1
+            for idx, row in enumerate(res_count):
+                connection, counter = row
+                counter -= 1
 
-            # apply pooling to residual blocks to maintain shape
-            # [deprecated] -- pooling layers padded
-            # if 'pool' in layer:
-            #     connection = self.config['operations'][layer]()(connection)
+                # apply pooling to residual blocks to maintain shape
+                # [deprecated] -- pooling layers padded
+                # if 'pool' in layer:
+                #     connection = self.config['operations'][layer]()(connection)
 
-            if counter == 0:
-            # conv1x1 to normalize channels
-                fx = Conv2D(net.shape[-1], (1, 1), padding='same')(connection)
-                net = Add()([fx, net])
-                del res_count[idx]
-            else:
-                res_count[idx] = (connection, counter)
+                if counter == 0:
+                    # conv1x1 to normalize channels
+                    fx = Conv2D(net.shape[-1], (1, 1), padding='same')(connection)
+                    net = Add()([fx, net])
+                    del res_count[idx]
+                else:
+                    res_count[idx] = (connection, counter)
 
         # add output stem
         for op in self.config['output_stem']:
@@ -145,7 +149,7 @@ class NASEval(object):
         '''
 
         # instantiate/compile model
-        self.__instantiate_network(arch)
+        self.instantiate_network(arch)
         self.__compile_model()
         
         # train model
@@ -235,7 +239,7 @@ class NASEval(object):
             hist_fn =  model_file.split('/')[-1] + '.full.pickle'
         else:
             # instantiate network
-            self.__instantiate_network(arch)
+            self.instantiate_network(arch)
             self.__compile_model()
             model_file = self.get_weights_filename(arch)
             hist_fn = model_file + '.full.pickle'
@@ -386,9 +390,21 @@ class NASEval(object):
         '''Compiles model in preparation for evaluation 
         '''
 
-        if self.config['lr'] > 0.0:
-            # override learning rate
-            self.config['optimizer'].keywords['learning_rate'] = self.config['lr']
+        initial_lr = self.config['initial_lr']
+        final_lr = self.config['final_lr']
+
+        if initial_lr > 0.0 and final_lr > 0.0:
+            # setup learning rate schedule
+            learning_rate_decay_factor = (final_lr / initial_lr)**(1 / self.config['epochs'])
+            steps_per_epoch = int(len(self.X_train) / self.config['batch_size'])
+
+            lr_schedule = ExponentialDecay(
+                initial_learning_rate=initial_lr,
+                decay_steps=steps_per_epoch,
+                decay_rate=learning_rate_decay_factor,
+                staircase=True)
+            
+            self.config['optimizer'].keywords['learning_rate'] = lr_schedule
 
         self.model.compile(loss='sparse_categorical_crossentropy', \
                            optimizer=self.config['optimizer'](), \

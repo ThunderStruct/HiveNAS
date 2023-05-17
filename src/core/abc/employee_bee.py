@@ -82,9 +82,9 @@ class EmployeeBee(ArtificialBee):
     def calculate_fitness(self):
         '''Calculate fitness of an :class:`~core.abc.employee_bee.EmployeeBee`, given by:
 
-        .. math:: fit_m (\\vec{x}_{m}) = \\left\\{\\begin{matrix}\\frac{1}{{1 + f_m (\\vec{x}_{m})}} & \
-        {} & {} & {{\\rm if}~~{\\rm{ }}f_m(\\vec{x}_{m})  \\ge 0}\\\\{1 + abs(f_m (\\vec{x}_{m}))} & {} & \
-        {} & {{\\rm if}~~{\\rm{ }}f_m (\\vec{x}_{m}) < 0}\\end{matrix}\\right.
+                         ⎧ 1 / (1 + Fm(Xm→))       if  Fm(Xm→)≥0
+            Fit_m(Xm→)=  ⎨
+                         ⎩ 1 + abs(Fm(Xm→))        if  Fm(Xm→)<0
 
         Returns:
             float: adjusted fitness value for the stochastic assignment operator
@@ -104,7 +104,7 @@ class EmployeeBee(ArtificialBee):
         Calculate probability of an EmployeeBee being chosen by
         an OnlookerBee based on Fitess values; given by:
         
-        .. math:: p_m  = \\frac{{fit_m(\\vec{x_m}) }}{{\\sum\\limits_{m = 1}^{SN} {fit_m (\\vec{x_m})} }}
+        Pn = Fit_n(Xn→) / [∑ (Fit_m(Xm→)) for all m]
         
         Args:
             sum_fitness (float): sum of all fitness values in the population, used for the roulette wheel selector
@@ -170,7 +170,7 @@ class EmployeeBee(ArtificialBee):
             'weights_filename': weights_filename,
             'time': self.food_source.time
         })
-
+        
         return series
 
 

@@ -4,7 +4,7 @@
 
 ## Abstract
 
-The traditional Neural Network-development process requires substantial expert knowledge and relies heavily on intuition and trial-and-error. NAS frameworks were introduced to robustly search for network topologies, as well as facilitate the automated development of Neural Networks. While some optimization approaches – such as Genetic Algorithms – have been extensively explored in the NAS context, other Metaheuristic Optimization algorithms have not yet been evaluated. This framework introduces the first Artificial Bee Colony-based NAS framework -- **HiveNAS** -- which performs competitively relative to the state-of-the-art.
+The traditional Neural Network-development process requires substantial expert knowledge and relies heavily on intuition and trial-and-error. Neural Architecture Search (NAS) frameworks were introduced to robustly search for network topologies, as well as facilitate the automated development of Neural Networks. While some optimization approaches -- such as Genetic Algorithms -- have been extensively explored in the NAS context, other Metaheuristic Optimization algorithms have not yet been investigated. In this study, we evaluate the viability of Artificial Bee Colony optimization for Neural Architecture Search. Our proposed framework, **HiveNAS**, outperforms existing state-of-the-art Swarm Intelligence-based NAS frameworks in a fraction of the time.
 
 ## Full Paper
 

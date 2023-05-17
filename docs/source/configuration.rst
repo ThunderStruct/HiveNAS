@@ -56,10 +56,16 @@ In addition to the documentation below, the `default configuration file <https:/
  Parameter Key                         Data Type                  Parameter Description 
 ==================================  ================  ==============================================
   *CONFIG_VERSION*                    :python:`str`      | The simulation's configuration version. \
-                                                           All generated results will be under this configuration name
+                                                           This can be considered the experiment's unique ID and all generated results will be under this configuration name
                                                          | *Note: must be a file-path compatible string*.
                                                          |
                                                          | :param_default:`Default:` :python:`'default_config'`
+
+  *SEED_VALUE*                        :python:`int`      | The framework-wide RNG seed value \
+                                                           (used to reproduce results).
+                                                         | *Note: -ve values can be used to revert to default randomness*.
+                                                         |
+                                                         | :param_default:`Default:` :python:`42`
 
   *OPTIMIZATION_OBJECTIVE*            :python:`str`      | The objective to be optimized.
                                                          | *Valid options:* :python:`['NAS', 'Rosenbrock', 'Sphere_min', 'Sphere_max']`.
@@ -134,7 +140,7 @@ In addition to the documentation below, the `default configuration file <https:/
                                                          |
                                                          | :param_default:`Default:` *(refer to example file)*
 
-  *STOCHASTIC_SC_RATE*               :python:`float`     | Rate at which skip-connections could occur \ 
+  *STOCHASTIC_SC_RATE*              :python:`float`      | Rate at which skip-connections could occur \ 
                                                            per layer. The depth of the residual block is randomly sampled (bounded between [1, :code:`DEPTH` - *current_layer*])
                                                          | A value of :python:`0.0` disables ResNets, \ 
                                                            while a value of :python:`1.0` guarantees a skip-connection between all operations.
@@ -172,10 +178,17 @@ In addition to the documentation below, the `default configuration file <https:/
                                                          |
                                                          | :param_default:`Default:` :python:`100`
 
-  *LR*                               :python:`float`     | The learning rate used when evaluating candidates.
+  *INITIAL_LR*                       :python:`float`     | The initial learning rate used in \
+                                                          an :python:`ExponentialDecay` learning-rate schedule
                                                          |
                                                          | *Note: this parameter overrides the :code:`learning_rate` defined in the :code:`OPTIMIZER` partial. A value of :python:`0.0` disables it*
-                                                         | :param_default:`Default:` :python:`0.0`
+                                                         | :param_default:`Default:` :python:`0.08`
+
+  *FINAL_LR*                         :python:`float`     | The final learning rate used in \
+                                                          an :python:`ExponentialDecay` learning-rate schedule
+                                                         |
+                                                         | *Note: this parameter overrides the :code:`learning_rate` defined in the :code:`OPTIMIZER` partial. A value of :python:`0.0` disables it*
+                                                         | :param_default:`Default:` :python:`0.01`
 
   *BATCH_SIZE*                        :python:`int`      | The candidates' training batch size.
                                                          |
@@ -189,7 +202,7 @@ In addition to the documentation below, the `default configuration file <https:/
                                                          |
                                                          | :param_default:`Default:` :python:`partial(SGD, learning_rate=0.08, decay=5e-4, momentum=0.9, nesterov=True)`    
 
-  *AFFINE_TRANSFORMATIONS_ENABLE*     :python:`bool`     | Enables simple affine transformations \
+  *AFFINE_TRANSFORMATIONS_ENABLE*    :python:`bool`      | Enables simple affine transformations \
                                                            *(rotation, shift, zoom, sheer, flip -- customize in the* :class:`~core.nas.evaluation_strategy.NASEval` *class).*
                                                          |
                                                          | :param_default:`Default:` :python:`True`

@@ -20,9 +20,7 @@ class Logger:
 
     __START_TIME = None
 
-    # Define EVALUATION_LOGGING in top-level module /
-    # (i.e :code:`Logging.EVALUATION_LOGGING = False`)
-    # EVALUATION_LOGGING = False
+    EVALUATION_LOGGING = False
 
 
     @staticmethod
@@ -64,7 +62,7 @@ class Logger:
             (the string-encoded architecture in the case of NAS)
         '''
 
-        if hasattr(Logger, 'EVALUATION_LOGGIN') and not Logger.EVALUATION_LOGGING:
+        if not Logger.EVALUATION_LOGGING:
             return
 
         print('\n{} {} ID ({}) -- Candidate ({})\n'.format(Logger.__EVAL_PREFIX,
@@ -84,7 +82,7 @@ class Logger:
             epochs (int): number of additional momentum epochs assigned
         '''
 
-        if hasattr(Logger, 'EVALUATION_LOGGIN') and not Logger.EVALUATION_LOGGING:
+        if not Logger.EVALUATION_LOGGING:
             return
 
         print('{} Extending ({} - fitness: {}) by {} epochs...\n'.format(Logger.__MOMENTUM_PREFIX,
@@ -103,7 +101,7 @@ class Logger:
             filename (str): output filename
         '''
 
-        if hasattr(Logger, 'EVALUATION_LOGGIN') and not Logger.EVALUATION_LOGGING:
+        if not Logger.EVALUATION_LOGGING:
             return
 
         print('\n{} Candidate ({}) was saved to {}\n'.format(Logger.__FILESAVE_PREFIX,
@@ -128,5 +126,5 @@ class Logger:
 
         end_time = time.time() - Logger.__START_TIME
         dashes = '---------------------'
-        print('{}\n-- OPTIMIZATION END --\n{} === TOTAL TIME TAKEN: {} ==== \n'.format(dashes, dashes, end_time))
+        print('{}\n-- OPTIMIZATION END --\n{}\n === TOTAL TIME TAKEN: {} ==== \n'.format(dashes, dashes, end_time))
 

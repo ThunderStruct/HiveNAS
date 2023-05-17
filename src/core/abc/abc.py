@@ -180,7 +180,11 @@ class ArtificialBeeColony:
         '''
 
         if self.total_evals % Params['RESULTS_SAVE_FREQUENCY'] == 0:
-            self.results_df = self.results_df.append(series, ignore_index=True)
+            self.results_df = pd.concat([self.results_df, 
+                                         pd.DataFrame([series], 
+                                                      columns=series.index)]
+                                        ).reset_index(drop=True)
+            #self.results_df = self.results_df.append(series, ignore_index=True)
             
             filename = f'{Params["CONFIG_VERSION"]}.csv'
             if FileHandler.save_df(self.results_df, 
@@ -300,7 +304,7 @@ class ArtificialBeeColony:
             
             best_fitness = fitness_selector(self.results_df['fitness'].tolist())
 
-            if itr % 1 == 0:
+            if itr % Params['RESULTS_SAVE_FREQUENCY'] == 0:
                 Logger.status(itr,
                           'Best fitness: {}, Total time (s): {}'.format(best_fitness,
                                                                         time.time() - start_time))

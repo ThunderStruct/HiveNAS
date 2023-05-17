@@ -3,7 +3,7 @@
 
 import re
 import numpy as np
-import networkx as nx
+# import networkx as nx
 
 class NASSearchSpace(object):
     '''Defines the Search Space used to sample candidates by HiveNAS 
