@@ -1,9 +1,6 @@
 """Image Augmentation methods.
 """
 
-import sys
-sys.path.append('...')
-
 import numpy as np
 from tensorflow.image import random_contrast, random_saturation
 

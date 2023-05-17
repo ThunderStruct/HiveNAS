@@ -13,8 +13,6 @@ from core.nas.nas_interface import NASInterface
 
 ''' Exposed API '''
 
-INTERFACE_INSTANCE = NASInterface()
-
 def instantiate_network(arch_str):
     '''Instantiates the network without compiling it (not needed for analysis purposes)
     
@@ -27,8 +25,7 @@ def instantiate_network(arch_str):
         and the model's input shape
     '''
 
-    model = INTERFACE_INSTANCE.eval_strategy.instantiate_network(INTERFACE_INSTANCE.search_space.eval_format(arch_str))
-    in_shape = INTERFACE_INSTANCE.eval_strategy.X_train.shape[1:4]
+    model, in_shape = NASInterface.eval_strategy.instantiate_network(NASInterface.search_space.eval_format(arch_str))
 
     return (model, in_shape)
 

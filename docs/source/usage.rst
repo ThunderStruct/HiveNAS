@@ -80,6 +80,7 @@ To override any of the :ref:`default parameters <parameters-table>`, refer to th
        Configuration Parameter                       Argument Name                 Argument Flag
   ==================================  ==========================================  ===============
     CONFIG_VERSION                     :bash:`--config-version`                    :bash:`-cv`
+    SEED_VALUE                         :bash:`--seed-value`                        :bash:`-sv`
     OPTIMIZATION_OBJECTIVE             :bash:`--optimization-objective`            :bash:`-oo`
     ABANDONMENT_LIMIT                  :bash:`--abandonment-limit`                 :bash:`-al`
     COLONY_SIZE                        :bash:`--colony-size`                       :bash:`-cs`
@@ -99,7 +100,8 @@ To override any of the :ref:`default parameters <parameters-table>`, refer to th
     FULL_TRAIN_EPOCHS                  :bash:`--full-train-epochs`                 :bash:`-fte`
     TERMINATION_THRESHOLD_FACTOR       :bash:`--termination-threshold-factor`      :bash:`-ttf`
     TERMINATION_DIMINISHING_FACTOR     :bash:`--termination-diminishing-factor`    :bash:`-tdf`
-    LR                                 :bash:`--lr`                                :bash:`-l`
+    INITIAL_LR                         :bash:`--initial-lr`                        :bash:`-il`
+    FINAL_LR                           :bash:`--final-lr`                          :bash:`-fl`
     BATCH_SIZE                         :bash:`--batch-size`                        :bash:`-bs`
     AFFINE_TRANSFORMATIONS_ENABLED     :bash:`--affine-transformations-enabled`    :bash:`-ate`
     CUTOUT_PROB                        :bash:`--cutout-prob`                       :bash:`-cp`

@@ -63,7 +63,7 @@ class NASInterface(ObjectiveInterface):
         res = NASInterface.eval_strategy.evaluate(formatted)
 
         # housekeeping
-        K.clear_session()
+        # K.clear_session()
         gc.collect()
         
         return res
@@ -121,7 +121,7 @@ class NASInterface(ObjectiveInterface):
 
         if from_arch:
             # Retrains from scratch given the network arch
-            arch = formatted = NASInterface.search_space.eval_format(arch)
+            arch = NASInterface.search_space.eval_format(arch)
             return NASInterface.eval_strategy.fully_train(arch=arch)
 
         # check existence of weight file
@@ -149,8 +149,8 @@ class NASInterface(ObjectiveInterface):
         print(f'Training {arch}...')
         
         return NASInterface.eval_strategy.fully_train(arch=arch)
-
     
+
     def momentum_eval(self, candidate, weights_filename, m_epochs):
         '''Trains a given network for additional :code:`m_epochs` 
         

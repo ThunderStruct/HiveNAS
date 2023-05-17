@@ -1,10 +1,11 @@
+# DEFAULT / EXAMPLE CONFIGURATION FILE
 
-#-----------------#
-# Current Version #
-#-----------------#
+#------------------#
+# Experiment Setup #
+#------------------#
 
-CONFIG_VERSION: hivenas_default                          # All generated results will be under this config name (must be a file-path compatible string)
-
+CONFIG_VERSION: hivenas_default                          # Experiment ID. All generated results will be under this config name (must be a file-path compatible string)
+SEED_VALUE: 42                                           # Seed value used to reproduce results, -ve results will revert to default RNG settings
 
 #--------------------#
 # Problem Definition #
@@ -39,7 +40,7 @@ RESUME_FROM_RESULTS_FILE: False                          # Resumes training from
 # NAS Search Space Parameters #
 #-----------------------------#
 
-DEPTH: 4                                                 # Excluding input / output stems
+DEPTH: 5                                                 # Excluding input / output stems
 OPERATIONS:
     search_space:
         # Operation keys below must be defined in the reference_space
@@ -110,15 +111,15 @@ INPUT_STEM:                                              # Static input layers' 
 OUTPUT_STEM:                                             # Static output layers' stem (reference strings)
     - global_avg_pool
 EPOCHS: 5                                                # Number of epochs per candidate training
-FULL_TRAIN_EPOCHS: 100                                   # Number of epochs for the best candidates' full training
-LR: 0.001                                                # Optimizer's learning rate, overrides default
+FULL_TRAIN_EPOCHS: 50                                    # Number of epochs for the best candidates' full training
+INITIAL_LR: 0.08                                         # Initial learning rate for a LR scheduler (overrides lr defined in the OPTIMIZER param, 0.0 = disabled)
+FINAL_LR: 0.01                                           # Final learning rate for a LR scheduler (overrides lr defined in the OPTIMIZER param, 0.0 = disabled)
 BATCH_SIZE: 128                                          # Training batch size
 OPTIMIZER: !Operation {                                  # Optimizer partial function ('Adam' and 'RMSprop' defined; define custom optimizers by simply importing them to Params (must be availble in globals()))
                 op: SGD,                          
                 nesterov: true,
                 momentum: 0.9,
-                learning_rate: 0.08,
-                decay: 0.0005
+                learning_rate: 0.08
             }                        
 
 

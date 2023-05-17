@@ -14,7 +14,7 @@ class ScoutBee:
     ABC Scout Bees are generally classified as a *reset* operator 
     for Employee/Onlooker Bees.
     
-    Responsible for sampling the initial random FoodSources :math:`\\vec{x}_{m}`
+    Responsible for sampling the initial random FoodSources Xm→
     and reseting employee bees when the abandonment limit is reached
     '''
 

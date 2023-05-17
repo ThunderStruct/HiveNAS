@@ -3,10 +3,9 @@
 
 import os
 # import plaidml.keras
-from functools import partial
-from argparse import ArgumentParser
 from config import Params
 from utils import Logger
+from utils import ArgParser
 from benchmarks import Sphere, Rosenbrock
 from core import NASInterface, ArtificialBeeColony
 
@@ -15,7 +14,7 @@ from core import NASInterface, ArtificialBeeColony
 # os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 
 
-class HiveNAS(object):
+class HiveNAS:
     '''Encapsulates all high level modules and runs the ABC-based optimization
     '''
 
@@ -37,20 +36,54 @@ class HiveNAS(object):
 
         Logger.EVALUATION_LOGGING = evaluation_logging
 
-        if Params['OPTIMIZATION_OBJECTIVE'] == 'NAS':
-            objective_interface = NASInterface()     
-        elif Params['OPTIMIZATION_OBJECTIVE'] == 'Sphere_min':
-            objective_interface = Sphere(10)
-        elif Params['OPTIMIZATION_OBJECTIVE'] == 'Sphere_max':
-            objective_interface = Sphere(10, False)
-        elif Params['OPTIMIZATION_OBJECTIVE'] == 'Rosenbrock':
-            objective_interface = Rosenbrock(2)
+        if Params['OPTIMIZATION_OBJECTIVE'] != 'NAS':
+            raise ValueError('Attempting to optimize a neural topology for a non-NAS objective')
 
+        objective_interface = NASInterface()
         abc = ArtificialBeeColony(objective_interface)
 
         abc.optimize()
 
     
+    @staticmethod
+    def test_numerical_optimization(evaluation_logging=True,
+                                    config_path=None):
+        '''Used to test Artificial Bee Colony's optimization on numerical benchmarks
+        
+        Raises:
+            :class:`ValueError`: raised when the :func:`~HiveNAS.test_numerical_optimization` \
+            is called while :code:`OPTIMIZATION_OBJECTIVE` parameter is improperly set`
+        
+        Args:
+            evaluation_logging (bool, optional): determines whether to log \
+            evaluation info or not; defaults to :code:`True`
+            config_path (str, optional): yaml configuration file path; \
+            defaults to hard-coded config in :class:`~config.params.Params`
+            kill_after (bool, optional): kills the Colab runtime after completion \
+            to preserve computational units and free the instance for others to use
+        '''
+
+        if config_path:
+            # load yaml config from given path
+            Params.init_from_yaml(config_path)
+
+        Logger.EVALUATION_LOGGING = evaluation_logging
+        
+        if Params['OPTIMIZATION_OBJECTIVE'] == 'Sphere_min':
+            objective_interface = Sphere(10)
+        elif Params['OPTIMIZATION_OBJECTIVE'] == 'Sphere_max':
+            objective_interface = Sphere(10, False)
+        elif Params['OPTIMIZATION_OBJECTIVE'] == 'Rosenbrock':
+            objective_interface = Rosenbrock(2)
+        else:
+            raise ValueError('Failed to optimize numerical benchmark. \
+            Please ensure that the OPTIMIZATION_OBJECTIVE parameter is set accordingly.')
+
+        abc = ArtificialBeeColony(objective_interface)
+
+        abc.optimize()
+
+
     @staticmethod
     def fully_train_topology(config_path=None):
         '''Given the current configuration file, 
@@ -104,49 +137,35 @@ class HiveNAS(object):
         print(res)
 
 
+    @staticmethod
+    def set_reproducible(seed_value):
+        '''Sets the backend's RNG seed to reproduce results.
+
+        Note: Keras has additional internal stochastic processes when using \
+        GPU acceleration. Run the framework a couple of times and you're bound to \
+        get an exact reproduction of the rseults.
+
+        Args:
+            seed_value (int): the RNG seed value, According to :class:`~config.Params`, \
+            negative values disable reproductions and revert to default randomness
+        '''
+
+        if seed_value >= 0:
+            os.environ['PYTHONHASHSEED'] = str(seed_value)
+            random.seed(seed_value)
+            np.random.seed(seed_value)
+
+            import tensorflow.compat.v1 as tfv1
+            tfv1.set_random_seed(seed_value)
+            session_conf = tfv1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
+            sess = tfv1.Session(graph=tfv1.get_default_graph(), config=session_conf)
+            tfv1.keras.backend.set_session(sess)
+
+
 # Run HiveNAS
-if __name__ == "__main__":
+if __name__ == '__main__':
 
-    # parse arguments
-    parser = ArgumentParser()
-
-    parser.add_argument('-ea', '--evaluate-arch',
-                        type=bool,
-                        help='Manually evaluate an architecture (string-encoded)',
-                        default=None)
-    parser.add_argument('-ft', '--fully-train',
-                        type=bool,
-                        help='Specifies whether to fully-train the best \
-                        candidate or perform the initial shallow NAS',
-                        choices=[True, False],
-                        default=False)
-    parser.add_argument('-vb', '--verbose',
-                        help='Specifies whether to log all evaluation details',
-                        default=False,
-                        action='store_true')
-    parser.add_argument('-c', '--config-file',
-                        type=str,
-                        help='Configuration file (relative) path',
-                        default=None)
-
-    abbrevs = []
-    for key, val in Params.get_all_config().items():
-        # TODO: add :code:`help` argument to generated args list
-        if not isinstance(val, list) and not isinstance(val, dict) and not isinstance(val, partial):
-            split_ls = key.lower().split('_')
-            abbrev = '-' + ''.join([w[0] for w in split_ls])
-            param = '--' + '-'.join(split_ls)
-
-            if abbrev in abbrevs:
-                # handle abbreviation conflicts
-                abbrev = f'-{split_ls[0][0]}{split_ls[0][int(len(split_ls[0])/2)+1]}'
-
-            parser.add_argument(abbrev, param, default=val, type=type(val))
-            abbrevs.append(abbrev)
-
-
-    args = parser.parse_args()
-    args = vars(args)
+    args = ArgParser.get_arguments(Params.get_all_config().items())
 
     # set config args
     for key, val in args.items():
@@ -154,11 +173,11 @@ if __name__ == "__main__":
             Params.set_parameter(key.upper(), val)
                 
     # run HiveNAS
-    if args['fully-train']:
-        HiveNAS.fully_train_topology(args['verbose'], args['config_file'])
-    elif args['evaluate-arch']:
+    if 'fully-train' in args and args['fully-train']:
+        HiveNAS.fully_train_topology(args['config_file'])
+    elif 'evaluate-arch' in args and args['evaluate-arch']:
         HiveNAS.manual_arch_evaluation(args['evaluate-arch'], args['config_file'])
     else:
-        HiveNAS.find_topology(args['config_file'])
+        HiveNAS.find_topology(args['verbose'], args['config_file'])
 
     
