@@ -10,7 +10,3 @@ The traditional Neural Network-development process requires substantial expert k
 
 For more information on the motivation, methodology, and results acquired by HiveNAS, please refer to the [preprint](https://arxiv.org/abs/2211.10250) of the full paper.
 
-
-## Acknowledgment
-
-This research was funded by [Staffordshire University](https://www.staffs.ac.uk/) and conducted under the supervision of [Prof. Elhadj Benkhelifa](https://scholar.google.com/citations?user=KylI32wAAAAJ&hl=en&oi=ao).

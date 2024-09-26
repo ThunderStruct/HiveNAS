@@ -28,7 +28,7 @@ setuptools.setup(
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX :: Linux'
     ],
-    keywords='nas neural architecture search optimization automl',
+    keywords='',
     package_dir = {'': 'src'},
     packages = setuptools.find_packages(where='src'),
     python_requires = '>=3.7'

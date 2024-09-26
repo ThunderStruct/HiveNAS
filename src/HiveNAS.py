@@ -3,6 +3,8 @@
 
 import os
 # import plaidml.keras
+import random
+import numpy as np
 from config import Params
 from utils import Logger
 from utils import ArgParser
@@ -155,7 +157,7 @@ class HiveNAS:
             random.seed(seed_value)
             np.random.seed(seed_value)
 
-            import tensorflow.compat.v1 as tfv1
+            from tensorflow.compat import v1 as tfv1
             tfv1.set_random_seed(seed_value)
             session_conf = tfv1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
             sess = tfv1.Session(graph=tfv1.get_default_graph(), config=session_conf)
