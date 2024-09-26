@@ -7,7 +7,7 @@ setuptools.setup(
     name='HiveNAS',
     version='0.1.5',
     author='Mohamed Shahawy',
-    author_email='mohamedshahawy@icloud.com',
+    author_email='envious-citizen.0s@icloud.com',
     description='A Neural Architecture Search framework based on Artificial Bee Colony optimization',
     long_description=long_description,
     long_description_content_type='text/markdown',
