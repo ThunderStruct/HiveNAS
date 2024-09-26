@@ -2,7 +2,6 @@
 """
 
 import os
-# import plaidml.keras
 import random
 import numpy as np
 from config import Params
