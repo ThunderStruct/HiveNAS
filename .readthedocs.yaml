@@ -1,0 +1,28 @@
+# Read the Docs configuration file for Sphinx projects
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+version: 2
+
+# Build documentation in the "docs/" directory with Sphinx
+sphinx:
+  configuration: docs/source/conf.py
+  fail_on_warning: false
+
+# Build formats (HTML and PDF)
+formats:
+  - pdf
+  - epub
+
+# Python configuration
+python:
+  version: "3.9"
+  install:
+    - requirements: requirements.txt
+    - method: pip
+      path: .
+
+# Optional: Build with system packages
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.9"
