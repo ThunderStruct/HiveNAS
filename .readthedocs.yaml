@@ -22,6 +22,6 @@ build:
 # Python package installation
 python:
   install:
-    - requirements: requirements.txt
+    - requirements: src/requirements.txt
     - method: pip
       path: .
