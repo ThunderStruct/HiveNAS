@@ -261,18 +261,24 @@ class ArtificialBeeColony:
             self.results_df = FileHandler.load_df(results_file)     # loads empty df if file not found
 
         else:
-            cols = ['bee_type'
-            'bee_id',
-            'bee_parent',
-            'itr',
-            'candidate',
-            'fitness',
-            'center_fitness',
-            'epochs',
-            'params',
-            'weights_filename',
-            'time']
-            
+            cols = [
+                'bee_type',
+                'bee_id',
+                'bee_parent',
+                'itr',
+                'candidate',
+                'fitness',
+                'raw_fitness',
+                'final_acc',
+                'center_fitness',
+                'momentum',
+                'epochs',
+                'momentum_epochs',
+                'params',
+                'weights_filename',
+                'time'
+            ]
+
             self.results_df = pd.DataFrame(columns=cols)
 
         self.total_evals = len(self.results_df.index)
@@ -296,18 +302,37 @@ class ArtificialBeeColony:
         fitness_selector = max if not self.obj_interface.is_minimize else min
 
         ''' Optimization loop '''
-        for itr in range(Params['ITERATIONS_COUNT']):
+        try:
+            from tqdm import tqdm
+            import sys
+            pbar = tqdm(range(Params['ITERATIONS_COUNT']),
+                       desc="ABC Optimization",
+                       ncols=100,
+                       file=sys.stdout,
+                       leave=False)
+        except ImportError:
+            pbar = range(Params['ITERATIONS_COUNT'])
+
+        for itr in pbar:
             self.__employee_bee_phase(itr)
             self.__onlooker_bee_phase(itr)
             self.__momentum_phase()
             self.__scout_bee_phase()
-            
+
             best_fitness = fitness_selector(self.results_df['fitness'].tolist())
 
+            # Update progress bar with current best fitness
+            if hasattr(pbar, 'set_postfix'):
+                pbar.set_postfix({'best_fitness': f'{best_fitness:.4f}', 'evals': len(self.results_df)})
+
             if itr % Params['RESULTS_SAVE_FREQUENCY'] == 0:
+                writer = pbar if hasattr(pbar, 'write') else None
                 Logger.status(itr,
-                          'Best fitness: {}, Total time (s): {}'.format(best_fitness,
-                                                                        time.time() - start_time))
-        
+                              'Best fitness: {}, Total time (s): {}'.format(
+                                  best_fitness,
+                                  time.time() - start_time),
+                              writer=writer)
+
         Logger.end_log()
 
+        return self.results_df

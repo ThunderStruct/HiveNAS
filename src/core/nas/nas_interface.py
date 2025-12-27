@@ -5,8 +5,10 @@ import sys
 sys.path.append('...')
 
 import gc
+import numpy as np
 import tensorflow.keras.backend as K
 from .evaluation_strategy import NASEval
+from .nasbench_adapter import NASBench101Adapter
 from .search_space import NASSearchSpace
 from core.objective_interface import ObjectiveInterface
 from config import Params
@@ -14,19 +16,30 @@ from config import Params
 
 class NASInterface(ObjectiveInterface):
     '''
-    An interface that combines the Search Space & Evaluation Strategy 
+    An interface that combines the Search Space & Evaluation Strategy
     for the NAS Search Algorithm (ABC)
-    
+
     Attributes:
         cls.eval_strategy (:class:`~core.nas.evaluation_strategy.NASEval`): NASEval instance used to instantiate and evaluate candidates
         cls.search_space (:class:`~core.nas.search_space.NASSearchSpace`): NASSearchSpace instance used to sample candidates and neighbors
     '''
 
-    def __init__(self, 
+    _ewc_enabled = False
+    _ewc_importance = {}
+    _ewc_lam = 0.5
+    _ewc_sample_k = 4
+    
+    # Multi-objective settings
+    _mo_enabled = False
+    _mo_alpha = 1.0  # Weight for accuracy
+    _mo_beta = 0.0   # Weight for parameters (penalty)
+    _mo_params_scale = 1e6 # Scale params by this factor (e.g. 1M)
+
+    def __init__(self,
                  space_config=None,
                  eval_config=None):
-        '''Initializes the search space and evaluator 
-        
+        '''Initializes the search space and evaluator
+
         Args:
             space_config (dict, optional): the predefined operational parameters pertaining to the search space (defined in :func:`~config.params.Params.search_space_config`)
             eval_config (dict, optional): the predefined operational parameters pertaining to evaluation (defined in :func:`~config.params.Params.evaluation_strategy_config`)
@@ -36,7 +49,18 @@ class NASInterface(ObjectiveInterface):
         eval_config = eval_config or Params.evaluation_strategy_config()
 
         NASInterface.search_space = NASSearchSpace(space_config)
-        NASInterface.eval_strategy = NASEval(eval_config)
+
+        # Use NASBench-101 adapter if USE_NASBENCH is enabled
+        try:
+            use_nasbench = Params['USE_NASBENCH']
+        except KeyError:
+            use_nasbench = False
+
+        if use_nasbench:
+            print("Using NASBench-101 for O(1) evaluation...")
+            NASInterface.eval_strategy = NASBench101Adapter(eval_config, use_nasbench=True)
+        else:
+            NASInterface.eval_strategy = NASEval(eval_config)
 
 
     def sample(self):
@@ -62,10 +86,38 @@ class NASInterface(ObjectiveInterface):
         formatted = NASInterface.search_space.eval_format(candidate)
         res = NASInterface.eval_strategy.evaluate(formatted)
 
+        # Multi-Objective Scalarization
+        if NASInterface._mo_enabled:
+            acc = res['fitness']
+            params = res.get('params', 0)
+            
+            # Normalize params (lower is better, so it's a penalty)
+            # Fitness = Alpha * Accuracy - Beta * (Params / Scale)
+            penalty = (params / NASInterface._mo_params_scale)
+            
+            # Apply EWC penalty if enabled (as an objective component)
+            # Note: EWC is primarily used in get_neighbor, but we can add it here too
+            # if we want the fitness to reflect adherence to the prior.
+            # For now, we stick to Acc vs Params.
+            
+            # Store raw accuracy for reference
+            res['raw_fitness'] = acc
+            
+            # Handle invalid architectures (low accuracy)
+            if acc <= 0.101:  # Default invalid is 0.1
+                 # Force very low fitness so they don't dominate due to 0 params
+                 mo_fitness = -10.0
+            else:
+                 # Normal calculation
+                 mo_fitness = (NASInterface._mo_alpha * acc) - (NASInterface._mo_beta * penalty)
+
+            # Update fitness to be the scalarized value
+            res['fitness'] = mo_fitness
+
         # housekeeping
         # K.clear_session()
-        gc.collect()
-        
+        # gc.collect()  # Disabled for NASBench - causes 1.8s overhead per evaluation!
+
         return res
 
 
@@ -78,6 +130,11 @@ class NASInterface(ObjectiveInterface):
         Returns:
             str: string-encoded representation of the neighbor architecture
         '''
+
+        if NASInterface._ewc_enabled:
+            guided = self.__guided_neighbor(orig_arch)
+            if guided is not None:
+                return guided
 
         return NASInterface.search_space.get_neighbor(orig_arch)
 
@@ -184,3 +241,81 @@ class NASInterface(ObjectiveInterface):
 
         return False
 
+
+    @classmethod
+    def enable_multiobjective(cls, alpha=1.0, beta=0.05, params_scale=1e6):
+        """Enable scalarized multi-objective evaluation (Acc - beta * Params)."""
+        cls._mo_enabled = True
+        cls._mo_alpha = alpha
+        cls._mo_beta = beta
+        cls._mo_params_scale = params_scale
+
+    @classmethod
+    def disable_multiobjective(cls):
+        cls._mo_enabled = False
+
+    @classmethod
+    def enable_ewc_guidance(cls, importance=None, lam=0.5, sample_k=4):
+        """Enable EWC-inspired neighbor guidance."""
+        cls._ewc_enabled = True
+        cls._ewc_importance = importance or {}
+        cls._ewc_lam = lam
+        cls._ewc_sample_k = max(1, int(sample_k))
+
+    @classmethod
+    def disable_ewc_guidance(cls):
+        """Disable EWC guidance."""
+        cls._ewc_enabled = False
+        cls._ewc_importance = {}
+        cls._ewc_lam = 0.5
+        cls._ewc_sample_k = 4
+
+    def __guided_neighbor(self, orig_arch):
+        """Sample multiple neighbors and select one via EWC penalty."""
+        if NASInterface.search_space is None:
+            return None
+
+        neighbors = set()
+        attempts = 0
+        max_attempts = max(5, NASInterface._ewc_sample_k * 5)
+
+        while len(neighbors) < NASInterface._ewc_sample_k and attempts < max_attempts:
+            neighbors.add(NASInterface.search_space.get_neighbor(orig_arch))
+            attempts += 1
+
+        if not neighbors:
+            return None
+
+        return self.__select_low_penalty_neighbor(orig_arch, list(neighbors))
+
+    def __select_low_penalty_neighbor(self, current_arch, candidates):
+        """Select neighbor with minimal importance-weighted changes."""
+        if not candidates:
+            return None
+
+        if not NASInterface._ewc_importance:
+            return candidates[0]
+
+        current_ops = current_arch.split('|')[1:-1]
+        best_idx = 0
+        best_score = -np.inf
+
+        for idx, candidate in enumerate(candidates):
+            cand_ops = candidate.split('|')[1:-1]
+            penalty = 0.0
+
+            for pos in range(min(len(current_ops), len(cand_ops))):
+                if current_ops[pos] != cand_ops[pos]:
+                    penalty += NASInterface._ewc_importance.get(pos, 0.0)
+
+            if len(cand_ops) > len(current_ops):
+                extra = len(cand_ops) - len(current_ops)
+                penalty += extra * max(NASInterface._ewc_importance.values(), default=0.0)
+
+            score = -NASInterface._ewc_lam * penalty
+
+            if score > best_score:
+                best_score = score
+                best_idx = idx
+
+        return candidates[best_idx]

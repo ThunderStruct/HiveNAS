@@ -1,6 +1,8 @@
 """User prompts' handle.
 """
 
+import os
+
 class PromptHandler:
     '''Wrapper for input prompt-handling methods
     '''
@@ -8,15 +10,20 @@ class PromptHandler:
     @staticmethod
     def prompt_yes_no(question, default='y'):
         '''Yes/no query; reverts to default value if no input is given
-        
+
         Args:
             question (str): printed prompt question
             default (str, optional): user answer to revert to if no \
             response is given (empty input) ; defaults to "yes"
-        
+
         Returns:
             bool: user response
         '''
+
+        # Auto-answer 'yes' if environment variable is set
+        if os.environ.get('SWARMNAS_AUTO_OVERWRITE') == '1':
+            print(f'{question} (y/n): y [auto]')
+            return True
 
         valid_res = {
             'yes': True,

@@ -101,10 +101,19 @@ class NASBench101Adapter:
             # Return low fitness to discourage this architecture
             return {
                 'fitness': 0.1,
+                'final_acc': 0.1,
                 'epochs': 108,
                 'filename': self._get_hash(arch),
-                'params': 0
+                'params': 0,
+                'momentum': {}  # NASBench doesn't use momentum
             }
+
+        # Get budget from Params (default to 12 for better variance)
+        from config import Params
+        try:
+            budget = Params['NASBENCH_BUDGET']
+        except (KeyError, TypeError):
+            budget = 12  # Default to budget=12 for high variance
 
         # Query NASBench-101
         try:
@@ -112,7 +121,7 @@ class NASBench101Adapter:
                 arch=arch_spec,
                 dataset='cifar10',
                 split='test',  # Use test accuracy as fitness
-                budget=108     # Use final epoch (108)
+                budget=budget
             )
 
             # NASBench API returns tuple: (info_dict, metrics_dict)
@@ -122,29 +131,39 @@ class NASBench101Adapter:
                 # Unexpected format
                 return {
                     'fitness': 0.1,
-                    'epochs': 108,
+                    'epochs': budget,
                     'filename': self._get_hash(arch),
-                    'params': 0
+                    'params': 0,
+                    'momentum': {}  # NASBench doesn't use momentum
                 }
 
-            # Extract test accuracy from metrics at budget=108
-            # metrics[108] is a list of runs (typically 3 runs)
+            # Extract test accuracy from metrics at the specified budget
+            # metrics[budget] is a list of runs (typically 3 runs)
             # We take the mean of final_test_accuracy across runs
-            if 108 in metrics and len(metrics[108]) > 0:
-                test_accs = [run['final_test_accuracy'] for run in metrics[108]]
+            if budget in metrics and len(metrics[budget]) > 0:
+                test_accs = [run['final_test_accuracy'] for run in metrics[budget]]
                 fitness = float(np.mean(test_accs))
             else:
                 # Architecture not in benchmark at this budget
                 fitness = 0.1
 
+            # Also get final converged accuracy at budget=108 for reference
+            final_acc = fitness  # Default to current budget accuracy
+            if budget != 108 and 108 in metrics and len(metrics[108]) > 0:
+                final_accs = [run['final_test_accuracy'] for run in metrics[108]]
+                final_acc = float(np.mean(final_accs))
+
             # Get trainable parameters from info dict
-            params = int(info.get('trainable_parameters', 0))
+            params_raw = info.get('trainable_parameters', 0)
+            params = int(params_raw) if params_raw is not None else 0
 
             return {
                 'fitness': fitness,
-                'epochs': 108,
+                'final_acc': final_acc,  # Converged accuracy at budget=108
+                'epochs': budget,
                 'filename': self._get_hash(arch),
-                'params': params
+                'params': params,
+                'momentum': {}  # NASBench doesn't use momentum
             }
 
         except Exception as e:
@@ -152,9 +171,11 @@ class NASBench101Adapter:
             # Return low fitness on error
             return {
                 'fitness': 0.1,
-                'epochs': 108,
+                'final_acc': 0.1,
+                'epochs': budget,
                 'filename': self._get_hash(arch),
-                'params': 0
+                'params': 0,
+                'momentum': {}  # NASBench doesn't use momentum
             }
 
     def _convert_to_nasbench_format(self, arch: list) -> Optional[Any]:
@@ -166,10 +187,7 @@ class NASBench101Adapter:
         - 7 operations: ['input', 'conv3x3-bn-relu', 'conv1x1-bn-relu',
                          'maxpool3x3', 'output']
 
-        This is a simplified mapping. For full compatibility, consider:
-        1. Mapping SwarmNAS ops to NASBench ops
-        2. Constructing valid adjacency matrix
-        3. Handling skip connections
+        This creates a hash-based mapping to unique NASBench architectures.
 
         Args:
             arch (list): SwarmNAS architecture
@@ -178,15 +196,17 @@ class NASBench101Adapter:
             Arch101 or None: NASBench-101 architecture spec, or None if incompatible
         """
         from nasbenchapi import Arch101
+        import hashlib
 
-        # Simplified mapping of SwarmNAS operations to NASBench-101
-        # This is a basic approximation - you may want to refine this
+        # Map SwarmNAS operations to NASBench-101 operations
         op_mapping = {
             'conv3x3_64bnreluavgpool': 'conv3x3-bn-relu',
             'conv3x3_128bnreluavgpool': 'conv3x3-bn-relu',
             'conv3x3_256bnreluavgpool': 'conv3x3-bn-relu',
             'conv3x3_16bnrelu': 'conv3x3-bn-relu',
             'conv3x3_32bnrelu': 'conv3x3-bn-relu',
+            'conv1x1_64bnrelu': 'conv1x1-bn-relu',
+            'conv1x1_128bnrelu': 'conv1x1-bn-relu',
             'resx2reg_32_conv3x3_64bnrelu': 'conv3x3-bn-relu',
             'resx1reg_128_conv3x3_256bnrelu': 'conv3x3-bn-relu',
             'resx1reg_128_conv3x3_128bnrelu': 'conv3x3-bn-relu',
@@ -194,36 +214,49 @@ class NASBench101Adapter:
             'avg_pool3x3': 'maxpool3x3',
         }
 
-        # Limit to 5 operations (input + 3 middle + output = 5, expandable to 7)
-        max_ops = min(len(arch), 5)
+        # Extract operations from SwarmNAS string format
+        # Format: "input|op1|op2|op3|op4|op5|output"
+        if isinstance(arch, str):
+            ops_str = arch.split('|')[1:-1]  # Remove input/output
+        elif isinstance(arch, list):
+            ops_str = [str(op) for op in arch]
+        else:
+            return None
 
-        # Map operations
+        # Map operations (NASBench-101 has max 5 internal nodes)
         operations = ['input']
-        for op in arch[:max_ops-2]:  # Reserve space for output
-            if op.startswith('sc_'):
-                # Skip connection - use conv1x1 as approximation
-                operations.append('conv1x1-bn-relu')
-            else:
-                mapped_op = op_mapping.get(op, 'conv3x3-bn-relu')
-                operations.append(mapped_op)
+        for op_str in ops_str[:5]:  # Limit to 5 internal operations
+            mapped_op = op_mapping.get(op_str, 'conv3x3-bn-relu')
+            operations.append(mapped_op)
 
-        # Pad to 7 operations if needed
+        # Pad to 7 total operations (input + 5 internal + output)
         while len(operations) < 6:
             operations.append('conv3x3-bn-relu')
         operations.append('output')
 
-        # Create simple sequential adjacency matrix
-        # More sophisticated graph construction could improve compatibility
+        # Create adjacency matrix based on architecture hash
+        # This ensures different SwarmNAS architectures map to different NASBench architectures
+        arch_hash = hashlib.md5(''.join(ops_str).encode()).hexdigest()
+        hash_int = int(arch_hash[:8], 16)  # Use first 8 hex chars
+
         adjacency = [[0] * 7 for _ in range(7)]
 
-        # Sequential connections
-        for i in range(len(operations) - 1):
+        # Always have sequential backbone
+        for i in range(6):
             adjacency[i][i + 1] = 1
 
-        # Add some skip connections for richer topology
-        if len(operations) >= 5:
-            adjacency[0][2] = 1  # Input to third node
-            adjacency[1][3] = 1  # Second to fourth node
+        # Add skip connections based on hash (deterministic but varied)
+        # Each bit in hash determines a potential skip connection
+        skip_possibilities = [
+            (0, 2), (0, 3), (0, 4), (0, 5),  # Input to middle nodes
+            (1, 3), (1, 4), (1, 5),           # Node 1 to later nodes
+            (2, 4), (2, 5),                   # Node 2 to later nodes
+            (3, 5),                           # Node 3 to node 5
+        ]
+
+        for idx, (src, dst) in enumerate(skip_possibilities):
+            if (hash_int >> idx) & 1:  # Check if bit is set
+                adjacency[src][dst] = 1
 
         try:
             arch_spec = Arch101(

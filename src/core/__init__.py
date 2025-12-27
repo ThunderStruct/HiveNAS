@@ -8,4 +8,7 @@ not just NAS, given that the task conforms to the
 
 from .nas import NASInterface
 from .abc import ArtificialBeeColony
-
+from .pso import ParticleSwarmOptimization
+from .aco import AntColonyOptimization
+from .random_search import RandomSearch
+from .rl import ReinforcementLearningNAS

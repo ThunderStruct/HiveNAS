@@ -32,18 +32,29 @@ class Logger:
 
     
     @staticmethod
-    def status(itr, msg=None):
+    def status(itr, msg=None, writer=None):
         '''Generic logging 
         
         Args:
             itr (int): current optimization iteration
             msg (str, optional): status message, defaults to \
             "MARK" to indicate whether the statement is reached
+            writer (object, optional): tqdm progress bar or any object with \
+            a callable ``write`` method used to print the message without \
+            breaking progress bar output
         '''
 
-        print('{} itr: {} -- {}'.format(Logger.__STATUS_PREFIX,
-                                        str(itr),
-                                        ('MARK' if msg is None else str(msg))))
+        formatted = '{} itr: {} -- {}'.format(Logger.__STATUS_PREFIX,
+                                              str(itr),
+                                              ('MARK' if msg is None else str(msg)))
+
+        if writer is not None:
+            write_fn = getattr(writer, 'write', None)
+            if callable(write_fn):
+                write_fn(formatted)
+                return
+
+        print(formatted)
 
 
     @staticmethod
@@ -122,4 +133,3 @@ class Logger:
         end_time = time.time() - Logger.__START_TIME
         dashes = '---------------------'
         print('{}\n-- OPTIMIZATION END --\n{}\n === TOTAL TIME TAKEN: {} ==== \n'.format(dashes, dashes, end_time))
-

@@ -38,11 +38,18 @@ class Params:
         '''
         CONFIG_VERSION = 'hivenas_default'   #@param {type:"string"}
 
-        ''' 
-            Seed value used to reproduce results, -ve results will default to not specifying a seed 
-            (may not be exact reproductions if the GPU backend is used) 
+        '''
+            Seed value used to reproduce results, -ve results will default to not specifying a seed
+            (may not be exact reproductions if the GPU backend is used)
         '''
         SEED_VALUE = 42   #@param {type:"integer"}
+
+        ''' Use NASBench-101 for O(1) evaluation instead of training from scratch '''
+        USE_NASBENCH = False   #@param {type:"boolean"}
+
+        ''' NASBench-101 training budget (epochs): 4, 12, 36, or 108 '''
+        ''' Lower budgets (12) provide higher variance for better algorithm differentiation '''
+        NASBENCH_BUDGET = 12   #@param {type:"integer"}
 
 
         #@markdown ## ABC Optimizer Parameters
