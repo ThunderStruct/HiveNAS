@@ -15,7 +15,7 @@ Examples
 --------
 
 
-The simplest way to run **HiveNAS** is to use the default parameters (which are empirically optimized for simple image-classification tasks) as follows:
+The simplest way to run **HiveNAS** is to use the default parameters (which configure an image-classification search) as follows:
 
 .. code-block:: bash
 
@@ -52,7 +52,7 @@ To run HiveNAS over the `MNIST <https://www.tensorflow.org/datasets/catalog/mnis
   python HiveNAS.py --verbose -cv="mnist-trial" -oo="NAS" -ds="MNIST"
 
 
-The same setting over the `FashionMNIST <https://www.tensorflow.org/datasets/catalog/fashion_mnist>`_ benchmark can be ran as follows:
+The same setting over the `FashionMNIST <https://www.tensorflow.org/datasets/catalog/fashion_mnist>`_ benchmark can be run as follows:
 
 .. code-block:: bash
 
@@ -116,6 +116,6 @@ Alternative Datasets
 In addition to the predefined datasets, virtually any labeled type of data can be used by defining a custom loader in :class:`~core.nas.evaluation_strategy.NASEval`\'s initializer.
 
 .. note::
-  Ensure that the input data (i.e :python:`(X_train, X_test)`) have a 4-dimensional shape, matching `Keras' CIFAR10 <https://keras.io/api/datasets/cifar10/>`_ . If the data has less channels, consider adding placeholders as demonstrated in :class:`~core.nas.evaluation_strategy.NASEval` with MNIST/FashionMNIST (:python:`X_train.reshape(-1,28,28,1)`)
+  Ensure that the input data (i.e :python:`(X_train, X_test)`) have a 4-dimensional shape, matching `Keras' CIFAR10 <https://keras.io/api/datasets/cifar10/>`_ . If the data has fewer channels, consider adding placeholders as demonstrated in :class:`~core.nas.evaluation_strategy.NASEval` with MNIST/FashionMNIST (:python:`X_train.reshape(-1,28,28,1)`)
 
 **HiveNAS** currently supports CNNs only, with plans to expand to RNNs in the future.

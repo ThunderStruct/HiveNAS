@@ -6,7 +6,7 @@ All types of contributions are encouraged and valued. See below for different wa
 And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
  - Star the project
  - Tweet about it
- - Refer this project in your project's readme
+ - Refer this project in your project's README
  - Mention the project at local meetups and tell your friends/colleagues
 
 
@@ -21,7 +21,7 @@ If you then still feel the need to ask a question and need clarification, we rec
 
 - Open an [Issue](https://github.com/ThunderStruct/HiveNAS/issues/new).
 - Provide as much context as you can about what you're running into.
-- Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
+- Provide Python, operating system, and relevant library versions, depending on what seems relevant.
 
 We will then take care of the issue as soon as possible.
 

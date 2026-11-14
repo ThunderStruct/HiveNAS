@@ -8,7 +8,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 > And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
 > - Star the project
 > - Tweet about it
-> - Refer this project in your project's readme
+> - Refer this project in your project's README
 > - Mention the project at local meetups and tell your friends/colleagues
 
 <!-- omit in toc -->
@@ -23,7 +23,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 ## I Have a Question
 
-> If you want to ask a question, we assume that you have read the available [Documentation](hivenas.readthedocs.io).
+> If you want to ask a question, we assume that you have read the available [Documentation](https://hivenas.readthedocs.io).
 
 Before you ask a question, it is best to search for existing [Issues](https://github.com/ThunderStruct/HiveNAS/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
@@ -31,7 +31,7 @@ If you then still feel the need to ask a question and need clarification, we rec
 
 - Open an [Issue](https://github.com/ThunderStruct/HiveNAS/issues/new).
 - Provide as much context as you can about what you're running into.
-- Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
+- Provide Python, operating system, and relevant library versions, depending on what seems relevant.
 
 We will then take care of the issue as soon as possible.
 
@@ -76,7 +76,7 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 <!-- omit in toc -->
 #### How Do I Submit a Good Bug Report?
 
-> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to the [owner](mohamedshahawy@aucegypt.edu).
+> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to the [owner](mailto:mohamed.shahawy@research.staffs.ac.uk).
 <!-- You may add a PGP key to allow the messages to be sent encrypted as well. -->
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:

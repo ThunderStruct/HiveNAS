@@ -1,60 +1,52 @@
+# HiveNAS
 
-# ![HiveNAS Logo](https://i.imgur.com/mDTdNim.jpg)
+Neural architecture search using Artificial Bee Colony (ABC) optimization, with configurable search spaces and candidate evaluation.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.5-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.5/) [![License](https://img.shields.io/badge/license-MIT-orange)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE) [![Read the Docs](https://readthedocs.org/projects/hivenas/badge/?version=latest)](https://hivenas.readthedocs.io/en/latest/)
+This is the `main` branch. For PSO, ACO, and NASBench-101 support, see [`SwarmNAS`](https://github.com/ThunderStruct/HiveNAS/tree/SwarmNAS).
 
-A feature-rich, Neural Architecture Search framework based on Artificial Bee Colony optimization
+## Installation
 
-------------------------
+Clone this branch and install its dependencies in a virtual environment. The pinned dependencies target Python 3.9.
 
-## Getting Started
-
-**HiveNAS** ([ACDSA 2026 paper](https://doi.org/10.1109/ACDSA67686.2026.11468089)) is a modular NAS framework that can find and optimize a neural architecture with state-of-the-art performance.
-
-### Installation
-
-#### PyPi (recommended)
-
-The Python package is hosted on the [Python Package Index (PyPI)](https://pypi.org/project/hivenas/).
-
-The latest published version of HiveNAS can be installed using
-
-```sh
-pip install HiveNAS
+```bash
+git clone --branch main https://github.com/ThunderStruct/HiveNAS.git
+cd HiveNAS
+python3.9 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r src/requirements.txt
+cd src
 ```
 
-#### Manual Installation
-Simply clone the entire repo and extract the files in the `HiveNAS` folder, then import them into your project folder.
+Run the examples below from `src/`. On Windows, activate the environment with `.venv\Scripts\activate`.
 
-Or use one of the shorthand methods below
-##### GIT
-  - `cd` into your project directory
-  - Use `sparse-checkout` to pull the library files only into your project directory
-    ```sh
-    git init HiveNAS
-    cd HiveNAs
-    git remote add -f origin https://github.com/ThunderStruct/HiveNAS.git
-    git config core.sparseCheckout true
-    echo "HiveNAS/*" >> .git/info/sparse-checkout
-    git pull --depth=1 origin master
-    ```
-   - Import the newly pulled files into your project folder
-##### SVN
-  - `cd` into your project directory
-  - `checkout` the library files
-    ```sh
-    svn checkout https://github.com/ThunderStruct/HiveNAS/trunk/HiveNAS
-    ```
-  - Import the newly checked out files into your project folder
-  
+The published HiveNAS package is also available on [PyPI](https://pypi.org/project/hivenas/). The source installation above provides the branch documented here.
 
-### Documentation
+## Quick Start
 
-Detailed examples and the full API docs are [hosted on Read the Docs](https://hivenas.readthedocs.io/en/latest/).
+```python
+from HiveNAS import HiveNAS
+from config import Params
+
+Params.set_parameter('ITERATIONS_COUNT', 20)
+HiveNAS.find_topology()
+```
+
+## Command Line
+
+```bash
+python HiveNAS.py --verbose --iterations-count 20
+python HiveNAS.py --verbose --config-file path/to/config.yaml
+```
+
+Search spaces, datasets, and evaluation settings are defined in `src/config/params.py` and `src/config/settings/config_default.yaml`.
+
+## Documentation
+
+See the [documentation](https://hivenas.readthedocs.io/en/latest/) for HiveNAS usage and the `docs/` directory for this branch's documentation sources.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE) file for details
+[MIT License](LICENSE).
 
 ## Publications and Citation
 

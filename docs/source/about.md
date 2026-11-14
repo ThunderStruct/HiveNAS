@@ -1,15 +1,13 @@
 # About
 
-**HiveNAS** is a feature-rich, Neural Architecture Search *(NAS)* framework based on [Artificial Bee Colony optimization](https://link.springer.com/chapter/10.1007/978-3-540-72950-1_77).
+**HiveNAS** uses Artificial Bee Colony optimization to search for neural network architectures. Its modular design separates the search space, search algorithm, and candidate evaluation, allowing datasets and operation choices to be configured independently.
 
-## Abstract
+The `main` branch provides HiveNAS. The [`SwarmNAS` branch](https://github.com/ThunderStruct/HiveNAS/tree/SwarmNAS) adds PSO, ACO, and NASBench-101 evaluation.
 
-The traditional Neural Network-development process requires substantial expert knowledge and relies heavily on intuition and trial-and-error. Neural Architecture Search (NAS) frameworks were introduced to robustly search for network topologies, as well as facilitate the automated development of Neural Networks. While some optimization approaches -- such as Genetic Algorithms -- have been extensively explored in the NAS context, other Metaheuristic Optimization algorithms have not yet been investigated. In this study, we evaluate the viability of Artificial Bee Colony optimization for Neural Architecture Search. Our proposed framework, **HiveNAS**, outperforms existing state-of-the-art Swarm Intelligence-based NAS frameworks in a fraction of the time.
+## Publications
 
-## Full Paper
+The [HiveNAS paper (ACDSA 2026)](https://doi.org/10.1109/ACDSA67686.2026.11468089) describes ABC-based architecture search and its evaluation.
 
-For the motivation, methodology, and results of HiveNAS, see the [ACDSA 2026 paper by Mohamed Shahawy](https://doi.org/10.1109/ACDSA67686.2026.11468089).
-
-SwarmNAS supports Artificial Bee Colony, Particle Swarm Optimization, and Ant Colony Optimization for neural architecture search. See the [ISMSI 2026 paper by Mohamed Shahawy and Mohamed Sedky](https://doi.org/10.1145/3820820.3820826) for the multi-objective framework and comparative study.
+The [SwarmNAS paper (ISMSI 2026)](https://doi.org/10.1145/3820820.3820826) describes the comparison of swarm intelligence optimizers and multi-objective architecture search.
 
 See {ref}`Citation <citation>` for the full references and BibTeX entries.
