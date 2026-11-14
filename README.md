@@ -60,7 +60,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 For HiveNAS and Artificial Bee Colony architecture search, cite:
 
-**Mohamed Shahawy.** “HiveNAS: Neural Architecture Search Using Artificial Bee Colony Optimization.” ACDSA 2026, pp. 1–7. [doi:10.1109/ACDSA67686.2026.11468089](https://doi.org/10.1109/ACDSA67686.2026.11468089).
+“HiveNAS: Neural Architecture Search Using Artificial Bee Colony Optimization.” ACDSA 2026, pp. 1–7. [doi:10.1109/ACDSA67686.2026.11468089](https://doi.org/10.1109/ACDSA67686.2026.11468089).
 
 ```bibtex
 @inproceedings{shahawy2026hivenas,
@@ -77,7 +77,7 @@ For HiveNAS and Artificial Bee Colony architecture search, cite:
 
 For SwarmNAS and multi-objective swarm intelligence architecture search, cite:
 
-**Mohamed Shahawy and Mohamed Sedky.** “Swarm Intelligence for Multi-Objective Neural Architecture Search.” ISMSI 2026, pp. 131–136. [doi:10.1145/3820820.3820826](https://doi.org/10.1145/3820820.3820826).
+“Swarm Intelligence for Multi-Objective Neural Architecture Search.” ISMSI 2026, pp. 131–136. [doi:10.1145/3820820.3820826](https://doi.org/10.1145/3820820.3820826).
 
 ```bibtex
 @inproceedings{shahawy2026swarmnas,
