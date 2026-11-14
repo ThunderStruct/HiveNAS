@@ -9,38 +9,55 @@
 Usage
 =====
 
-The top-level entry point of the framework is the :class:`~HiveNAS` class.
+Run these examples from the ``src/`` directory after installation.
 
-Examples
---------
+Python API
+----------
 
-
-The simplest way to run **HiveNAS** is to use the default parameters (which are empirically optimized for simple image-classification tasks) as follows:
-
-.. code-block:: bash
-
-  python HiveNAS.py --verbose
-
-
-To specify a custom configuration file (see :ref:`Configuration <configuration>`), use the :code:`-c | --config-file` argument:
-
-.. code-block:: bash
-
-  python HiveNAS.py --verbose -c="path/to/config.yaml"
-
-
-
-To import the top-level module into an existing project:
+Select PSO through its optimizer class:
 
 .. code-block:: python
 
-  from HiveNAS import HiveNAS
+   from config import Params
+   from core import NASInterface, ParticleSwarmOptimization
 
-  HiveNAS.find_topology()
+   Params.set_parameter('ITERATIONS_COUNT', 20)
+   Params.set_parameter('USE_NASBENCH', False)
+   optimizer = ParticleSwarmOptimization(NASInterface(), swarm_size=10)
+   results = optimizer.optimize()
 
+For ABC or ACO, construct the corresponding optimizer and call ``optimize()``:
 
-All primitive, non-iterable :ref:`operational parameters <parameters-table>` (i.e :python:`int`, :python:`float`, :python:`bool`, :python:`str`) are defined as CLI arguments. Find more customizable use cases below.
+.. code-block:: python
 
+   from core import ArtificialBeeColony, AntColonyOptimization
+
+   optimizer = ArtificialBeeColony(NASInterface(), colony_size=10)
+   # Or:
+   optimizer = AntColonyOptimization(NASInterface(), colony_size=10)
+
+For NASBench-101 evaluation, set ``USE_NASBENCH`` to ``True`` before
+constructing ``NASInterface()``. See the installation instructions for the
+API and dataset setup.
+
+NASBench-101 scores
+-------------------
+
+The adapter uses mean test accuracy at ``NASBENCH_BUDGET`` as search fitness.
+The ``final_acc`` result records mean 108-epoch test accuracy when available;
+otherwise it uses the search-budget score. These are benchmark search scores,
+not an independent held-out evaluation.
+
+ABC command line
+----------------
+
+The ``HiveNAS.py`` entry point runs ABC. Use the Python API above for PSO
+and ACO.
+
+.. code-block:: bash
+
+   python HiveNAS.py --verbose --iterations-count 20
+   python HiveNAS.py --verbose --config-file path/to/config.yaml
 
 Advanced Usage
 --------------
@@ -52,7 +69,7 @@ To run HiveNAS over the `MNIST <https://www.tensorflow.org/datasets/catalog/mnis
   python HiveNAS.py --verbose -cv="mnist-trial" -oo="NAS" -ds="MNIST"
 
 
-The same setting over the `FashionMNIST <https://www.tensorflow.org/datasets/catalog/fashion_mnist>`_ benchmark can be ran as follows:
+The same setting over the `FashionMNIST <https://www.tensorflow.org/datasets/catalog/fashion_mnist>`_ benchmark can be run as follows:
 
 .. code-block:: bash
 
@@ -116,6 +133,6 @@ Alternative Datasets
 In addition to the predefined datasets, virtually any labeled type of data can be used by defining a custom loader in :class:`~core.nas.evaluation_strategy.NASEval`\'s initializer.
 
 .. note::
-  Ensure that the input data (i.e :python:`(X_train, X_test)`) have a 4-dimensional shape, matching `Keras' CIFAR10 <https://keras.io/api/datasets/cifar10/>`_ . If the data has less channels, consider adding placeholders as demonstrated in :class:`~core.nas.evaluation_strategy.NASEval` with MNIST/FashionMNIST (:python:`X_train.reshape(-1,28,28,1)`)
+  Ensure that the input data (i.e :python:`(X_train, X_test)`) have a 4-dimensional shape, matching `Keras' CIFAR10 <https://keras.io/api/datasets/cifar10/>`_ . If the data has fewer channels, consider adding placeholders as demonstrated in :class:`~core.nas.evaluation_strategy.NASEval` with MNIST/FashionMNIST (:python:`X_train.reshape(-1,28,28,1)`)
 
 **HiveNAS** currently supports CNNs only, with plans to expand to RNNs in the future.

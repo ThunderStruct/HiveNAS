@@ -1,75 +1,45 @@
 Installation
-==============
+============
 
-.. role:: bash(code)
-   :language: bash
-
-.. highlight:: sh
-
-.. highlight:: bash
-
-
-PyPi (recommended)
-------------------
-
-The Python package is hosted on the `Python Package Index (PyPI) <https://pypi.org/project/hivenas/>`_.
-
-The latest published version of HiveNAS can be installed using
-
-.. code-block:: bash
-
-   $ pip install hivenas
-
-To upgrade to the latest published version, use
-
-.. code-block:: bash
-
-   $ pip install --upgrade hivenas
-
-
-The framework's dependencies are all in the standard **requirements.txt**, which can be installed using
-
-.. code-block:: bash
-
-   $ pip install -r requirements.txt
-
-in the installed package directory.
-
-
-Manual Installation
+Source installation
 -------------------
 
-Simply clone the entire repo and extract the files in the `src` folder, then import them into your project folder.
-
-
-Or use one of the shorthand methods below:
-
-GIT
-~~~
-
-- :code:`cd` into your project directory
-- Use :bash:`sparse-checkout` to pull the source files only into your project directory
+Use Python 3.9 for the pinned dependencies. Clone the ``SwarmNAS`` branch and
+create a virtual environment:
 
 .. code-block:: bash
-   :linenos:
 
-   $ git init HiveNAS
-   $ cd HiveNAs
-   $ git remote add -f origin https://github.com/ThunderStruct/HiveNAS.git
-   $ git config core.sparseCheckout true
-   $ echo "src/*" >> .git/info/sparse-checkout
-   $ git pull --depth=1 origin master
+   git clone --branch SwarmNAS https://github.com/ThunderStruct/HiveNAS.git
+   cd HiveNAS
+   python3.9 -m venv .venv
+   source .venv/bin/activate
+   python -m pip install -r src/requirements.txt
+   cd src
 
-- Import the newly pulled files into your project folder
+Run the usage examples from ``src/``. On Windows, activate the environment
+with ``.venv\Scripts\activate``.
 
+NASBench-101 (optional)
+-----------------------
 
-SVN
-~~~
+To evaluate candidates using NASBench-101, install its API and point it to
+the benchmark file:
 
-- :bash:`cd` into your project directory
-- :bash:`checkout` the source files::
+.. code-block:: bash
 
-   $ svn checkout https://github.com/ThunderStruct/HiveNAS/trunk/src
- 
-- Import the newly checked out files into your project folder
+   python -m pip install nasbenchapi
+   export NASBENCH101_PATH=/path/to/nasbench_only108.pkl
 
+Set ``USE_NASBENCH`` to ``True`` before constructing ``NASInterface()``.
+
+Published package
+-----------------
+
+The HiveNAS package is available on
+`PyPI <https://pypi.org/project/hivenas/>`_:
+
+.. code-block:: bash
+
+   python -m pip install hivenas
+
+For the branch documented here, use the source installation above.

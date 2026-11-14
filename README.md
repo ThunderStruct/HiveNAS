@@ -1,60 +1,101 @@
+# SwarmNAS
 
-# ![HiveNAS Logo](https://i.imgur.com/mDTdNim.jpg)
+Neural architecture search with Artificial Bee Colony (ABC), Particle Swarm Optimization (PSO), and Ant Colony Optimization (ACO). Candidates can be evaluated by training networks or querying NASBench-101.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThunderStruct/HiveNAS/blob/main/colab/HiveNas.ipynb) [![Platform](https://img.shields.io/badge/python-v3.7-green)](https://github.com/ThunderStruct/HiveNAS) [![pypi](https://img.shields.io/badge/pypi%20package-0.1.5-lightgrey.svg)](https://pypi.org/project/HiveNAS/0.1.5/) [![License](https://img.shields.io/badge/license-MIT-orange)](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE) [![Read the Docs](https://readthedocs.org/projects/hivenas/badge/?version=latest)](https://hivenas.readthedocs.io/en/latest/)
+This is the `SwarmNAS` branch. For the ABC framework described in the HiveNAS paper, see [`main`](https://github.com/ThunderStruct/HiveNAS/tree/main).
 
-A feature-rich, Neural Architecture Search framework based on Artificial Bee Colony optimization
+## Installation
 
-------------------------
+Clone this branch and install its dependencies in a virtual environment. The pinned dependencies target Python 3.9.
 
-## Getting Started
-
-**HiveNAS** ([ACDSA 2026 paper](https://doi.org/10.1109/ACDSA67686.2026.11468089)) is a modular NAS framework that can find and optimize a neural architecture with state-of-the-art performance.
-
-### Installation
-
-#### PyPi (recommended)
-
-The Python package is hosted on the [Python Package Index (PyPI)](https://pypi.org/project/hivenas/).
-
-The latest published version of HiveNAS can be installed using
-
-```sh
-pip install HiveNAS
+```bash
+git clone --branch SwarmNAS https://github.com/ThunderStruct/HiveNAS.git
+cd HiveNAS
+python3.9 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r src/requirements.txt
+cd src
 ```
 
-#### Manual Installation
-Simply clone the entire repo and extract the files in the `HiveNAS` folder, then import them into your project folder.
+Run the examples below from `src/`. On Windows, activate the environment with `.venv\Scripts\activate`.
 
-Or use one of the shorthand methods below
-##### GIT
-  - `cd` into your project directory
-  - Use `sparse-checkout` to pull the library files only into your project directory
-    ```sh
-    git init HiveNAS
-    cd HiveNAs
-    git remote add -f origin https://github.com/ThunderStruct/HiveNAS.git
-    git config core.sparseCheckout true
-    echo "HiveNAS/*" >> .git/info/sparse-checkout
-    git pull --depth=1 origin master
-    ```
-   - Import the newly pulled files into your project folder
-##### SVN
-  - `cd` into your project directory
-  - `checkout` the library files
-    ```sh
-    svn checkout https://github.com/ThunderStruct/HiveNAS/trunk/HiveNAS
-    ```
-  - Import the newly checked out files into your project folder
-  
+For NASBench-101 evaluation, also install its API and set the dataset path:
 
-### Documentation
+```bash
+python -m pip install nasbenchapi
+export NASBENCH101_PATH=/path/to/nasbench_only108.pkl
+```
 
-Detailed examples and the full API docs are [hosted on Read the Docs](https://hivenas.readthedocs.io/en/latest/).
+## Quick Start
+
+Choose the optimizer through its Python class:
+
+```python
+from config import Params
+from core import NASInterface, ParticleSwarmOptimization
+
+Params.set_parameter('ITERATIONS_COUNT', 20)
+Params.set_parameter('USE_NASBENCH', False)
+
+optimizer = ParticleSwarmOptimization(NASInterface(), swarm_size=10)
+results = optimizer.optimize()
+```
+
+To use ABC or ACO, replace the optimizer construction with one of these:
+
+```python
+from core import ArtificialBeeColony, AntColonyOptimization
+
+optimizer = ArtificialBeeColony(NASInterface(), colony_size=10)
+# Or:
+optimizer = AntColonyOptimization(NASInterface(), colony_size=10)
+```
+
+Call `optimizer.optimize()` after constructing the chosen optimizer. To query NASBench-101 instead of training candidates, set `USE_NASBENCH` to `True` before creating `NASInterface()`.
+
+## Configuration
+
+Shared settings, including `ITERATIONS_COUNT`, `USE_NASBENCH`, and `NASBENCH_BUDGET`, are defined in `src/config/params.py`. PSO and ACO settings are constructor arguments:
+
+| Optimizer | Parameters and defaults |
+| --- | --- |
+| PSO | `swarm_size=10`, `w=0.7`, `c1=1.5`, `c2=1.5` |
+| ACO | `colony_size=10`, `alpha=1.0`, `beta=2.0`, `rho=0.1`, `Q=1.0` |
+
+## Command Line
+
+The `HiveNAS.py` command runs ABC. Use the Python classes above for PSO and ACO.
+
+```bash
+python HiveNAS.py --verbose --iterations-count 20
+python HiveNAS.py --verbose --config-file path/to/config.yaml
+```
+
+## Project Structure
+
+```text
+HiveNAS/
+├── src/
+│   ├── HiveNAS.py          # ABC command-line entry point
+│   ├── config/             # Shared settings and operation definitions
+│   ├── core/
+│   │   ├── abc/            # Artificial Bee Colony
+│   │   ├── pso/            # Particle Swarm Optimization
+│   │   ├── aco/            # Ant Colony Optimization
+│   │   └── nas/            # Search space and candidate evaluation
+│   └── utils/
+├── docs/
+├── references.bib
+└── CITATION.cff
+```
+
+## Documentation
+
+See the [documentation](https://hivenas.readthedocs.io/en/latest/) for HiveNAS usage and the `docs/` directory for this branch's documentation sources.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/ThunderStruct/HiveNAS/blob/master/LICENSE) file for details
+[MIT License](LICENSE).
 
 ## Publications and Citation
 

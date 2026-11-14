@@ -1,15 +1,13 @@
 # About
 
-**HiveNAS** is a feature-rich, Neural Architecture Search *(NAS)* framework based on [Artificial Bee Colony optimization](https://link.springer.com/chapter/10.1007/978-3-540-72950-1_77).
+**SwarmNAS** provides ABC, PSO, and ACO optimizers for neural architecture search. It shares a configurable search space and evaluation interface across optimizers, with candidate evaluation through network training or NASBench-101 queries.
 
-## Abstract
+Choose an optimizer through the Python API. The `HiveNAS.py` command-line entry point runs ABC.
 
-The traditional Neural Network-development process requires substantial expert knowledge and relies heavily on intuition and trial-and-error. Neural Architecture Search (NAS) frameworks were introduced to robustly search for network topologies, as well as facilitate the automated development of Neural Networks. While some optimization approaches -- such as Genetic Algorithms -- have been extensively explored in the NAS context, other Metaheuristic Optimization algorithms have not yet been investigated. In this study, we evaluate the viability of Artificial Bee Colony optimization for Neural Architecture Search. Our proposed framework, **HiveNAS**, outperforms existing state-of-the-art Swarm Intelligence-based NAS frameworks in a fraction of the time.
+## Publications
 
-## Full Paper
+The [HiveNAS paper (ACDSA 2026)](https://doi.org/10.1109/ACDSA67686.2026.11468089) describes ABC-based architecture search and its evaluation.
 
-For the motivation, methodology, and results of HiveNAS, see the [ACDSA 2026 paper by Mohamed Shahawy](https://doi.org/10.1109/ACDSA67686.2026.11468089).
-
-SwarmNAS supports Artificial Bee Colony, Particle Swarm Optimization, and Ant Colony Optimization for neural architecture search. See the [ISMSI 2026 paper by Mohamed Shahawy and Mohamed Sedky](https://doi.org/10.1145/3820820.3820826) for the multi-objective framework and comparative study.
+The [SwarmNAS paper (ISMSI 2026)](https://doi.org/10.1145/3820820.3820826) describes the comparison of swarm intelligence optimizers and multi-objective architecture search.
 
 See {ref}`Citation <citation>` for the full references and BibTeX entries.
