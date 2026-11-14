@@ -2,11 +2,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-HiveNAS
-=======
+SwarmNAS
+========
 .. raw:: html
 
-   <p>Neural Architecture Search Using Artificial Bee Colony Optimization</p>
+   <p>Neural Architecture Search Using Swarm Intelligence</p>
    <hr>
 
 .. toctree::

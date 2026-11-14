@@ -19,7 +19,7 @@ Configuration
 Framework Customization
 -----------------------
 
-HiveNAS has a flexible and configurable design to fit a wider range of task contexts. Below is the list of all operational parameters, their descriptions, and default values.
+SwarmNAS shares search-space and evaluation settings across its optimizers. The shared operational parameters and their defaults are listed below. PSO and ACO settings are supplied as constructor arguments; see :ref:`Usage <usage>`.
 
 Custom `YAML <https://yaml.org/>`_ tags are defined within the framework to keep track of configurations, as well as provide a readable and user-friendly framework operation.
 
@@ -43,7 +43,7 @@ Parameters Table
 -----------------
 
 
-In addition to the documentation below, the `default configuration file <https://github.com/ThunderStruct/HiveNAS/blob/main/src/config/settings/config_default.yaml>`_ is thoroughly documented and contains all the default values used by the framework.
+In addition to the documentation below, the `default configuration file <https://github.com/ThunderStruct/HiveNAS/blob/SwarmNAS/src/config/settings/config_default.yaml>`_ is thoroughly documented and contains all the default values used by the framework.
 
 
 .. raw:: html
@@ -136,7 +136,7 @@ In addition to the documentation below, the `default configuration file <https:/
                                                          | The :code:`search_space` / :code:`reference_space` allow hybrid layer-wise and cell-based operations (by defining a cell in :class:`~config.operation_cells.OperationCells` and treating it as any Keras layer (see built-in example cells)).
                                                          |
                                                          | *Note: operations in the :code:`reference_space` are defined as partial functions* \
-                                                           (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/main/src/config/settings/config_default.yaml>`_ *)*.
+                                                           (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/SwarmNAS/src/config/settings/config_default.yaml>`_ *)*.
                                                          |
                                                          | :param_default:`Default:` *(refer to example file)*
 
@@ -156,14 +156,14 @@ In addition to the documentation below, the `default configuration file <https:/
   *INPUT_STEM*                        :python:`list`     | A list of operations' keys defining the static input \
                                                            stem for all candidates.
                                                          | *Note: operations referenced here must be defined in :code:`OPERATIONS.reference_space`* \
-                                                           (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/main/src/config/settings/config_default.yaml>`_ *)*.
+                                                           (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/SwarmNAS/src/config/settings/config_default.yaml>`_ *)*.
                                                          |
                                                          | :param_default:`Default:` *(refer to example file)*
 
   *OUTPUT_STEM*                       :python:`list`     | A list of operations defining the static output \
                                                            stem for all candidates.
                                                          | *Note: operations referenced here must be defined in :code:`OPERATIONS.reference_space`* \
-                                                           (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/main/src/config/settings/config_default.yaml>`_ *)*.
+                                                           (:python:`functools.partial`) *and can be specified in YAML format using the custom tag* :yaml:`!Operation` *(* `see example config file <https://github.com/ThunderStruct/HiveNAS/blob/SwarmNAS/src/config/settings/config_default.yaml>`_ *)*.
                                                          |
                                                          | :param_default:`Default:` *(refer to example file)*
 

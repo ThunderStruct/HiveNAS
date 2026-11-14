@@ -8,7 +8,7 @@ setuptools.setup(
     version='0.1.5',
     author='Mohamed Shahawy',
     author_email='envious-citizen.0s@icloud.com',
-    description='A Neural Architecture Search framework based on Artificial Bee Colony optimization',
+    description='Neural architecture search with ABC, PSO, and ACO optimizers',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/ThunderStruct/HiveNAS',

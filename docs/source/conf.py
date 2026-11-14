@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('../../src'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'HiveNAS'
+project = 'SwarmNAS'
 copyright = '2023, Mohamed Shahawy'
 author = 'Mohamed Shahawy'
 
@@ -29,8 +29,8 @@ release = '0.1.5'
 
 add_module_names = False
 
-html_title = "HiveNAS - Neural Architecture Search using Artificial Bee Colony Optimization"
-html_short_title = "HiveNAS"
+html_title = "SwarmNAS - Neural Architecture Search Using Swarm Intelligence"
+html_short_title = "SwarmNAS"
 html_favicon = '_static/favicon.png'
 
 # autoclass_content = 'both'
@@ -90,9 +90,7 @@ html_static_path = ['_static']
 # Bypass rtd theme preset navigation limit
 # html_theme_options = {'navigation_depth': 6}
 html_theme_options = {
-    'sidebar_hide_name': True,
-    'light_logo': 'hivenas_logo.svg',
-    'dark_logo': 'hivenas_logo_light.svg'
+    'sidebar_hide_name': False
 }
 
 html_show_sphinx = False
