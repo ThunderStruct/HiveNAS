@@ -58,8 +58,6 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## Publications and Citation
 
-HiveNAS was developed by Mohamed Shahawy. The HiveNAS paper is published in ACDSA 2026. SwarmNAS extends the framework to multiple swarm intelligence algorithms; its paper, by Mohamed Shahawy and Mohamed Sedky, is published in ISMSI 2026.
-
 For HiveNAS and Artificial Bee Colony architecture search, cite:
 
 **Mohamed Shahawy.** “HiveNAS: Neural Architecture Search Using Artificial Bee Colony Optimization.” ACDSA 2026, pp. 1–7. [doi:10.1109/ACDSA67686.2026.11468089](https://doi.org/10.1109/ACDSA67686.2026.11468089).
