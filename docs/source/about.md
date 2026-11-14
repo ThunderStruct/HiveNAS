@@ -8,6 +8,8 @@ The traditional Neural Network-development process requires substantial expert k
 
 ## Full Paper
 
-For more information on the motivation, methodology, and results acquired by HiveNAS, please refer to the [preprint](https://arxiv.org/abs/2211.10250) of the full paper.
+For the motivation, methodology, and results of HiveNAS, see the [ACDSA 2026 paper by Mohamed Shahawy](https://doi.org/10.1109/ACDSA67686.2026.11468089).
 
+SwarmNAS supports Artificial Bee Colony, Particle Swarm Optimization, and Ant Colony Optimization for neural architecture search. See the [ISMSI 2026 paper by Mohamed Shahawy and Mohamed Sedky](https://doi.org/10.1145/3820820.3820826) for the multi-objective framework and comparative study.
 
+See {ref}`Citation <citation>` for the full references and BibTeX entries.

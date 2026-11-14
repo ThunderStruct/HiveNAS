@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "Please cite the relevant publication below when using HiveNAS or SwarmNAS."
+type: software
+title: "HiveNAS and SwarmNAS"
+authors:
+  - family-names: Shahawy
+    given-names: Mohamed
+    orcid: "https://orcid.org/0000-0002-6923-8733"
+repository-code: "https://github.com/ThunderStruct/HiveNAS"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "HiveNAS: Neural Architecture Search Using Artificial Bee Colony Optimization"
+  authors:
+    - family-names: Shahawy
+      given-names: Mohamed
+  year: 2026
+  doi: "10.1109/ACDSA67686.2026.11468089"
+  collection-title: "2026 International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (ACDSA)"
+  start: 1
+  end: 7
+references:
+  - type: conference-paper
+    title: "Swarm Intelligence for Multi-Objective Neural Architecture Search"
+    authors:
+      - family-names: Shahawy
+        given-names: Mohamed
+      - family-names: Sedky
+        given-names: Mohamed
+    year: 2026
+    doi: "10.1145/3820820.3820826"
+    collection-title: "Proceedings of the 2026 10th International Conference on Intelligent Systems, Metaheuristics & Swarm Intelligence"
+    start: 131
+    end: 136
